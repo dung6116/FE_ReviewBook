@@ -138,9 +138,16 @@
             return reponse.json();
         }
         }).then(function(json){
-          sessionStorage.setItem("token",json.token);
-          sessionStorage.setItem("username",json.username);
-          window.location.replace("user_index.html")
+          if (json.id_Role == 2) {
+            sessionStorage.setItem("token",json.token);
+            sessionStorage.setItem("id",json.id);
+            sessionStorage.setItem("username",json.username);
+            window.location.replace("user_index.html")
+          }
+          if (json.id_Role == 1) {
+            
+          }
+          
         })
       }
 

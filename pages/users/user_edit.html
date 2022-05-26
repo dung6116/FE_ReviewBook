@@ -255,72 +255,63 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> List of Book Requests </h3>
+              <h3 class="page-title"> Edit User </h3>
             </div>
             <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
+              <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th> ID </th>
-                            <th> Tên sách </th>
-                            <th> Tác giả </th>
-                            <th> Nhà xuất bản </th>
-                            <th> Action </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Chuyện con mèo dạy hải âu bay </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="book_request_detail.html" role="button">View</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> Chuyện con chó tên là Trung Thành </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <form>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <!--add image-->
+                          <img class="img-b-u" src="../../assets/images/avatar.jpg">
+                        </div>
+                        <div class="col-md-9">
+                          <div class="form-group">
+                            <label for="name"> Name </label>
+                            <input type="text" class="form-control" id="name"  value="Dương Thị Minh Nguyệt">
+                          </div>
+                          <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <input type="text" class="form-control" id="gender"  value="Female">
+                          </div>
+                          <div class="form-group">
+                            <label for="birthday">Birthday</label>
+                            <input type="date" class="form-control" id="birthday"  value="2000-03-21">
+                          </div>
+                          <div class="form-group">
+                            <label for="address"> Address </label>
+                            <input type="text" class="form-control" id="address" value="Liên Chiểu, Đà Nẵng">
+                          </div>
+                          <div class="form-group">
+                            <label for="username"> Username </label>
+                            <input type="text" class="form-control" id="username" disabled value="MinhNguyet">
+                          </div>
+                          <div class="form-group">
+                            <label for="password"> Password </label>
+                            <input type="password" class="form-control" id="password" value="MinhNguyet">
+                          </div>
+                          <!-- <div class="form-group">
+                            <label for="cf_pass"> Confirm password </label>
+                            <input type="password" class="form-control" id="cf_pass" placeholder="Confirm password">
+                          </div> -->
+                          <div class="form-group">
+                            <label for="role"> Role </label>
+                            <input type="text" class="form-control" id="role" disabled value="Reader">
+                          </div>
+                        </div> 
+                      </div>
+                      <div class="text-center">
+                        <button class="btn btn-primary btn-md mr-2">Save</button>
+                        <button class="btn btn-primary btn-md mr-2">Lock</button>
+                        <a class="btn btn-primary btn-md" href="user_list.html" role="button">Back</a>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
-                  
+            </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->

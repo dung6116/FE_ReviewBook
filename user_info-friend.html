@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body>
+  <body onload="user_info()">
     <div class="container-scroller">
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -170,47 +170,81 @@
       </nav>
 
       <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row" style="margin: 0;">
-            <h1 style=" color:#000000;font-weight: bold;font-family: Arial, Helvetica, sans-serif;">Notifications</h1>
-          </div>
-          
-          <div class="row">
-            <div class="col-12">
-              <div class="preview-list">
-                <div class="preview-item" style="border-bottom: 1px solid #085394 !important;">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-primary" style="width: 70px; height: 70px;">
-                      <img class="img-xs " src="assets/images/faces/face15.jpg" alt="" style="width: 70px; height: 70px;">
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-sm-flex flex-grow">
-                    <div class="flex-grow">
-                        <a href="#" style="color:#000000; font-family: Arial, Helvetica, sans-serif;"><span style="color:#085394;font-weight:bold">Thông Nguyễn </span>has been folloing you.</a>
-                        <p style="color:#000000; font-family: Arial, Helvetica, sans-serif;">30 minutes ago</p>
-                    </div>
-                  </div>
+            <div class="content-wrapper">
+                <div class="row">
+                    <a href="#">Profile</a>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="preview-thumbnail">
+                                  <div class="preview-icon " id="avatar" style="width: 125px; height: 125px;background-position: center;background-size: cover; margin:10px auto;">
+                                        
+                                  </div>
 
-                <div class="preview-item" style="border-bottom: 1px solid #085394 !important;">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-primary" style="width: 70px; height: 70px;">
-                        <img class="img-xs " src="assets/images/faces/face15.jpg" alt="" style="width: 70px; height: 70px;">
-                      </div>
+                                  <div class="" style="text-align: center;">
+                                    <a style=" color:#000000; font-size: 20px ;" id="FullName"></a>
+                                  </div>
+
+                                  <div class="" style="text-align: center;">
+                                    <button class="btn btn-primary btn-fw border">Follow</button>
+                                  </div>
+                                    
+                                </div>
+                                <br><br>
+                                <div class="preview-thumbnail" style="position: relative;">
+                                    <div class="" style="position: absolute; left: 0;">
+                                        <a href="#" id="followed"></a>
+                                    </div>
+
+                                    <div class="" style="position: absolute; right: 0;">
+                                        <a href="#" id="following"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="preview-item-content d-sm-flex flex-grow">
-                      <div class="flex-grow">
-                          <a href="#" style="color:#000000; font-family: Arial, Helvetica, sans-serif;"><span style="color:#085394;font-weight:bold">Thông Nguyễn </span>has been folloing you.</a>
-                          <p style="color:#000000; font-family: Arial, Helvetica, sans-serif;">30 minutes ago</p>
-                      </div>
+
+                    <div class="col-md-7 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="forms-sample">
+                                    <div class="form-group row">
+                                      <label for="name" class="col-sm-3 col-form-label">Name</label>
+                                      <div class="col-sm-9" >
+                                        <input type="text" id="name" class="form-control" style="background-color: #EEEEEE; color: #000000;" id="name"  readonly>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="username" class="col-sm-3 col-form-label">UserName</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="username" style="background-color: #EEEEEE; color: #000000;"  readonly>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="birthday" class="col-sm-3 col-form-label">Birth Day</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="birthday" style="background-color: #EEEEEE; color: #000000;"  readonly>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="address" class="col-sm-3 col-form-label">Address</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="address" style="background-color: #EEEEEE; color: #000000;"  readonly>
+                                      </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
       </div>
+        <!-- main-panel ends -->
     </div>
+      <!-- page-body-wrapper ends -->
 
     <style>
       .card{
@@ -224,6 +258,7 @@
       }
 
       body, html {
+        font-weight: bold;font-family: Arial, Helvetica, sans-serif;
         background-color: #ffffff !important;
       }
 
@@ -244,6 +279,57 @@
       }
     </script>
 
+    <!-- <script>
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      function user_info(){
+        var url = `https://localhost:7295/api/Account/noPassword/${sessionStorage.getItem("id")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          hienthi_thongtin(json);
+        })
+      }
+
+      function hienthi_thongtin(json){
+        const birthday = new Date(json.birthday);
+        var month = birthday.getMonth()+1;
+        if (month.length != 2) {
+          month='0' + month;
+        }
+        
+        var day = birthday.getDate();
+        if (day.length != 2) 
+        {
+          day='0' + day;
+        }
+        
+        const bd = day + '-' + month + '-' + birthday.getFullYear();
+        const avatar ="data:image/jpeg;base64,"+ json.picture;
+        document.getElementById("avatar").style.backgroundImage = `url(${avatar})`;
+        document.getElementById("FullName").innerHTML = json.fullName;
+        document.getElementById("name").value = json.fullName;
+        document.getElementById("username").value = json.userName;
+        document.getElementById("birthday").value = bd;
+        document.getElementById("address").value = json.address;
+        document.getElementById("followed").innerHTML = json.myFollowers.length+' followed';
+        document.getElementById("following").innerHTML = json.myFollowings.length+' following';
+      }
+
+      function redirect(){
+        window.location="user_edit_profile.html";
+      }
+    </script> -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

@@ -122,7 +122,7 @@
         "userName": `${user}`,
         "password": `${pass}`,
         }
-        var url = `https://localhost:7295/api/User/Login`
+        var url = `https://reviewbook18.herokuapp.com/api/User/Login`
         fetch(url,{
           method:"POST",
           headers:{
@@ -145,7 +145,10 @@
             window.location.replace("user_index.html")
           }
           if (json.id_Role == 1) {
-            
+            sessionStorage.setItem("token",json.token);
+            sessionStorage.setItem("id",json.id);
+            sessionStorage.setItem("username",json.username);
+            window.location.replace("index.html")
           }
           
         })

@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body>
+  <body onload="user_info()">
     <div class="container-scroller">
       <!-- Start menu bar -->
       <nav class="navbar p-0 fixed-top d-flex flex-row">
@@ -118,8 +118,8 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
-                  <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-                  <p class="mb-0 d-none d-sm-block navbar-profile-name" id="username"></p>
+                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: cover;"></div>
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name"></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
@@ -150,7 +150,7 @@
                 </a>
 
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a class="dropdown-item preview-item" id="btn-log-out">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
@@ -630,7 +630,38 @@
     </style>
 
     <script>
-      document.getElementById("username").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+
+      function user_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          hienthi_thongtin(json);
+        })
+      }
+
+      function hienthi_thongtin(json){
+        sessionStorage.setItem("picture",json.picture);
+        document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      }
+
+      var btn_log_out = document.getElementById("btn-log-out");
+      btn_log_out.onclick = function() {
+        sessionStorage.clear();
+        window.location.replace("Sign_In.html")
+      }
     </script>
 
     <!-- plugins:js -->

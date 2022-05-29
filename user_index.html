@@ -119,7 +119,7 @@
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
                   <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-                  <p class="mb-0 d-none d-sm-block navbar-profile-name">Dương Dũng</p>
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name" id="username"></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
@@ -133,7 +133,7 @@
                     </div>
                   </div>
                   <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Profile</p>
+                    <p href="user_info.html" class="preview-subject mb-1">Profile</p>
                   </div>
                 </a>
 
@@ -629,12 +629,16 @@
       }
     </style>
 
+    <script>
+      document.getElementById("username").innerHTML = sessionStorage.getItem("username");
+    </script>
+
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <!-- <script src="assets/vendors/progressbar.js/progressbar.min.js"></script> -->
     <script src="assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
     <script src="assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
     <script src="assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>

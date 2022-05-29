@@ -40,32 +40,35 @@
               <div class="col-md-4 grid-margin stretch-card">
                   <div class="card">
                       <div class="card-body">
-                        <form class="margin: 20px">
+                        <form class="margin: 20px" id="form-register">
                           <h2>Sign Up</h2>
                           <!-- Username input -->
-                          <div class="form-outline mb-4" >
+                          <div class="form-group" >
                               <label class="form-label" for="form2Example1">User Name</label>
-                              <input type="text" id="username" style="background: #ffffff; color: #000000;" id="form2Example1" class="form-control" placeholder="User Name"/>
+                              <input type="text" name="userName" id="username" style="background: #ffffff; color: #000000;" class="form-control" placeholder="User Name"/>
+                              <span class="form-message"></span>
                           </div>
                         
                           <!-- Password input -->
-                          <div class="form-outline mb-4">
+                          <div class="form-group">
                               <label class="form-label" for="form2Example2">Password</label>
-                              <input type="password" id="password" style="background: #ffffff; color: #000000;" id="form2Example2" class="form-control" placeholder="Password"/>
+                              <input type="password" name="password" id="password" style="background: #ffffff; color: #000000;" class="form-control" placeholder="Password"/>
+                              <span class="form-message"></span>
                           </div>
 
-                          <!--Cf Password input -->
-                          <div class="form-outline mb-4">
+                          <!-- Cf Password input -->
+                          <div class="form-group">
                             <label class="form-label" for="form2Example2">Confirm Password</label>
-                            <input type="cf_password" id="cf_password" style="background: #ffffff; color: #000000;" id="form2Example2" class="form-control" placeholder="Password"/>
-                          </div>
-                        
+                            <input type="password" name="confirmPassword" id="cf-password" style="background: #ffffff; color: #000000;"  class="form-control" placeholder="Confirm Password"/>
+                            <span class="form-message"></span>
+                        </div>
+
                           <!-- Submit button -->
-                          <button type="button" class="btn btn-primary btn-block mb-4" id="login-btn">Sign Up</button>
+                          <button class="btn btn-primary btn-block mb-4">Sign Up</button>
                         
                           <!-- Register buttons -->
                           <div class="text-center">
-                            <p>Not a member? <a href="#!">Register</a></p>
+                            <p>Have a account! <a href="Sign_In.html">Sign In</a></p>
                             <p>or sign up with:</p>
                             <button type="button" class="btn btn-link btn-floating mx-1">
                               <i class="fab fa-facebook-f"></i>
@@ -109,10 +112,52 @@
       .main-panel {
         background: #ffffff;
       }
+
+      .form-group.invalid .form-control {
+          border-color: #f33a58;
+      }
+
+      .form-group.invalid .form-message {
+          color: #f33a58;
+      }
     </style>
 
+    <script src="./assets/js/vaidator.js"></script>
     <script>
-      
+        Validator({
+            form: '#form-register',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#username'),
+                Validator.isRequired('#password'),
+                Validator.isRequired('#cf-password'),
+                Validator.isConfirmed('#cf-password', function () { 
+                    return document.querySelector('#form-register #password').value;
+                }),
+            ],
+            onSubmit: function (data) {
+              var data1 ={
+                "userName": document.getElementById('username').value,
+                "password": document.getElementById('password').value,
+              }
+              // console.log(data1);
+              var url=`https://localhost:7295/api/Account`;
+              fetch(url,{
+                method:"POST",
+                body:JSON.stringify(data1),
+                headers:{
+                  'Content-Type': 'application/json',
+                  'accept': 'text/plain',
+              }
+              }).then(function(response) { 
+                if (response.status != 200){
+                  alert('Xảy ra lỗi!')
+                } else {
+                  window.location.replace("Sign_In.html")
+                }
+              })
+            }
+        });
     </script>
     
   </body>

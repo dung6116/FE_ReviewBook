@@ -265,17 +265,13 @@
                       <div class="row">
                         <div class="col-md-3">
                           <!--add image-->  
-                          <img class="img-thumbnail" id="bookImgId" src="../../assets/images/books-logo.jpg">
+                          <img class="img-b-u" id="bookImgId" src="../../assets/images/books-logo.jpg">
                           <div class="form-group">
                             <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                              <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                              </span>
+                            <div class="text-center">
+                                <button class="file-upload-browse btn btn-primary mt-3" type="button">Upload</button>
                             </div>
                           </div>
-
-          
                         </div>
                         <div class="col-md-9">
                           <div class="form-group">
@@ -284,13 +280,16 @@
                           </div>
                           <div class="form-group">
                             <label for="author">Author</label>
-                            <select class="form-control" id="author">
-                              <option>Nguyễn Nhật Ánh</option>
-                              <option>Nguyên Hồng</option>
-                              <option>Nam Cao</option>
-                              <option>Tố Hữu</option>
-                              <option>Nguyễn Ngọc Tư</option>
-                            </select>
+                            <div class="input-group col-xs-12">
+                              <select class="form-control" id="author">
+                                <option>Nguyễn Nhật Ánh</option>
+                                <option>Nguyên Hồng</option>
+                                <option>Nam Cao</option>
+                                <option>Tố Hữu</option>
+                                <option>John Green</option>
+                              </select>
+                              <button type="button" class="btn btn-outline-primary btn-sm ml-2" data-toggle="modal" data-target="#addAut"> Add new Author </button>
+                            </div>
                           </div>
                           <div class="form-group row">
                             <label class="col-md-12" for="tag">Tag</label>
@@ -336,13 +335,16 @@
                           </div>
                           <div class="form-group">
                             <label for="Publisher">Publisher</label>
-                            <select class="form-control" id="Publisher">
-                              <option>NXB Trẻ</option>
-                              <option>NXB Văn học</option>
-                              <option>NXB Kim Đồng</option>
-                              <option>NXB Hội Nhà Văn</option>
-                              <option>NXB Giáo dục</option>
-                            </select>
+                            <div class="input-group col-xs-12">
+                              <select class="form-control" id="Publisher">
+                                <option>NXB Trẻ</option>
+                                <option>NXB Văn học</option>
+                                <option>NXB Kim Đồng</option>
+                                <option>NXB Hội Nhà Văn</option>
+                                <option>NXB Giáo dục</option>
+                              </select>
+                              <button type="button" class="btn btn-outline-primary btn-sm ml-2" data-toggle="modal" data-target="#addPub"> Add new Publisher </button>
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="publishYear">Publish year</label>
@@ -352,9 +354,11 @@
                             <label for="description">Description</label>
                             <textarea class="form-control text-line-spacing text-justify" id="description" rows="10"></textarea>
                           </div>
-                          <button type="submit" class="btn btn-primary mr-2">Add</button>
-                          <button class="btn btn-dark">Cancel</button>
                         </div> 
+                      </div>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary mr-2">Add</button>
+                        <button class="btn btn-primary">Cancel</button>
                       </div>
                     </form>
                   </div>
@@ -369,6 +373,112 @@
         </div>
         <!-- main-panel ends -->
       </div>
+
+      <!-- modal add new author-->
+      <div class="modal fade" id="addAut" tabindex="-1" role="dialog" aria-labelledby="addAutLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addAutLabel">Add New Author</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group row">
+                  <label for="pseudonyms" class="col-sm-3 col-form-label">Pseudonyms</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="pseudonyms" placeholder="Pseudonyms">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="real-name" class="col-sm-3 col-form-label">Real name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="real-name" placeholder="Real name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="birthday"  max="2021-01-01" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="intro" class="col-sm-3 col-form-label">Introduction</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control text-line-spacing text-justify" id="intro" rows="4" placeholder="Something about the author"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="books" class="col-sm-3 col-form-label">Books</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control text-line-spacing text-justify" id="books" rows="4" placeholder="Books of this author"></textarea>
+                  </div>
+                </div>                  
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal add new author ends-->
+      <!-- -->
+      <!-- modal add new publisher-->
+      <div class="modal fade" id="addPub" tabindex="-1" role="dialog" aria-labelledby="addPubLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addPubLabel">Add New Publisher</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="forms-sample">
+                <div class="form-group row">
+                  <label for="pub-name" class="col-sm-3 col-form-label"> Publisher's name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="pub-name" placeholder="Name of publisher" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="address" class="col-sm-3 col-form-label"> Address </label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control text-line-spacing text-justify" id="address" rows="1" placeholder="Address of publisher" ></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="telephone" class="col-sm-3 col-form-label">Telephone</label>
+                  <div class="col-sm-9">
+                    <input type="tel" class="form-control" id="telephone" placeholder="Telephone of publisher" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="birthday" class="col-sm-3 col-form-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="email" class="form-control" id="birthday" placeholder="Email of publisher">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="birthday" class="col-sm-3 col-form-label">Website</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="birthday" placeholder="Website of publisher">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal add new publisher ends-->
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->

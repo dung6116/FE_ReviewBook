@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="user_info()">
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -41,11 +41,11 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="assets/images/avatar.jpg" alt="">
+                  <div id="icon_avatar" class="img-avatar rounded-circle " ></div>
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Minh Nguyệt</h5>
+                  <h5 class="mb-0 font-weight-normal" id="bar_name"></h5>
                   <span>Admin</span>
                 </div>
               </div>
@@ -215,8 +215,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="assets/images/avatar.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Minh Nguyệt</p>
+                    <div id="icon_avatar_1" class="img-avatar rounded-circle" ></div>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name_1"></p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -465,7 +465,7 @@
                             <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
                             <div class="d-flex d-md-block d-xl-flex justify-content-between">
                               <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 111 </p>
+                              <p class="text-muted text-small"> 1113 </p>
                             </div>
                           </div>
                         </div>
@@ -479,7 +479,7 @@
                             <h6 class="preview-subject">Khi lỗi thuộc về những vì sao</h6>
                             <div class="d-flex d-md-block d-xl-flex justify-content-between">
                               <p class="text-muted">John Green</p>
-                              <p class="text-muted text-small"> 80 </p>
+                              <p class="text-muted text-small"> 1013 </p>
                             </div>
                           </div>
                         </div>
@@ -493,7 +493,7 @@
                             <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
                             <div class="d-flex d-md-block d-xl-flex justify-content-between">
                               <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 73 </p>
+                              <p class="text-muted text-small"> 1003 </p>
                             </div>
                           </div>
                         </div>
@@ -514,6 +514,46 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script>
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
+
+      var btn_log_out = document.getElementById("btn-log-out");
+      btn_log_out.onclick = function() {
+        sessionStorage.clear();
+        window.location.replace("Sign_In.html")
+      }
+
+      function user_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          hienthi_thongtin(json);
+        })
+      }
+
+      function hienthi_thongtin(json){
+        sessionStorage.setItem("picture",json.picture);
+        document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+        document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      }
+
+      function redirect(){
+        window.location="user_edit_profile.html";
+      }
+    </script>
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

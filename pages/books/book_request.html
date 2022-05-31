@@ -37,11 +37,11 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="../../assets/images/avatar.jpg" alt="">
+                  <div id="icon_avatar" class="img-avatar rounded-circle " ></div>
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Minh Nguyệt</h5>
+                  <h5 class="mb-0 font-weight-normal" id="bar_name"></h5>
                   <span>Admin</span>
                 </div>
               </div>
@@ -212,8 +212,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="../../assets/images/avatar.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Minh Nguyệt</p>
+                    <div id="icon_avatar_1" class="img-avatar rounded-circle" ></div>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name_1"></p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -333,6 +333,14 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script>
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+
+      
+    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

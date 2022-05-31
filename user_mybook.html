@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body>
+  <body onload = "user_mybook()">
     <div class="container-scroller">
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -417,6 +417,8 @@
 
       body, html {
         background-color: #ffffff !important;
+        color:#000000; 
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       .navbar{
@@ -433,6 +435,26 @@
       btn_log_out.onclick = function() {
         sessionStorage.clear();
         window.location.replace("Sign_In.html")
+      }
+
+      function user_mybook(){
+        var url = `https://reviewbook18.herokuapp.com/api/User/MyBook`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          console.log(json);
+        })
       }
     </script>
 

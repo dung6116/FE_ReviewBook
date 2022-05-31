@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body>
+  <body onload = "write_rv()">
     <div class="container-scroller">
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -176,8 +176,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-primary" style="width: 125px; height: 125px; margin:10px auto;">
-                                        <img class="img-xs" src="assets/images/faces/face15.jpg" alt="" style="width: 125px; height: 125px;">
+                                    <div class="preview-icon bg-primary" style="width: 125px; height: 125px; background-position: center;background-size: cover; margin:10px auto;" id="book-cover">
+                                        
                                     </div>
                                 </div>
                                 
@@ -591,6 +591,27 @@
       btn_log_out.onclick = function() {
         sessionStorage.clear();
         window.location.replace("Sign_In.html")
+      }
+
+      function write_rv(){
+        var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          document.getElementById("book-cover").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ json.picture})`;
+          
+        })
       }
     </script>
 

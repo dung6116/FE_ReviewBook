@@ -353,6 +353,7 @@
         const reader = new FileReader();
         reader.addEventListener("load", () => {
           const uploaded_image = reader.result;
+          console.log(uploaded_image)
           document.getElementById("avatar").style.backgroundImage = `url(${uploaded_image})`;
         });
         reader.readAsDataURL(this.files[0]);

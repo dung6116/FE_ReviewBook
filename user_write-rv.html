@@ -26,147 +26,148 @@
   </head>
   <body>
     <div class="container-scroller">
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
-            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-              
-              <ul style=" padding-inline-start: 10px;">
-                <a  href="user_index.html">
-                  <span >
-                    <i class="fa-solid fa-dragon" style="font-size:48px; margin-top: 10px; color:white"></i>
-                  </span>
-                  <span style="color:white; font-size:30px;">WhiteDragons</span>
-                </a>
-              </ul>
-              
-              <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item menu-items">
-                  <a class="nav-link" href="#">
-                    <span class="menu-icon">
-                      <i class="fa-solid fa-list"></i>
-                    </span>
-                    <span class="menu-title">My Books</span>
-                  </a>
-                </li>
-  
-                <li class="nav-item menu-items">
-                  <a class="nav-link" href="#">
-                    <span class="menu-icon">
-                      <i class="fa-solid fa-pen"></i>
-                    </span>
-                    <span class="menu-title">Book Request</span>
-                  </a>
-                </li>
-  
-                <li class="nav-item dropdown">
-                  <a  href="#">
-                    <span >
-                      <i class="fa-solid fa-magnifying-glass" style=" color:white"></i>
-                    </span>
-                  </a>
-                </li>
-                
-                <li class="nav-item dropdown">
-                  <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                    <i class="mdi mdi-bell"></i>
-                    <span class="count bg-danger"></span>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                    <h6 class="p-3 mb-0">Notifications</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-calendar text-success"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Event today</p>
-                        <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
-                      </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-settings text-danger"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Settings</p>
-                        <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                      </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-link-variant text-warning"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Launch Admin</p>
-                        <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                      </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="p-3 mb-0 text-center dropdown-item preview-item" href="#">See all notifications</a>
+      <nav class="navbar p-0 fixed-top d-flex flex-row">
+        <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+          <!-- Logo web WhiteDragons -->
+          <ul style=" padding-inline-start: 10px;">
+            <a  href="user_index.html">
+              <span >
+                <i class="fa-solid fa-dragon" style="font-size:48px; margin-top: 10px; color:white"></i>
+              </span>
+              <span style="color:white; font-size:30px;">WhiteDragons</span>
+            </a>
+          </ul>
+          <!-- List menu -->
+          <ul class="navbar-nav navbar-nav-right">
+            <!-- My books -->
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="user_mybook.html">
+                <span class="menu-icon">
+                  <i class="fa-solid fa-list"></i>
+                </span>
+                <span class="menu-title">My Books</span>
+              </a>
+            </li>
+            <!-- Book Request -->
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="#">
+                <span class="menu-icon">
+                  <i class="fa-solid fa-pen"></i>
+                </span>
+                <span class="menu-title">Book Request</span>
+              </a>
+            </li>
+            <!-- Button search -->
+            <li class="nav-item dropdown">
+              <a  href="user_search.html">
+                <span >
+                  <i class="fa-solid fa-magnifying-glass" style=" color:white"></i>
+                </span>
+              </a>
+            </li>
+            <!-- button notifications -->
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-bell"></i>
+                <span class="count bg-danger"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <h6 class="p-3 mb-0">Notifications</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-calendar text-success"></i>
+                    </div>
                   </div>
-                </li>
-  
-                <li class="nav-item dropdown">
-                  <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-                    <div class="navbar-profile">
-                      <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-                      <p class="mb-0 d-none d-sm-block navbar-profile-name">Dương Dũng</p>
-                      <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Event today</p>
+                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-settings text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Settings</p>
+                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-link-variant text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Launch Admin</p>
+                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="p-3 mb-0 text-center dropdown-item preview-item" href="user_view-all-ntf.html">See all notifications</a>
+              </div>
+            </li>
+            <!-- button profile -->
+            <li class="nav-item dropdown">
+              <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                <div class="navbar-profile">
+                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: cover;"></div>
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name"></p>
+                  <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                </div>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                  
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item" href="user_info.html">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-account text-success"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p href="user_info.html" class="preview-subject mb-1">Profile</p>
+                  </div>
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item" href="user_change-pw.html">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-account-key text-success"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Change password</p>
+                  </div>
+                </a>
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item" id="btn-log-out">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-logout text-danger"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Log out</p>
                     </div>
                   </a>
-                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                    
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-account text-success"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Profile</p>
-                      </div>
-                    </a>
-  
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-account-key text-success"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Change password</p>
-                      </div>
-                    </a>
-  
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Log out</p>
-                      </div>
-                    </a>
-                    
-                  </div>
-                </li>
-              </ul>
-              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                <span class="mdi mdi-format-line-spacing"></span>
-              </button>
-            </div>
-        </nav>
+                  
+                </div>
+              </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-format-line-spacing"></span>
+          </button>
+        </div>
+      </nav>
 
       <div class="main-panel">
             <div class="content-wrapper">
@@ -555,10 +556,8 @@
             </div>
       </div>
         <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
+      <!-- page-body-wrapper ends -->
 
     <style>
       .dropdown-menu {
@@ -583,6 +582,17 @@
         background: #085394;
       }
     </style>
+
+    <script>
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+     
+      var btn_log_out = document.getElementById("btn-log-out");
+      btn_log_out.onclick = function() {
+        sessionStorage.clear();
+        window.location.replace("Sign_In.html")
+      }
+    </script>
 
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>

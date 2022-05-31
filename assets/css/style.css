@@ -15811,6 +15811,12 @@ code {
 .img-xs {
   width: 35px;
   height: 35px; }
+.img-avatar {
+  width: 35px;
+  height: 35px; 
+  background-position: center;
+  background-size: cover;
+}
 
 .img-ss {
   width: 26px;

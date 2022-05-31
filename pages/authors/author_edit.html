@@ -255,72 +255,58 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> List of Book Requests </h3>
+              <h3 class="page-title"> Edit Author </h3>
             </div>
             <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
+              <div class="col-10 offset-1 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th> ID </th>
-                            <th> Tên sách </th>
-                            <th> Tác giả </th>
-                            <th> Nhà xuất bản </th>
-                            <th> Action </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Chuyện con mèo dạy hải âu bay </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="book_request_detail.html" role="button">View</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> Chuyện con chó tên là Trung Thành </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <form class="forms-sample">
+                      <div class="form-group row">
+                        <label for="pseudonyms" class="col-sm-3 col-form-label">Pseudonyms</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="pseudonyms" value="Nam Cao">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="real-name" class="col-sm-3 col-form-label">Real name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="real-name" value="Trần Hữu Tri">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
+                        <div class="col-sm-9">
+                          <input type="date" class="form-control" id="birthday" value="1917-10-29" max="2021-01-01">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="intro" class="col-sm-3 col-form-label">Introduction</label>
+                        <div class="col-sm-9">
+                          <textarea class="form-control text-line-spacing text-justify" id="intro" rows="10" >Nam Cao (1915-1951) là trí thức tiểu tư sản nghèo, sống gắn bó với con người nghèo khổ và hiểu họ một cách sâu sắc.
+Nam Cao là một nhà văn lớn của trào lưu văn học hiện thực phê phán 1930-1945 ở nước ta. Sau cách mạng, ông là người tham gia kháng chiến một cách tích cực, nhanh chóng hòa mình vào cuộc kháng chiến chống Pháp thần thánh của dân tộc. Ông hy sinh trong một trận bị phục kích trên đường công tác giữa lúc tài năng đang chín rộ và đầy hứa hẹn.
+Cho đến bây giờ cuộc đời và tác phẩm của Nam Cao vẫn còn mang tính thời sự. Những tác phẩm của ông được đánh giá cao và được nhận định là “chúng ta vẫn chưa hiểu hết giá trị sâu xa của chúng”. </textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="books" class="col-sm-3 col-form-label">Books</label>
+                        <div class="col-sm-9">
+                          <textarea class="form-control text-line-spacing text-justify" id="books" rows="5" >  - Truyện người hàng xóm (1944) 
+  - Báo Trung văn Chủ nhật.
+  - Sống mòn (1944) - Tiểu thuyết
+  - Chí Phèo (1941) - Truyện ngắn</textarea>
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-md mr-2">Save</button>
+                        <a class="btn btn-primary btn-md" href="author_list.html" role="button">Cancel</a>
+                      </div>
+                      
+                    </form>
                   </div>
                 </div>
               </div>
-                  
+            </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->

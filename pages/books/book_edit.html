@@ -255,72 +255,114 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> List of Book Requests </h3>
+              <h3 class="page-title"> Edit book </h3>
             </div>
             <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
+              <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th> ID </th>
-                            <th> Tên sách </th>
-                            <th> Tác giả </th>
-                            <th> Nhà xuất bản </th>
-                            <th> Action </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Chuyện con mèo dạy hải âu bay </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="book_request_detail.html" role="button">View</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> Chuyện con chó tên là Trung Thành </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <form method="post">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <!--add image-->  
+                          <img class="img-b-u" id="bookImgId" src="../../assets/images/books-logo.jpg">
+                          <div class="form-group">
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                              <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary mt-3" type="button">Change image</button>
+                              </span>
+                            </div>
+                          </div> 
+
+          
+                        </div>
+                        <div class="col-md-9">
+                          <div class="form-group">
+                            <label for="bookTitle">Book title</label>
+                            <input type="text" class="form-control" id="bookTitle" value="Khi lỗi thuộc về những vì sao">
+                          </div>
+                          <div class="form-group">
+                            <label for="author">Author</label>
+                            <select class="form-control" id="author">
+                              <option>Nguyễn Nhật Ánh</option>
+                              <option>Nguyên Hồng</option>
+                              <option>Nam Cao</option>
+                              <option>Tố Hữu</option>
+                              <option selected>John Green</option>
+                            </select>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-md-12" for="tag">Tag</label>
+                            <!-- <input type="text" class="form-control" id="tag" placeholder="Tag"> -->
+                            <div class="col-md-6">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" id="tag1" name="tag1"> Trinh thám </label>
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" id="tag2" name="tag2" checked> Tiểu thuyết </label>
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" id="tag3" name="tag3"> Tiểu sử </label>
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" id="tag4" name="tag4"> Khoa học viễn tưởng </label>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="tag5" name="tag5"> Tản văn </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="tag6" name="tag6"> Lịch sử </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="tag7" name="tag7"> Kinh tế </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="tag8" name="tag8"> Self help </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="Publisher">Publisher</label>
+                            <select class="form-control" id="Publisher">
+                              <option selected>NXB Trẻ</option>
+                              <option>NXB Văn học</option>
+                              <option>NXB Kim Đồng</option>
+                              <option>NXB Hội Nhà Văn</option>
+                              <option>NXB Giáo dục</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="publishYear">Publish year</label>
+                            <input type="number" max="2022" class="form-control" id="publishYear" value="2012">
+                          </div>
+                          <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control text-line-spacing text-justify" id="description" rows="10">Mặc dù phép màu y học đã giúp thu hẹp khối u và ban thêm vài năm sống cho Hazel nhưng cuộc đời cô bé đang ở vào giai đoạn cuối, từng chương kế tiếp được viết theo kết quả chẩn đoán. Nhưng khi có một nhân vật điển trai tên là Augustus Waters đột nhiên xuất hiện tại Hội Tương Trợ Bệnh Nhi Ung Thư, câu chuyện của Hazel sắp được viết lại hoàn toàn. Sâu sắc, táo bạo, ngang tàng, và thô ráp, Khi lỗi thuộc về những vì sao là tác phẩm thương tâm và tham vọng nhất của John Green, tác giả của những giải thưởng, nhưng đồng thời lại khám phá một cách khéo léo nét hài hước, li kỳ, và bi thảm của việc sống và việc yêu.</textarea>
+                          </div>
+                        </div> 
+                      </div>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button class="btn btn-primary">Cancel</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
-                  
+            </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
@@ -346,5 +388,6 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
+    <script src="../../assets/js/file-upload.js"></script>
   </body>
 </html>

@@ -255,72 +255,53 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> List of Book Requests </h3>
+              <h3 class="page-title"> Edit Publisher </h3>
             </div>
             <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
+              <div class="col-10 offset-1 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th> ID </th>
-                            <th> Tên sách </th>
-                            <th> Tác giả </th>
-                            <th> Nhà xuất bản </th>
-                            <th> Action </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Chuyện con mèo dạy hải âu bay </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="book_request_detail.html" role="button">View</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> Chuyện con chó tên là Trung Thành </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Chuyện con mèo và con chuột bạn thân của nó </td>
-                            <td> Luis Sepúlveda </td>
-                            <td> NXB Hội Nhà Văn </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a>                             </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <form class="forms-sample">
+                      <div class="form-group row">
+                        <label for="pub-name" class="col-sm-3 col-form-label"> Publisher's name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="pub-name" placeholder="Name of publisher" value="Nhà xuất bản Trẻ">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="address" class="col-sm-3 col-form-label"> Address </label>
+                        <div class="col-sm-9">
+                          <textarea class="form-control text-line-spacing text-justify" id="address" rows="1" placeholder="Address of publisher" > 161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 3 , TP. Hồ Chí Minh </textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="telephone" class="col-sm-3 col-form-label">Telephone</label>
+                        <div class="col-sm-9">
+                          <input type="tel" class="form-control" id="telephone" placeholder="Telephone of publisher" value="(84.028) 39316289">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="birthday" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                          <input type="email" class="form-control" id="birthday" placeholder="Email of publisher" value="hopthubandoc@nxbtre.com.vn">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="birthday" class="col-sm-3 col-form-label">Website</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="birthday" placeholder="Website of publisher" value="https://www.nxbtre.com.vn/">
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <button class="btn btn-primary btn-md mr-2">Save</button>
+                        <a class="btn btn-primary btn-md" href="publisher_list.html" role="button">Cancel</a>
+                      </div>
+                      
+                    </form>
                   </div>
                 </div>
               </div>
-                  
+            </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->

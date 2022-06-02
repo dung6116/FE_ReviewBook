@@ -11,6 +11,8 @@
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
+    <link rel="stylesheet" href="../../assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
@@ -20,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="show_aut_pub_tag()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -265,97 +267,55 @@
                       <div class="row">
                         <div class="col-md-3">
                           <!--add image-->  
-                          <img class="img-b-u" id="bookImgId" src="../../assets/images/books-logo.jpg">
-                          <div class="form-group">
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                              <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary mt-3" type="button">Change image</button>
-                              </span>
-                            </div>
-                          </div> 
-
-          
+                          <div class="img-b-u" id="book-img" > </div>
+                          <div class="" style="text-align: left;">
+                            <input type="file" id="img-btn"></input>
+                          </div>
                         </div>
                         <div class="col-md-9">
                           <div class="form-group">
                             <label for="bookTitle">Book title</label>
-                            <input type="text" class="form-control" id="bookTitle" value="Khi lỗi thuộc về những vì sao">
+                            <input type="text" class="form-control" id="bookTitle" placeholder="Book title" required >
                           </div>
                           <div class="form-group">
                             <label for="author">Author</label>
-                            <select class="form-control" id="author">
-                              <option>Nguyễn Nhật Ánh</option>
-                              <option>Nguyên Hồng</option>
-                              <option>Nam Cao</option>
-                              <option>Tố Hữu</option>
-                              <option selected>John Green</option>
-                            </select>
+                            <div class="input-group">
+                              <select class="form-control" id="author" required>
+
+                              </select>
+                              <button type="button" class="btn btn-outline-primary ml-2 btn-sm" data-toggle="modal" data-target="#addAut"> Add new Author </button>
+                            </div>
                           </div>
                           <div class="form-group row">
-                            <label class="col-md-12" for="tag">Tag</label>
-                            <!-- <input type="text" class="form-control" id="tag" placeholder="Tag"> -->
-                            <div class="col-md-6">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" id="tag1" name="tag1"> Trinh thám </label>
-                              </div>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" id="tag2" name="tag2" checked> Tiểu thuyết </label>
-                              </div>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" id="tag3" name="tag3"> Tiểu sử </label>
-                              </div>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" id="tag4" name="tag4"> Khoa học viễn tưởng </label>
-                              </div>
+                            <label class="col-md-12" for="tags">Tag</label>
+                            <div class="col-md-6" id="tag1">
+
                             </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag5" name="tag5"> Tản văn </label>
-                                </div>
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag6" name="tag6"> Lịch sử </label>
-                                </div>
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag7" name="tag7"> Kinh tế </label>
-                                </div>
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag8" name="tag8"> Self help </label>
-                                </div>
-                              </div>
+                            <div class="col-md-6" id="tag2">
+                              
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="Publisher">Publisher</label>
-                            <select class="form-control" id="Publisher">
-                              <option selected>NXB Trẻ</option>
-                              <option>NXB Văn học</option>
-                              <option>NXB Kim Đồng</option>
-                              <option>NXB Hội Nhà Văn</option>
-                              <option>NXB Giáo dục</option>
-                            </select>
+                            <label for="publisher">Publisher</label>
+                            <div class="input-group">
+                              <select class="form-control" id="publisher" required>
+                                
+                              </select>
+                              <button type="button" class="btn btn-outline-primary ml-2 btn-sm" data-toggle="modal" data-target="#addPub"> Add new Publisher </button>
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="publishYear">Publish year</label>
-                            <input type="number" max="2022" class="form-control" id="publishYear" value="2012">
+                            <input type="number" max="2022" class="form-control" id="publishYear"  placeholder="Publish year" required>
                           </div>
                           <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control text-line-spacing text-justify" id="description" rows="10">Mặc dù phép màu y học đã giúp thu hẹp khối u và ban thêm vài năm sống cho Hazel nhưng cuộc đời cô bé đang ở vào giai đoạn cuối, từng chương kế tiếp được viết theo kết quả chẩn đoán. Nhưng khi có một nhân vật điển trai tên là Augustus Waters đột nhiên xuất hiện tại Hội Tương Trợ Bệnh Nhi Ung Thư, câu chuyện của Hazel sắp được viết lại hoàn toàn. Sâu sắc, táo bạo, ngang tàng, và thô ráp, Khi lỗi thuộc về những vì sao là tác phẩm thương tâm và tham vọng nhất của John Green, tác giả của những giải thưởng, nhưng đồng thời lại khám phá một cách khéo léo nét hài hước, li kỳ, và bi thảm của việc sống và việc yêu.</textarea>
+                            <textarea class="form-control text-line-spacing text-justify" id="description" rows="10" required></textarea>
                           </div>
                         </div> 
                       </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button type="button" class="btn btn-primary mr-2" id="btn-save">Save</button>
                         <button class="btn btn-primary">Cancel</button>
                       </div>
                     </form>
@@ -380,12 +340,135 @@
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-
+      document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
       
+      //hien thi list author, pub, tag trong DB
+
+      function show_aut_pub_tag(){
+
+        let names = ['Author', 'Publisher', 'Tag'];
+
+        let requests = names.map(name => fetch(`https://reviewbook18.herokuapp.com/api/${name}`,
+                  {
+                  method:"GET",
+                  headers:{
+                    'accept' : 'text/plain',
+                    'Authorization': 'Bearer '+sessionStorage.getItem("token")
+                  },
+                }));
+
+        Promise.all(requests)
+          .then(responses => {
+            // all responses are resolved successfully
+            for(let response of responses) {
+              //alert(`${response.url}: ${response.status}`); // shows 200 for every url
+              if(response.status !=200){
+                alert('Xảy ra lỗi'); break;
+            }
+              
+            }
+
+            return responses;
+          })
+          // map array of responses into an array of response.json() to read their content
+          .then(responses => Promise.all(responses.map(r => r.json())))
+          // all JSON answers are parsed: "users" is the array of them
+          .then(users => {
+            var aut= users[0];
+            var pub= users[1];
+            var tag= users[2];
+            display_author(aut);
+            display_tag(tag);
+            display_publisher(pub);
+            book_info();
+          });
+        
+      }
+      /////////////////display infor of book//////////////////////////////////
+      function book_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          //alert(`${response.status}`)
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          //console.log(json)
+          var selId_aut = document.getElementById("author");
+          selId_aut.value=`${json.iD_Aut}`;
+          var selId_pub = document.getElementById("publisher");
+          selId_pub.value=`${json.iD_Pub}`;
+          
+          document.getElementById("bookTitle").value = json.name;
+          document.getElementById("publishYear").value = json.publishedYear;
+          document.getElementById("description").value = json.description;
+          for (var i=0; i<json.tags.length; i++){
+            document.getElementById(`${json.tags[i].iD_Tag}`).checked = true;
+          }
+          if (json.picture!=null)
+          {
+            const url_img ="data:image/jpeg;base64,"+ json.picture;
+            document.getElementById("book-img").style.backgroundImage = `url(${url_img})`;
+          }
+          
+        })
+      }
+      var save_btn = document.getElementById('btn-save');
+      save_btn.onclick = function() {
+        //var date = new Date(document.getElementById("birthday").value);
+        var url_img = document.getElementById("book-img").style.backgroundImage.slice(5, -2);
+        var tag_remove = [];
+        var tag_add = [];
+        data = {
+          "name": document.getElementById("bookTitle").value,
+          "iD_Aut": document.getElementById("author").value,
+          "iD_Pub": document.getElementById("publisher").value,
+          "publishedYear": document.getElementById("publishYear").value,
+          "picture":`${url_img.slice(url_img.search(",")+1)}`,
+          "description": document.getElementById("description").value,
+          "list_ID_Tags_Remove": tag_add,
+          "list_ID_Tags_Add": tag_remove,
+        }
+        console.log(data)
+
+        var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
+        fetch(url,{
+          method:"PUT",
+          headers:{
+            'Content-Type': 'application/json',
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+          body: JSON.stringify(data),
+        }).then(function(reponse){
+          //alert(`${response.status}`);
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+          } else {
+            return reponse.json();
+          }
+        }).then(function(json){
+          //sessionStorage.setItem("picture",json.picture);
+          window.location.replace("book_list.html");
+        })
+      }
+
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="book_form.js" ></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
+    <script src="../../assets/vendors/select2/select2.min.js"></script>
+    <script src="../../assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="../../assets/js/off-canvas.js"></script>
@@ -397,5 +480,7 @@
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
     <script src="../../assets/js/file-upload.js"></script>
+    <script src="../../assets/js/select2.js"></script>
+    <script src="../../assets/js/typeahead.js"></script>
   </body>
 </html>

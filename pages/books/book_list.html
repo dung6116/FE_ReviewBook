@@ -352,7 +352,7 @@
 
 
       function book_list(){
-        var url = `https://reviewbook18.herokuapp.com/api/Book`
+        var url = `https://reviewbook18.herokuapp.com/api/Book?page=1`
         fetch(url,{
           method:"GET",
           headers:{
@@ -381,16 +381,18 @@
               <td> ${json[i].author.stage_Name} </td>
               <td> ${json[i].publisher.name} </td>
               <td> 
-                <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a> 
-                <a class="btn btn-outline-primary btn-sm" href="#" role="button">Edit</a> 
+                <a class="btn btn-outline-primary btn-sm" href="#" role="button" onclick="view_book_detail(${json[i].id})" >View</a> 
+                <a class="btn btn-outline-primary btn-sm" href="book_edit.html" role="button" onclick="view_book_detail(${json[i].id})" >Edit</a> 
               </td>
             </tr>
           `
           table.innerHTML += book;
         }
       }
+      
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="book_form.js" ></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

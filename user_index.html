@@ -171,7 +171,7 @@
       </nav>
       <!-- End menu bar -->
       <!-- Begin main-panel -->
-      <div class="main-panel">
+      <div class="main-panel" >
         <div class="content-wrapper">
           <div class="row">
             <!--  -->
@@ -185,7 +185,7 @@
                   </div>
                   <br>
                   
-                  <div class="row" id="row-book">
+                  <div class="row" id="row-book" >
                     <!-- <div class="col-md-6 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body">
@@ -248,6 +248,10 @@
                       </div>
                     </div> -->
 
+                  </div>
+
+                  <div style="color: #085394; text-align: center;" >
+                    <button id="load-page" style="color: #085394; font-size: 20px; border:none;" onclick = "on_load_page()"; onmouseout = "off_load_page();">Continue Loading...</button>
                   </div>
                 </div>
               </div>
@@ -442,10 +446,15 @@
         left: 0;
         background: #085394;
       }
+
+      .onloadpage{
+        font-size: 25px !important;
+      }
     </style>
 
     <script src="./user-js/role-user.js"></script>
     <script>
+      var page_number = 1;
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
 
       function user_info(){
@@ -464,15 +473,15 @@
             return reponse.json();
         }
         }).then(function(json){
-          hienthi_thongtin(json);
+          sessionStorage.setItem("picture",json.picture);
+          document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+        
+          hienthi_thongtin();
         })
       }
 
-      function hienthi_thongtin(json){
-        sessionStorage.setItem("picture",json.picture);
-        document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-        
-        var url = `https://reviewbook18.herokuapp.com/api/Book`
+      function hienthi_thongtin(){
+        var url = `https://reviewbook18.herokuapp.com/api/Book?page=${page_number}`
         fetch(url,{
           method:"GET",
           headers:{
@@ -491,7 +500,6 @@
       }
 
       function hienthi_sach(json){
-        console.log(json)
         var table = document.getElementById("row-book")
         for (var i = 0; i < json.length; i++){
           var book = `
@@ -556,21 +564,26 @@
         }
       }
 
+      function on_load_page(){
+        var load_page = document.getElementById("load-page");
+        load_page.classList.add("onloadpage")
+
+        page_number++;
+        hienthi_thongtin();
+      }
+
+      function off_load_page(){
+        var load_page = document.getElementById("load-page");
+        load_page.classList.remove("onloadpage")
+      }
+
+
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
         window.location.replace("Sign_In.html")
       }
 
-      function xem_chi_tiet_sach(id){
-        sessionStorage.setItem("id_book",id);
-        window.location ="../user_write-rv.html"
-      }
-
-      function xem_chi_tiet_tacgia(id){
-        sessionStorage.setItem("id_author",id);
-        window.location ="../user_author.html"
-      }
     </script>
 
     <!-- plugins:js -->

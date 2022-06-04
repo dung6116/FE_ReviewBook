@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body onload="show_aut_pub_tag()">
+  <body onload="show_book_infor()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -263,7 +263,7 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <form method="post">
+                    <form method="">
                       <div class="row">
                         <div class="col-md-3">
                           <!--add image-->  
@@ -344,7 +344,7 @@
       
       //hien thi list author, pub, tag trong DB
 
-      function show_aut_pub_tag(){
+      function show_book_infor(){
 
         let names = ['Author', 'Publisher', 'Tag'];
 

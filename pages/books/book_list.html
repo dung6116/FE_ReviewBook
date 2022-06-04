@@ -352,8 +352,24 @@
 
 
       function book_list(){
-        var url = `https://reviewbook18.herokuapp.com/api/Book?page=1`
+        var url = `https://reviewbook18.herokuapp.com/api/Book?page=2`
         fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          display_books(json);
+        })
+        fetch(`https://reviewbook18.herokuapp.com/api/Book?page=1`,{
           method:"GET",
           headers:{
             'accept' : 'text/plain',
@@ -381,8 +397,8 @@
               <td> ${json[i].author.stage_Name} </td>
               <td> ${json[i].publisher.name} </td>
               <td> 
-                <a class="btn btn-outline-primary btn-sm" href="#" role="button" onclick="view_book_detail(${json[i].id})" >View</a> 
-                <a class="btn btn-outline-primary btn-sm" href="book_edit.html" role="button" onclick="view_book_detail(${json[i].id})" >Edit</a> 
+                <a class="btn btn-outline-primary btn-sm" href="book_detail.html" role="button" onclick="get_id_book(${json[i].id})" >View</a> 
+                <a class="btn btn-outline-primary btn-sm" href="book_edit.html" role="button" onclick="get_id_book(${json[i].id})" >Edit</a> 
               </td>
             </tr>
           `

@@ -116,7 +116,7 @@ reader.readAsDataURL(this.files[0]);
 });
 
 //get book'id to view detail or edit
-function view_book_detail(id){
+function get_id_book(id){
     sessionStorage.setItem("id_book",id);
     //alert(sessionStorage.getItem("id_book"));
     //window.location ="../book_edit.html"

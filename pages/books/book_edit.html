@@ -340,7 +340,7 @@
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-      document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
+      //document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
       
       //hien thi list author, pub, tag trong DB
 
@@ -414,11 +414,8 @@
           for (var i=0; i<json.tags.length; i++){
             document.getElementById(`${json.tags[i].iD_Tag}`).checked = true;
           }
-          if (json.picture!=null)
-          {
-            const url_img ="data:image/jpeg;base64,"+ json.picture;
-            document.getElementById("book-img").style.backgroundImage = `url(${url_img})`;
-          }
+          const url_img ="data:image/jpeg;base64,"+ json.picture;
+          document.getElementById("book-img").style.backgroundImage = `url(${url_img})`;
           
         })
       }
@@ -428,6 +425,7 @@
         var url_img = document.getElementById("book-img").style.backgroundImage.slice(5, -2);
         var tag_remove = [];
         var tag_add = [];
+        
         data = {
           "name": document.getElementById("bookTitle").value,
           "iD_Aut": document.getElementById("author").value,

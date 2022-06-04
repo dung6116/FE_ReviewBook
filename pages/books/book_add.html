@@ -263,7 +263,7 @@
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <form method="post">
+                    <form method="">
                       <div class="row">
                         <div class="col-md-3">
                           <!--add image-->  
@@ -275,12 +275,12 @@
                         <div class="col-md-9">
                           <div class="form-group">
                             <label for="bookTitle">Book title</label>
-                            <input type="text" class="form-control" id="bookTitle" placeholder="Book title">
+                            <input type="text" class="form-control" id="bookTitle" placeholder="Book title" required>
                           </div>
                           <div class="form-group">
                             <label for="author">Author</label>
-                            <div class="input-group col-md-12">
-                              <select class="js-example-basic-single" style="width: 70%;" id="author">
+                            <div class="input-group">
+                              <select class="form-control"  id="author" required>
 
                               </select>
                               <button type="button" class="btn btn-outline-primary ml-2 btn-sm" data-toggle="modal" data-target="#addAut"> Add new Author </button>
@@ -298,8 +298,8 @@
                           <div class="form-group">
                             <label for="publisher">Publisher</label>
                             <div class="input-group">
-                              <div class="form-group col-md-12">
-                                <select class="js-example-basic-single" style="width: 70%;" id="publisher">
+                              <div class="form-group">
+                                <select class="form-control" id="publisher" required>
                                  
                                 </select>
                                 <button type="button" class="btn btn-outline-primary ml-2 btn-sm" data-toggle="modal" data-target="#addPub"> Add new Publisher </button>
@@ -308,7 +308,7 @@
                           </div>
                           <div class="form-group">
                             <label for="publishYear">Publish year</label>
-                            <input type="number" max="2022" class="form-control" id="publishYear" placeholder="Publish year">
+                            <input type="number" max="2022" class="form-control" id="publishYear" placeholder="Publish year" required>
                           </div>
                           <div class="form-group">
                             <label for="description">Description</label>
@@ -449,7 +449,7 @@
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-      document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
+      //document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
 
       function show_aut_pub(){
         /* author_list();
@@ -505,7 +505,7 @@
           "description": document.getElementById("description").value,
           "list_ID_Tags": tag_list,
         }
-        console.log(data)
+        console.log(data);
 
         var url = `https://reviewbook18.herokuapp.com/api/Book`
         fetch(url,{
@@ -528,7 +528,7 @@
           //alert("book added successfully");
           window.location.replace("book_list.html");
         })
-      }
+      }  
 
      
       

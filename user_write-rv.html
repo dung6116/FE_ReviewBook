@@ -183,7 +183,7 @@
                                 
                                 <div class="preview-thumbnail">
                                     <div class="dropdown" style="text-align: center;">
-                                      <select class="btn btn-primary dropdown-toggle" style="background-color: #085394;" id="statusBook">
+                                      <select class="btn btn-primary dropdown-toggle" style="background-color: #085394;" id="statusBook" onchange="change_sttBook()">
                                         <option class="dropdown-item" style="background-color: #085394;" value=0>UnRead</option>
                                         <option class="dropdown-item" style="background-color: #085394;" value=1>Want to Read</option>
                                         <option class="dropdown-item" style="background-color: #085394;" value=2>Reading</option>
@@ -464,6 +464,29 @@
       }
 
       function write_rv(){
+        var url = `https://reviewbook18.herokuapp.com/api/User/MyBookByIdBook/${sessionStorage.getItem("id_book")}`
+        let sttBook=-1;
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            if(reponse.status == 204) {
+              sttBook=0;
+            } else{
+              alert('Xảy ra lỗi');
+            }
+        }
+          else {
+            return reponse.json();
+          }
+        }).then(function(json){
+          if (sttBook == 0) sessionStorage.setItem("sttBook",sttBook);
+          else sessionStorage.setItem("sttBook",json.statusBook);
+        })
+
         var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
         fetch(url,{
           method:"GET",
@@ -484,6 +507,10 @@
       }
 
       function hienthi_review(json){
+        console.log(json)
+
+          document.getElementById("statusBook").value = sessionStorage.getItem("sttBook");
+
           document.getElementById("book-cover").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ json.picture})`;
           document.getElementById("book-name").innerHTML = json.name;
           
@@ -544,6 +571,7 @@
                       <p>${json.reviews[i].content}</p>
                       <div class="comment__card-footer">
                         <label style="margin-bottom:0">${time_review}</label>
+                        <button style="color:#0090e7; border: none; background: #ffffff" onclick = deleteReview(${json.reviews[i].id})>Delete</button>
                         <div class="show-replies" style="color:#0090e7;" onclick = showReply(${json.reviews[i].id})>Reply</div>
                       </div>
                     </div>
@@ -575,23 +603,34 @@
               var millis_children_review = Date.now() - date_children_review;
               var time_children =  Math.floor(millis_children_review / 1000/60)
               if (time_children <1) time_children_review = "1 phút trước";
-  	          if ((time_children>=1) && (time_children<60)) time_children_review = time.toFixed()+ " phút trước";
+  	          if ((time_children>=1) && (time_children<60)) time_children_review = time_children+ " phút trước";
   	          if ((time_children>=60) && (time_children/60/24 <1)) time_children_review = (time_children/60).toFixed()+ " giờ trước" ;
   	          if (time_children/60/24 >=1) time_children_review = (time_children/60/24).toFixed()+ " ngày trước";
               children_review +=`
                 <div class="comment__card">
-                  <div style="background-position: center;background-size: cover;">
+                  <div style="background-position: center;background-size: cover; margin-bottom: 10px">
                     <img class="img-xs " src="${"data:image/jpeg;base64,"+ json.reviews[i].reviewChildrens[j].account.picture}" alt="" style="width: 50px; height: 50px; position: relative;">
                     <label class="comment__title" style="font-weight: bold">${json.reviews[i].reviewChildrens[j].account.userName}</label>
                   </div>
                   <div>
-                    <p>${json.reviews[i].reviewChildrens[j].content}</p>
+                    <div >
+                      <p id="reply-content-${json.reviews[i].reviewChildrens[j].id}">${json.reviews[i].reviewChildrens[j].content}</p>
+                      
+                    </div>
                     <div class="comment__card-footer">
                       <label style="margin-bottom:0">${time_children_review}</label>
+                      <button style="color:#0090e7; border: none; background: #ffffff" onclick = "deleteReply(${json.reviews[i].reviewChildrens[j].id})">Delete</button>
+                      <button style="color:#0090e7; border: none; background: #ffffff" onclick = "showEditReply(${json.reviews[i].reviewChildrens[j].id})">Edit</button>
                     </div>
                   </div>
+                  <div class="comment__container " id="edit-reply-${json.reviews[i].reviewChildrens[j].id}">
+                        
+                  </div>
                 </div>`
+
+              
             }
+
             children_review +=`
               <div class="col-12" style="margin-bottom: 10px;">
                 <div class="form-group w-100">
@@ -602,13 +641,28 @@
                   <button type="button" class="btn btn-primary" onclick = "send_reply(${json.reviews[i].id})">Send</button>
                 </div>
               </div>`
-              book_children_review.innerHTML += children_review;
+            book_children_review.innerHTML += children_review;
+
+            for (var j=0; j<json.reviews[i].reviewChildrens.length; j++) {
+              var edit_reply = document.getElementById(`edit-reply-${json.reviews[i].reviewChildrens[j].id}`);
+              var edit = `
+                <div class="col-12" style="margin-bottom: 10px;">
+                  <div class="form-group w-100">
+                    <textarea id="my_edit_reply_${json.reviews[i].reviewChildrens[j].id}" class="form-control" rows="3" style="background-color: #ffffff; color: #000000;">${json.reviews[i].reviewChildrens[j].content}</textarea>
+                  </div>
+
+                  <div style="text-align:end">
+                    <button type="button" class="btn btn-primary" onclick = "send_edit_reply(${json.reviews[i].reviewChildrens[j].id})">Save Edit</button>
+                  </div>
+                </div>`
+              edit_reply.innerHTML += edit;
+            }
           }
           show_star_avg(json.id, json.reviews.length)
       }
 
       function show_star_avg(id, review){
-        var url = `https://localhost:7295/api/Book/RateAvg/${id}`
+        var url = `https://reviewbook18.herokuapp.com/api/Book/RateAvg/${id}`
         fetch(url,{
           method:"GET",
           headers:{
@@ -653,7 +707,7 @@
       }
       
       function send_review(){
-        if (sessionStorage.getItem("isReview") == true){
+        if (sessionStorage.getItem("isReview") == "true"){
           const data = {
             "rate": my_rate,
             "content": document.getElementById("my_review").value
@@ -702,12 +756,28 @@
         
       }
       
+      function deleteReview(id){
+        var url = `https://reviewbook18.herokuapp.com/api/Book/Review/${id}`
+        fetch(url,{
+          method:"DELETE",
+          headers:{
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Không thể xóa review của người khác');
+        }
+          else {
+            location.reload();
+        }
+        })
+      }
+
       function send_reply(id){
         const data = {
           "content": document.getElementById(`my_reply-${id}`).value,
           "id_parent": id
         }
-        console.log(JSON.stringify(data))
         var url = `https://reviewbook18.herokuapp.com/api/Book/Review/Reply`
         fetch(url,{
           method:"POST",
@@ -727,10 +797,139 @@
         })
       }
     
-      var statusBook = document.getElementById("statusBook");
-      statusBook.addEventListener("change", function(){
+      function deleteReply(id){
+        var url = `https://reviewbook18.herokuapp.com/api/Book/Review/Reply/${id}`
+        fetch(url,{
+          method:"DELETE",
+          headers:{
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Không thể xóa reply của người khác');
+        }
+          else {
+            location.reload();
+        }
+        })
+      }
+
+      function showEditReply(id){
+        var show_edit_reply = document.getElementById(`edit-reply-${id}`);
+        show_edit_reply.classList.toggle("opened");
+      }
+
+      function send_edit_reply(id){
+        data = {
+          "content": document.getElementById(`my_edit_reply_${id}`).value
+        }
+        var url = `https://reviewbook18.herokuapp.com/api/Book/Review/Reply/${id}`
+        fetch(url,{
+          method:"PUT",
+          body:JSON.stringify(data),
+          headers:{
+          'accept' : 'text/plain',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Không thể sửa reply của người khác');
+        }
+          else {
+            location.reload();
+        }
+        })
+      }
+
+      function change_sttBook(){
+        const sttBook = document.getElementById("statusBook").value;
+        if (sessionStorage.getItem("sttBook") == 0){
+          const data = {
+            "iD_Book": sessionStorage.getItem("id_book")
+          }
+          var url = `https://reviewbook18.herokuapp.com/api/User/MyBook`
+          fetch(url,{
+            method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+              'accept' : 'text/plain',
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Không thể thêm cuốn sách này vào My Book');
+            }
+            else {
+              var url = `https://reviewbook18.herokuapp.com/api/User/MyBook`;
+              const data = {
+                "iD_Book": sessionStorage.getItem("id_book"),
+                "status": sttBook
+              }
+              fetch(url,{
+                method:"PUT",
+                body:JSON.stringify(data),
+                headers:{
+                  'accept' : 'text/plain',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+sessionStorage.getItem("token")
+                },
+              }).then(function(reponse){
+                if(reponse.status !=200){
+                  alert('Không thể thêm cuốn sách này vào My Book');
+                }
+                else {
+                  sessionStorage.setItem("sttBook",sttBook)
+                  alert('Đã thêm cuốn sách này vào My Book');
+                }
+              })
+            }
+          })
+        } else{
+          if (sttBook == 0) {
+            var url = `https://reviewbook18.herokuapp.com/api/User/MyBookByIdBook/${sessionStorage.getItem("id_book")}`
+            fetch(url,{
+              method:"DELETE",
+              headers:{
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+            }).then(function(reponse){
+              if(reponse.status !=200){
+                alert('Không thể xóa cuốn sách này khỏi My Book');
+              }
+              else {
+                alert('Đã xóa cuốn sách này khỏi My Book');
+              }
+            })
+          } else {
+            console.log(11)
+            var url = `https://reviewbook18.herokuapp.com/api/User/MyBook`;
+              const data = {
+                "iD_Book": sessionStorage.getItem("id_book"),
+                "status": sttBook
+              }
+              fetch(url,{
+                method:"PUT",
+                body:JSON.stringify(data),
+                headers:{
+                  'accept' : 'text/plain',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+sessionStorage.getItem("token")
+                },
+              }).then(function(reponse){
+                if(reponse.status !=200){
+                  alert('Không thể thay đổi trạng thái của cuốn sách này');
+              }
+                else {
+                  sessionStorage.setItem("sttBook",sttBook)
+                  alert('Đã thêm cuốn sách này vào My Book');
+              }
+              })
+          }
+        }
         
-      })
+      }
     </script>
 
     <!-- plugins:js -->

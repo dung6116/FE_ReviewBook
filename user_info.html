@@ -192,11 +192,11 @@
                                 <br><br>
                                 <div class="preview-thumbnail" style="position: relative;">
                                     <div class="" style="position: absolute; left: 0;">
-                                        <a href="#" id="followed"></a>
+                                        <a href="user_followed.html" id="followers"></a>
                                     </div>
 
                                     <div class="" style="position: absolute; right: 0;">
-                                        <a href="#" id="following"></a>
+                                        <a href="user_following.html" id="following"></a>
                                     </div>
                                 </div>
                             </div>
@@ -318,7 +318,7 @@
         document.getElementById("username").value = json.userName;
         document.getElementById("birthday").value = bd;
         document.getElementById("address").value = json.address;
-        document.getElementById("followed").innerHTML = json.myFollowers.length+' followed';
+        document.getElementById("followers").innerHTML = json.myFollowers.length+' followers';
         document.getElementById("following").innerHTML = json.myFollowings.length+' following';
       }
 

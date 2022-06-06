@@ -298,12 +298,10 @@
                           <div class="form-group">
                             <label for="publisher">Publisher</label>
                             <div class="input-group">
-                              <div class="form-group">
-                                <select class="form-control" id="publisher" required>
-                                 
-                                </select>
-                                <button type="button" class="btn btn-outline-primary ml-2 btn-sm" data-toggle="modal" data-target="#addPub"> Add new Publisher </button>
-                              </div>
+                              <select class="form-control" id="publisher" required>
+                                
+                              </select>
+                              <button type="button" class="btn btn-outline-primary ml-2 btn-sm" data-toggle="modal" data-target="#addPub"> Add new Publisher </button>
                             </div>
                           </div>
                           <div class="form-group">
@@ -318,7 +316,7 @@
                       </div>
                       <div class="text-center">
                         <button type="button" class="btn btn-primary mr-2" id="btn-add" >Add</button>
-                        <button class="btn btn-primary">Cancel</button>
+                        <a class="btn btn-primary" href="book_list.html" role="button">Cancel</a>
                       </div>
                     </form>
                   </div>
@@ -493,41 +491,43 @@
       }
       var add_btn = document.getElementById('btn-add');
       add_btn.onclick = function() {
-        //var date = new Date(document.getElementById("birthday").value);
-        var url_img = document.getElementById("book-img").style.backgroundImage.slice(5, -2);
-        var tag_list = get_tag_book();
-        data = {
-          "name": document.getElementById("bookTitle").value,
-          "iD_Aut": document.getElementById("author").value,
-          "iD_Pub": document.getElementById("publisher").value,
-          "publishedYear": document.getElementById("publishYear").value,
-          "picture":`${url_img.slice(url_img.search(",")+1)}`,
-          "description": document.getElementById("description").value,
-          "list_ID_Tags": tag_list,
-        }
-        console.log(data);
-
-        var url = `https://reviewbook18.herokuapp.com/api/Book`
-        fetch(url,{
-          method:"POST",
-          headers:{
-            'Content-Type': 'application/json',
-            'accept' : 'text/plain',
-            'Authorization': 'Bearer '+sessionStorage.getItem("token")
-          },
-          body: JSON.stringify(data),
-        }).then(function(reponse){
-          //alert(`${response.status}`);
-          if(reponse.status !=200){
-            alert('Xảy ra lỗi');
-          } else {
-            return reponse.json();
+        if (validate()){
+          var url_img = document.getElementById("book-img").style.backgroundImage.slice(5, -2);
+          var tag_list = get_tag_book();
+          data = {
+            "name": document.getElementById("bookTitle").value,
+            "iD_Aut": document.getElementById("author").value,
+            "iD_Pub": document.getElementById("publisher").value,
+            "publishedYear": document.getElementById("publishYear").value,
+            "picture":`${url_img.slice(url_img.search(",")+1)}`,
+            "description": document.getElementById("description").value,
+            "list_ID_Tags": tag_list,
           }
-        }).then(function(json){
-          //sessionStorage.setItem("picture",json.picture);
-          //alert("book added successfully");
-          window.location.replace("book_list.html");
-        })
+          console.log(data);
+
+          var url = `https://reviewbook18.herokuapp.com/api/Book`
+          fetch(url,{
+            method:"POST",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //alert(`${response.status}`);
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              return reponse.json();
+            } 
+          }).then(function(json){
+            //sessionStorage.setItem("picture",json.picture);
+            //alert("book added successfully");
+            window.location.replace("book_list.html");
+          })
+        }
+        
       }  
 
      

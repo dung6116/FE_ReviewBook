@@ -316,7 +316,7 @@
                       </div>
                       <div class="text-center">
                         <button type="button" class="btn btn-primary mr-2" id="btn-save">Save</button>
-                        <button class="btn btn-primary">Cancel</button>
+                        <a class="btn btn-primary" href="book_list.html" role="button">Cancel</a>
                       </div>
                     </form>
                   </div>
@@ -433,11 +433,11 @@
           "publishedYear": document.getElementById("publishYear").value,
           "picture":`${url_img.slice(url_img.search(",")+1)}`,
           "description": document.getElementById("description").value,
-          "list_ID_Tags_Remove": tag_add,
-          "list_ID_Tags_Add": tag_remove,
+          "list_ID_Tags_Remove": tag_remove,
+          "list_ID_Tags_Add": tag_add,
         }
         console.log(data)
-
+        
         var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
         fetch(url,{
           method:"PUT",
@@ -455,6 +455,7 @@
             return reponse.json();
           }
         }).then(function(json){
+          console.log("data sau edit", json);
           //sessionStorage.setItem("picture",json.picture);
           window.location.replace("book_list.html");
         })

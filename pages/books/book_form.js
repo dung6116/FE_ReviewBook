@@ -72,8 +72,10 @@ function get_tag_book(){
     var i=0;
     for (var checkbox of markedCheckbox) {  
         if (checkbox.checked)  
-        tag_chosen[i] = checkbox.value;
-        i++;
+        {
+            tag_chosen[i] = checkbox.value;
+            i++;
+        }
     }  
     return tag_chosen;
     //console.log(tag_chosen);
@@ -122,4 +124,16 @@ function get_id_book(id){
     //window.location ="../book_edit.html"
   }
 
-
+function validate() {
+    if( document.getElementById("bookTitle").value == "" ) {
+       alert( "Please provide book title!" );
+       document.getElementById("bookTitle").focus() ;
+       return false;
+    }
+    if( document.getElementById("publishYear").value == "" ) {
+       alert( "Please provide publish year!");
+       document.getElementById("publishYear").focus() ;
+       return false;
+    }
+    return( true );
+ }

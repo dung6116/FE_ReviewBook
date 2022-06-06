@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -20,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="show_book_info()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -265,33 +267,32 @@
                       <div class="row">
                         <div class="col-md-3">
                           <!--add image-->
-                          <img class="img-b-u" src="../../assets/images/khi-loi-thuoc-ve-nhung-vi-sao.jpg">
+                          <div class="img-b-u" id="book-img" > </div>
                         </div>
                         <div class="col-md-9">
                           <div class="form-group">
                             <label for="bookTitle">Book title</label>
-                            <input type="text" class="form-control" id="bookTitle" disabled value="Khi lỗi thuộc về những vì sao">
+                            <input type="text" class="form-control" id="bookTitle" readonly>
                           </div>
                           <div class="form-group">
                             <label for="author">Author</label>
-                            <input type="text" class="form-control" id="author" disabled value="John Green">
+                            <input type="text" class="form-control" id="author" readonly>
                           </div>
                           <div class="form-group">
                             <label for="tag">Tag</label>
-                            <input type="text" class="form-control" id="tag" disabled value="Tiểu thuyết">
+                            <input type="text" class="form-control" id="tag" readonly>
                           </div>
                           <div class="form-group">
-                            <label for="Publisher">Publisher</label>
-                            <input type="text" class="form-control" id="Publisher" disabled value="Nhà xuất bản Trẻ">
+                            <label for="publisher">Publisher</label>
+                            <input type="text" class="form-control" id="publisher" readonly>
                           </div>
                           <div class="form-group">
                             <label for="publishYear">Publish year</label>
-                            <input type="text" class="form-control" id="publishYear" disabled value="2012">
+                            <input type="text" class="form-control" id="publishYear" readonly>
                           </div>
                           <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control text-line-spacing text-justify" id="description" rows="10" disabled> Mặc dù phép màu y học đã giúp thu hẹp khối u và ban thêm vài năm sống cho Hazel nhưng cuộc đời cô bé đang ở vào giai đoạn cuối, từng chương kế tiếp được viết theo kết quả chẩn đoán. Nhưng khi có một nhân vật điển trai tên là Augustus Waters đột nhiên xuất hiện tại Hội Tương Trợ Bệnh Nhi Ung Thư, câu chuyện của Hazel sắp được viết lại hoàn toàn. Sâu sắc, táo bạo, ngang tàng, và thô ráp, Khi lỗi thuộc về những vì sao là tác phẩm thương tâm và tham vọng nhất của John Green, tác giả của những giải thưởng, nhưng đồng thời lại khám phá một cách khéo léo nét hài hước, li kỳ, và bi thảm của việc sống và việc yêu.
-                            </textarea>
+                            <textarea class="form-control text-line-spacing text-justify" id="description" rows="10" readonly></textarea>
                           </div>
                         </div> 
                       </div>
@@ -343,7 +344,47 @@
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
 
+      function show_book_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          //alert(`${response.status}`)
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          //console.log(json)        
+          var tag_list = "";
+          for (var i=0; i<json.tags.length; i++){
+            tag_list += json.tags[i].tag.name;
+            if (i==json.tags.length-1) break;
+            else tag_list +=", "
+          }
+          if (json.picture!=null)
+          {
+            const url_img ="data:image/jpeg;base64,"+ json.picture;
+            document.getElementById("book-img").style.backgroundImage = `url(${url_img})`;
+          }
+          document.getElementById("bookTitle").value = json.name;
+          document.getElementById("author").value = json.author.stage_Name;
+          document.getElementById("tag").value = tag_list;
+          document.getElementById("publisher").value = json.publisher.name;
+          document.getElementById("publishYear").value = json.publishedYear;
+          document.getElementById("description").value = json.description;
+          
+          
+        })
+      }
       
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>

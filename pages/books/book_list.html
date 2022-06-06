@@ -352,8 +352,24 @@
 
 
       function book_list(){
-        var url = `https://reviewbook18.herokuapp.com/api/Book`
+        var url = `https://reviewbook18.herokuapp.com/api/Book?page=2`
         fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          display_books(json);
+        })
+        fetch(`https://reviewbook18.herokuapp.com/api/Book?page=1`,{
           method:"GET",
           headers:{
             'accept' : 'text/plain',
@@ -381,16 +397,18 @@
               <td> ${json[i].author.stage_Name} </td>
               <td> ${json[i].publisher.name} </td>
               <td> 
-                <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a> 
-                <a class="btn btn-outline-primary btn-sm" href="#" role="button">Edit</a> 
+                <a class="btn btn-outline-primary btn-sm" href="book_detail.html" role="button" onclick="get_id_book(${json[i].id})" >View</a> 
+                <a class="btn btn-outline-primary btn-sm" href="book_edit.html" role="button" onclick="get_id_book(${json[i].id})" >Edit</a> 
               </td>
             </tr>
           `
           table.innerHTML += book;
         }
       }
+      
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="book_form.js" ></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

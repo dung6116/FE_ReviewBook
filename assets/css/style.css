@@ -15825,9 +15825,12 @@ code {
   padding: 0.25rem;
   background-color: #fff;
   border: 1px solid #dee2e6;
+  background-position: center;
+  background-size: cover; 
+  margin: auto auto;
   border-radius: 0.25rem;
-  width: 200px;
-  height: auto;
+  width: 150px;
+  height: 200px;
 }
 .stretch-card {
   display: -webkit-flex;

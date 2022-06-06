@@ -385,6 +385,22 @@
         }).then(function(json){
           display_books(json);
         })
+        fetch(`https://reviewbook18.herokuapp.com/api/Book?page=3`,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          display_books(json);
+        })
       }
       function display_books(json){
         console.log(json)

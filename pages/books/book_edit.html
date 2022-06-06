@@ -432,7 +432,7 @@
             "list_ID_Tags_Remove": tag_remove,
             "list_ID_Tags_Add": tag_add,
           }
-          console.log(data)
+          //console.log(data)
           
           var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
           fetch(url,{
@@ -451,7 +451,7 @@
               return reponse.json();
             }
           }).then(function(json){
-            console.log("data sau edit", json);
+            //console.log("data sau edit", json);
             //sessionStorage.setItem("picture",json.picture);
             window.location.replace("book_list.html");
           })

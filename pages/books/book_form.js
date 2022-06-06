@@ -126,14 +126,19 @@ function get_id_book(id){
 
 function validate() {
     if( document.getElementById("bookTitle").value == "" ) {
-       alert( "Please provide book title!" );
-       document.getElementById("bookTitle").focus() ;
-       return false;
+        alert( "Please provide book title!" );
+        document.getElementById("bookTitle").focus() ;
+        return false;
+    }
+    if (get_tag_book().length===0){
+        alert( "Please choose book's tag!");
+        document.getElementById("tag1").focus() ;
+        return false;
     }
     if( document.getElementById("publishYear").value == "" ) {
-       alert( "Please provide publish year!");
-       document.getElementById("publishYear").focus() ;
-       return false;
+        alert( "Please provide publish year!");
+        document.getElementById("publishYear").focus() ;
+        return false;
     }
     return( true );
  }

@@ -189,14 +189,14 @@
                                   </div>
 
                                   <div class="" style="text-align: center;">
-                                    <button class="btn btn-primary btn-fw border">Follow</button>
+                                    <input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #ffffff" class="follow" id="btn-follow" value="Follow" onclick = "following_user()" readonly></input>
                                   </div>
                                     
                                 </div>
                                 <br><br>
                                 <div class="preview-thumbnail" style="position: relative;">
                                     <div class="" style="position: absolute; left: 0;">
-                                        <a href="#" id="followed"></a>
+                                        <a href="#" id="followers"></a>
                                     </div>
 
                                     <div class="" style="position: absolute; right: 0;">
@@ -266,6 +266,16 @@
         left: 0;
         background: #085394;
       }
+
+      .following {
+        background: #cccccc !important;
+        color: #000000 !important;
+      }
+
+      .follow{
+        background: #007bff;
+        color: #ffffff;
+      }
     </style>
 
     <script>
@@ -277,6 +287,127 @@
         sessionStorage.clear();
         window.location.replace("Sign_In.html")
       }
+      
+      function user_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id_friend")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          hienthi_thongtin(json);
+        })
+      }
+      
+      function hienthi_thongtin(json){
+        const birthday = new Date(json.birthday);
+        var month = birthday.getMonth()+1;
+        if (month.length != 2) {
+          month='0' + month;
+        }
+        
+        var day = birthday.getDate();
+        if (day.length != 2) 
+        {
+          day='0' + day;
+        }
+        
+        const bd = day + '-' + month + '-' + birthday.getFullYear();
+        const avatar ="data:image/jpeg;base64,"+ json.picture;
+        document.getElementById("avatar").style.backgroundImage = `url(${avatar})`;
+        document.getElementById("FullName").innerHTML = json.fullName;
+        document.getElementById("name").value = json.fullName;
+        document.getElementById("username").value = json.userName;
+        document.getElementById("birthday").value = bd;
+        document.getElementById("address").value = json.address;
+        document.getElementById("followers").innerHTML = json.myFollowers.length+' followers';
+        document.getElementById("following").innerHTML = json.myFollowings.length+' following';
+
+        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          var isFollowing = json.myFollowings.some(function(following, index){
+            return following.iD_Following == sessionStorage.getItem("id_friend") 
+          })
+          if (isFollowing === true) {
+            document.getElementById("btn-follow").value = "Following";
+            document.getElementById("btn-follow").classList.add("following")
+          }
+        })
+      }
+
+      function following_user() {
+        if (document.getElementById("btn-follow").value === "Following"){
+          const data ={
+            "iD_Following": sessionStorage.getItem("id_friend")
+          }
+          const url = `https://reviewbook18.herokuapp.com/api/Account/Follow`;
+          fetch(url,{
+            method:"DELETE",
+            body:JSON.stringify(data),
+            headers:{
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Không thể bỏ theo dõi người này');
+            }
+            else {
+              document.getElementById("btn-follow").value = "Follow";
+              document.getElementById("btn-follow").classList.remove("following");
+              alert('Đã bỏ theo dõi người này');
+              location.reload();
+            }
+          })
+        } else {
+          const data ={
+            "iD_Following": sessionStorage.getItem("id_friend")
+          }
+          const url = `https://reviewbook18.herokuapp.com/api/Account/Follow`;
+          fetch(url,{
+            method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+              'accept' : 'text/plain',
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Không thể theo dõi người này');
+            }
+            else {
+              document.getElementById("btn-follow").value = "Following";
+              document.getElementById("btn-follow").classList.add("following");
+              alert('Đã theo dõi người này');
+              location.reload();
+            }
+          })
+        }
+      }
+
     </script>
 
     <!-- <script>

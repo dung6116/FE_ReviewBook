@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body onload = "hienthi_theloai()">
+  <body onload = "hienthi_nxb()">
     <div class="container-scroller">
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -178,31 +178,59 @@
                             <div class="preview-item">
                               <div class="preview-thumbnail">
                                 <div class="preview-icon bg-primary" style="width: 100px; height: 100px; background-color: #EEEEEE !important;">
-                                  <img class="img-xs rounded-circle" src="assets/images/book-category-logo.jpg" alt="" style="width: 100px; height: 100px; ">
+                                  <img class="img-xs rounded-circle" src="assets/images/book-publisher.jpg" alt="" style="width: 100px; height: 100px; ">
                                 </div>
                               </div>
                               <div class="preview-item-content d-sm-flex flex-grow">
                                 <div class="flex-grow">
                                   <br><br>
-                                  <a class="preview-subject" style="color:#085394; font-size: 25px ;font-weight: bold; margin-bottom: 5px;" id="name_tag"></a>
+                                  <a class="preview-subject" style="color:#085394; font-size: 25px ;font-weight: bold; margin-bottom: 5px;" id="name_nxb"></a>
                                 </div>
                               </div>
                             </div>
   
-                            <div class="preview-item">
-                              <div >
-                                <p style="color:#000000 !important;" id="description_tag"></p>
-                              </div>
+                            <div class="col-12" style="padding:0">
+                                <div class="preview-list">
+                                  <div class="preview-item">
+                                    
+                                    <div class="preview-item-content d-sm-flex flex-grow">
+                                      <div class="flex-grow">
+                                        
+                                        <div>
+                                          <div style="color: #000000; margin: 10px 20px">
+                                            <label style="font-weight: bold">Telephone:</label>
+                                            <a id="telephone"></a>
+                                          </div>
+                                          
+                                          <div style="color: #000000; margin: 10px 20px">
+                                            <label style="font-weight: bold">Email:</label>
+                                            <a id="email"></a>
+                                          </div>
+
+                                          <div style="color: #000000; margin: 10px 20px" id="website">
+                                            <label style="font-weight: bold">Website:</label>
+                                            
+                                          </div>
+
+                                          <div style="color: #000000; margin: 10px 20px">
+                                            <label style="font-weight: bold">Address:</label>
+                                            <a id="address"></a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                             </div>
                           </div>
 
                             <div class="card corona-gradient-card" style="background-color: #085394 !important; background-image: none; height: 40px;text-align: center;">
                               <div class="card-body py-0 px-0 px-sm-3">
-                                <h4 class="mb-1 mb-sm-0" style="margin-top: 9px; color: #ffffff;">Các tác phẩm nổi bật của thể loại </h4>
+                                <h4 class="mb-1 mb-sm-0" style="margin-top: 9px; color: #ffffff;">Các tác phẩm nổi bật của nhà xuất bản </h4>
                               </div>
                             </div>
             
-                            <div class="row" id="all-book-of-tag" style="background: #ffffff; padding-top: 24px;">
+                            <div class="row" id="all-book-of-publisher" style="background: #ffffff; padding-top: 24px;">
                               
                             </div>
                           </div>
@@ -254,8 +282,8 @@
         window.location.replace("Sign_In.html")
       }
 
-      function hienthi_theloai(){
-        var url = `https://reviewbook18.herokuapp.com/api/Tag/${sessionStorage.getItem("id_tag")}`
+      function hienthi_nxb(){
+        var url = `https://reviewbook18.herokuapp.com/api/Publisher/${sessionStorage.getItem("id_nxb")}`
         fetch(url,{
           method:"GET",
           headers:{
@@ -270,12 +298,15 @@
             return reponse.json();
         }
         }).then(function(json){
-          console.log(json);
-          document.getElementById("name_tag").innerHTML = json.name;
-          document.getElementById("description_tag").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp"+json.description;
+          console.log(json)
+          document.getElementById("name_nxb").innerHTML = json.name;
+          document.getElementById("telephone").innerHTML = json.telephone;
+          document.getElementById("email").innerHTML = json.email;
+          document.getElementById("website").innerHTML += `<a href="${json.website}">${json.website}</a>`;
+          document.getElementById("address").innerHTML = json.address;
 
-          var all_book_of_tag = document.getElementById("all-book-of-tag")
-          json.books.forEach(function(tagbook, index, array){
+          var all_book_of_publisher = document.getElementById("all-book-of-publisher")
+          json.books.forEach(function(pubbook, index, array){
             var book = `
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -286,34 +317,33 @@
                         <div class="preview-item">
                           <div>
                             <div class="preview-icon" style="width: 100px; height: 120px; background-position: center;background-size: cover;" >
-                              <img src="${"data:image/jpeg;base64,"+ tagbook.book.picture}" alt="book" width= "100px" height= "120px">
+                              <img src="${"data:image/jpeg;base64,"+ pubbook.picture}" alt="book" width= "100px" height= "120px">
                             </div>
                           </div>
                           <div class="preview-item-content d-sm-flex flex-grow" >
                             <div class="flex-grow">
-                              <a class="preview-subject" style = "color:#085396; font-size: 20px ;font-weight: bold; cursor: pointer; margin-bottom: 5px;" onclick = "xem_chi_tiet_sach(${tagbook.book.id})" >${tagbook.book.name}</a>
+                              <a class="preview-subject" style = "color:#085396; font-size: 20px ;font-weight: bold; cursor: pointer; margin-bottom: 5px;" onclick = "xem_chi_tiet_sach(${pubbook.id})" >${pubbook.name}</a>
                               <br>
                               <div style="position: relative;">
                                 <div style="position: absolute; left: 0;">
-                                  <a class="text-muted mb-0" style = "color:#000000 !important;cursor: pointer;" onclick = "xem_chi_tiet_tacgia(${tagbook.book.author.id})">
-                                    <i class="mdi mdi-account" style="color:#000000 !important; font-size:20px"></i>${tagbook.book.author.stage_Name}</a>
+                                  <a class="text-muted mb-0" style = "color:#000000 !important;cursor: pointer;" onclick = "xem_chi_tiet_tacgia(${pubbook.iD_Aut})">
+                                    <i class="mdi mdi-account" style="color:#000000 !important; font-size:20px"></i>${pubbook.author.stage_Name}</a>
                                 </div>
 
                                 <div style="position: absolute; right: 0;">
                                   <a class="text-muted mb-0" style = "color:#000000 !important; font-family: Arial, Helvetica, sans-serif;" href="#">
-                                    <i class="mdi mdi-timer" style="color:#000000 !important; font-size:20px"></i>${tagbook.book.publishedYear}</a>
+                                    <i class="mdi mdi-timer" style="color:#000000 !important; font-size:20px"></i>${pubbook.publishedYear}</a>
                                 </div>
                               </div>
                               <br><br>
-                              <div>
-                                <a class="text-muted mb-0" style = "color:#000000 !important;" href="#">
-                                <i class="mdi mdi-book-plus" style="color:#000000 !important; font-size:20px; margin-left:5px;"></i>${json.name}</a>
+                              <div id="book-tag-${pubbook.id}">
+
                               </div>
 
                               <br>
                               <div>
                                 <p style = "font-size:15px; line-height: 18px; color:#000000 !important; width: 270px; height: 90px; margin-bottom: 0; overflow: hidden; text-overflow: ellipsis;">
-                                  ${tagbook.book.description}</p>  
+                                  ${pubbook.description}</p>  
                               </div>
                             </div>
                           </div>
@@ -323,8 +353,15 @@
                   </div>
                 </div>
               </div>`
-            all_book_of_tag.innerHTML += book;
-          })
+            all_book_of_publisher.innerHTML += book;
+
+            pubbook.tags.forEach(function(pubhbooktag, index){
+              var tag=`
+                <a class="text-muted mb-0" style = "color:#000000 !important; cursor: pointer;" onclick = "xem_chi_tiet_theloai(${pubhbooktag.iD_Tag})">
+                  <i class="mdi mdi-book-plus" style="color:#000000 !important; font-size:20px; margin-left:5px;"></i>${pubhbooktag.tag}</a>`;
+              document.getElementById(`book-tag-${pubbook.id}`).innerHTML += tag;
+            });
+          });
         })
       }
     </script>

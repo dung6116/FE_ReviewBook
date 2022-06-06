@@ -205,11 +205,8 @@
                         <div class="card" >
                             <div class="card-body">
                                 <div class="border-bottom">
-                                    <ul style="list-style: none;">
-                                        <li><a href="#">All(15)</a></li>
-                                        <li><a href="#">Read(8)</a></li>
-                                        <li><a href="#">Currently Reading(5)</a></li>
-                                        <li><a href="#">Want to Read(2)</a></li>
+                                    <ul style="list-style: none;" id="list-stt-book">
+                                        
                                     </ul>
                                 </div>
 
@@ -250,145 +247,16 @@
                                 <table class="table" style="color: #000000 !important;">
                                   <thead>
                                     <tr>
-                                      <th style="color: #000000 !important">Cover</th>
-                                      <th style="color: #000000 !important">Title</th>
-                                      <th style="color: #000000 !important">Author</th>
-                                      <th style="color: #000000 !important">Category</th>
-                                      <th style="color: #000000 !important">Avg Rating</th>
-                                      <th style="color: #000000 !important">Date Read</th>
+                                      <th>Cover</th>
+                                      <th>Title</th>
+                                      <th>Author</th>
+                                      <th>Category</th>
+                                      <th>Avg Rating</th>
                                       <th></th>
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td style="width: 100px;"><img class="img-xs " src="assets/images/faces/face15.jpg" alt="" style="width: 75px; height: 75px;"></td>
-                                      <td>English</td>
-                                      <td>Sapkowski</td>
-                                      <td>Novel</td>
-                                      <td>
-                                        <div>
-                                            <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                            <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                            <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                            <a class=" mdi mdi-star-half" style="font-size: 20px; color: #ff4500; "></a>
-                                            <a class=" mdi mdi-star-outline" style="font-size: 20px; color: #ff4500; "></a>
-                                        </div>
-                                      </td>
-                                      <td>08/04/2022</td>
-                                      <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #085394;"> Read </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
-                                              <a class="dropdown-item" href="#" style="background-color: #085394;">Currently Reading</a>
-                                              <a class="dropdown-item" href="#" style="background-color: #085394;">Want to Read</a>
-                                            </div>
-                                        </div>
-                                      </td>
-                                    </tr>
+                                  <tbody id = "list-my-book">
                                     
-                                    <tr>
-                                        <td style="width: 100px;"><img class="img-xs " src="assets/images/faces/face15.jpg" alt="" style="width: 75px; height: 75px;"></td>
-                                        <td>English</td>
-                                        <td>Sapkowski</td>
-                                        <td>Novel</td>
-                                        <td>
-                                          <div>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-half" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-outline" style="font-size: 20px; color: #ff4500; "></a>
-                                          </div>
-                                        </td>
-                                        <td>08/04/2022</td>
-                                        <td>
-                                          <div class="dropdown">
-                                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #085394;"> Read </button>
-                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Currently Reading</a>
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Want to Read</a>
-                                              </div>
-                                          </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 100px;"><img class="img-xs " src="assets/images/faces/face15.jpg" alt="" style="width: 75px; height: 75px;"></td>
-                                        <td>English</td>
-                                        <td>Sapkowski</td>
-                                        <td>Novel</td>
-                                        <td>
-                                          <div>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-half" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-outline" style="font-size: 20px; color: #ff4500; "></a>
-                                          </div>
-                                        </td>
-                                        <td>08/04/2022</td>
-                                        <td>
-                                          <div class="dropdown">
-                                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #085394;"> Read </button>
-                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Currently Reading</a>
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Want to Read</a>
-                                              </div>
-                                          </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 100px;"><img class="img-xs " src="assets/images/faces/face15.jpg" alt="" style="width: 75px; height: 75px;"></td>
-                                        <td>English</td>
-                                        <td>Sapkowski</td>
-                                        <td>Novel</td>
-                                        <td>
-                                          <div>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-half" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-outline" style="font-size: 20px; color: #ff4500; "></a>
-                                          </div>
-                                        </td>
-                                        <td>08/04/2022</td>
-                                        <td>
-                                          <div class="dropdown">
-                                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #085394;"> Read </button>
-                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Currently Reading</a>
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Want to Read</a>
-                                              </div>
-                                          </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="width: 100px;"><img class="img-xs " src="assets/images/faces/face15.jpg" alt="" style="width: 75px; height: 75px;"></td>
-                                        <td>English</td>
-                                        <td>Sapkowski</td>
-                                        <td>Novel</td>
-                                        <td>
-                                          <div>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-half" style="font-size: 20px; color: #ff4500; "></a>
-                                              <a class=" mdi mdi-star-outline" style="font-size: 20px; color: #ff4500; "></a>
-                                          </div>
-                                        </td>
-                                        <td>08/04/2022</td>
-                                        <td>
-                                          <div class="dropdown">
-                                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #085394;"> Read </button>
-                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Currently Reading</a>
-                                                <a class="dropdown-item" href="#" style="background-color: #085394;">Want to Read</a>
-                                              </div>
-                                          </div>
-                                        </td>
-                                    </tr>
                                   </tbody>
                                 </table>
                               </div>
@@ -421,12 +289,24 @@
         font-family: Arial, Helvetica, sans-serif;
       }
 
+      th {
+        font-size: 20px !important;
+        color: #085394 !important;
+        text-align: center;
+      }
+
+      td {
+        color: #000000 !important;
+        text-align: center;
+      }
+
       .navbar{
         left: 0;
         background: #085394;
       }
     </style>
 
+    <script src="./user-js/role-user.js"></script>
     <script>
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
@@ -454,8 +334,173 @@
         }
         }).then(function(json){
           console.log(json);
+          hienthi_lb_stt(json);
+          hienthi_list_my_book(json);
         })
       }
+    
+      function hienthi_list_my_book(json){
+        var list_my_book = document.getElementById("list-my-book");
+        var my_book="";
+        json.forEach(function(mybook, index, array){
+          my_book += `
+            <tr>
+              <td>
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-primary" style="width: 75px; height: 80px; background-position: center;background-size: cover;">
+                    <img src="${"data:image/jpeg;base64,"+ mybook.book.picture}" alt="My Book" style="width: 75px; height: 80px; border-radius: 0 !important;">
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p style="font-size: 20px; cursor: pointer; color: #085394 !important;width: 158px; margin: auto; text-overflow: ellipsis; white-space: normal" onclick = "xem_chi_tiet_sach(${mybook.book.id})">
+                  ${mybook.book.name}</p>  
+              </td>
+              <td>Sapkowski</td>
+              <td>Novel</td>
+              <td>
+                <div id="book-rate-avg-${mybook.book.id}">
+                    
+                </div>
+              </td>
+              <td>
+                <div class="preview-thumbnail">
+                    <div class="dropdown" style="text-align: center;">
+                      <select class="btn btn-primary dropdown-toggle" style="background-color: #085394;" id="statusBook-${mybook.iD_Book}" onchange="change_sttBook(${mybook.iD_Book})">
+                        <option class="dropdown-item" style="background-color: #085394;" value=0>UnRead</option>
+                        <option class="dropdown-item" style="background-color: #085394;" value=1>Want to Read</option>
+                        <option class="dropdown-item" style="background-color: #085394;" value=2>Reading</option>
+                        <option class="dropdown-item" style="background-color: #085394;" value=3>Read</option>
+                      </select>
+                    </div>
+                </div>
+              </td>
+            </tr>`
+          list_my_book.innerHTML = my_book;
+        });
+        json.forEach(function(mybook, index, array){
+          document.getElementById(`statusBook-${mybook.iD_Book}`).value = mybook.statusBook;
+
+          var url = `https://reviewbook18.herokuapp.com/api/Book/RateAvg/${mybook.book.id}`
+          fetch(url,{
+            method:"GET",
+            headers:{
+              'accept' : 'text/plain',
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+          }
+            else {
+              return reponse.json();
+          }
+          }).then(function(json){
+            var rate_avg=`<label>${json.rateAvg.toFixed(2)}</label>`;
+            if (json.rateAvg != json.rateAvg.toFixed()){
+              for (var st=0; st<Math.floor(json.rateAvg);st++){
+                rate_avg += `<a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>`;
+              }
+              rate_avg += `<a class=" mdi mdi-star-half" style="font-size: 20px; color: #ff4500; "></a>`;
+              for (var wst=0; wst<5-1-json.rateAvg; wst++){
+                rate_avg += `<a class=" mdi mdi-star-outline" style="font-size: 20px; color: #ff4500; "></a>`;
+              }
+            } else {
+              for (var st=0; st<Math.floor(json.rateAvg);st++){
+                rate_avg += `<a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>`;
+              }
+              
+              for (var wst=0; wst<5-json.rateAvg; wst++){
+                rate_avg += `<a class=" mdi mdi-star-outline" style="font-size: 20px; color: #ff4500; "></a>`;
+              }
+            }
+            
+            document.getElementById(`book-rate-avg-${mybook.book.id}`).innerHTML += rate_avg;
+          })
+        });
+      }
+
+      function change_sttBook(id_book){
+        const sttBook = document.getElementById(`statusBook-${id_book}`).value;
+        if (sttBook == 0) {
+          var url = `https://reviewbook18.herokuapp.com/api/User/MyBookByIdBook/${id_book}`
+          fetch(url,{
+            method:"DELETE",
+            headers:{
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Không thể xóa cuốn sách này khỏi My Book');
+            }
+            else {
+              alert('Đã xóa cuốn sách này khỏi My Book');
+            }
+          })
+        } else {
+          var url = `https://reviewbook18.herokuapp.com/api/User/MyBook`;
+          const data = {
+            "iD_Book":id_book,
+            "status": sttBook
+          }
+          fetch(url,{
+            method:"PUT",
+            body:JSON.stringify(data),
+            headers:{
+              'accept' : 'text/plain',
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Không thể thay đổi trạng thái của cuốn sách này');
+            }
+            else {
+              sessionStorage.setItem("sttBook",sttBook)
+              alert('Đã thay đổi trạng thái của cuốn sách này');
+            }
+          })
+        }
+      }
+      
+      function hienthi_lb_stt(json){
+        var sttBook = `
+          <li><a style="color:#007bff; cursor: pointer;" id = "all">All</a></li>
+          <li><a style="color:#007bff; cursor: pointer;" id = "wtr">Want to Read</a></li>
+          <li><a style="color:#007bff; cursor: pointer;" id = "reading">Reading</a></li>
+          <li><a style="color:#007bff; cursor: pointer;" id = "read">Read</a></li>`
+        document.getElementById("list-stt-book").innerHTML += sttBook;
+
+        var btn_all = document.getElementById("all");
+        btn_all.addEventListener("click", function(){
+          hienthi_list_my_book(json);
+        })
+
+        var btn_wtr = document.getElementById("wtr");
+        btn_wtr.addEventListener("click", function(){
+          var list_wtr = json.filter(function(mybook, index, array){
+            return mybook.statusBook == 1;
+          })
+          hienthi_list_my_book(list_wtr);
+        })
+
+        var btn_reading = document.getElementById("reading");
+        btn_reading.addEventListener("click", function(){
+          var list_reading = json.filter(function(mybook, index, array){
+            return mybook.statusBook == 2;
+          })
+          hienthi_list_my_book(list_reading);
+        })
+        
+        var btn_read = document.getElementById("read");
+        btn_read.addEventListener("click", function(){
+          var list_read = json.filter(function(mybook, index, array){
+            return mybook.statusBook == 3;
+          })
+          hienthi_list_my_book(list_read);
+        })
+      }
+
+    
     </script>
 
     <!-- plugins:js -->

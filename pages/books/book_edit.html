@@ -339,11 +339,9 @@
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-      document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-      //document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
-      
+      document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;      
       //hien thi list author, pub, tag trong DB
-
+      var tag_before = [];
       function show_book_infor(){
 
         let names = ['Author', 'Publisher', 'Tag'];
@@ -365,9 +363,7 @@
               if(response.status !=200){
                 alert('Xảy ra lỗi'); break;
             }
-              
             }
-
             return responses;
           })
           // map array of responses into an array of response.json() to read their content
@@ -394,7 +390,6 @@
             'Authorization': 'Bearer '+sessionStorage.getItem("token")  
           },
         }).then(function(reponse){
-          //alert(`${response.status}`)
           if(reponse.status !=200){
             alert('Xay ra loi');
         }
@@ -402,7 +397,6 @@
             return reponse.json();
         }
         }).then(function(json){
-          //console.log(json)
           var selId_aut = document.getElementById("author");
           selId_aut.value=`${json.iD_Aut}`;
           var selId_pub = document.getElementById("publisher");
@@ -416,49 +410,52 @@
           }
           const url_img ="data:image/jpeg;base64,"+ json.picture;
           document.getElementById("book-img").style.backgroundImage = `url(${url_img})`;
-          
+          tag_before=get_tag_book();
         })
       }
+      /////edit book//////////
+      
       var save_btn = document.getElementById('btn-save');
       save_btn.onclick = function() {
-        //var date = new Date(document.getElementById("birthday").value);
-        var url_img = document.getElementById("book-img").style.backgroundImage.slice(5, -2);
-        var tag_remove = [];
-        var tag_add = [];
-        
-        data = {
-          "name": document.getElementById("bookTitle").value,
-          "iD_Aut": document.getElementById("author").value,
-          "iD_Pub": document.getElementById("publisher").value,
-          "publishedYear": document.getElementById("publishYear").value,
-          "picture":`${url_img.slice(url_img.search(",")+1)}`,
-          "description": document.getElementById("description").value,
-          "list_ID_Tags_Remove": tag_remove,
-          "list_ID_Tags_Add": tag_add,
-        }
-        console.log(data)
-        
-        var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
-        fetch(url,{
-          method:"PUT",
-          headers:{
-            'Content-Type': 'application/json',
-            'accept' : 'text/plain',
-            'Authorization': 'Bearer '+sessionStorage.getItem("token")
-          },
-          body: JSON.stringify(data),
-        }).then(function(reponse){
-          //alert(`${response.status}`);
-          if(reponse.status !=200){
-            alert('Xảy ra lỗi');
-          } else {
-            return reponse.json();
+        if (validate()){
+          var url_img = document.getElementById("book-img").style.backgroundImage.slice(5, -2);
+          var tag_after = get_tag_book();
+          var tag_remove = tag_before.filter(x => !tag_after.includes(x));
+          var tag_add = tag_after.filter(x => !tag_before.includes(x));
+          data = {
+            "name": document.getElementById("bookTitle").value,
+            "iD_Aut": document.getElementById("author").value,
+            "iD_Pub": document.getElementById("publisher").value,
+            "publishedYear": document.getElementById("publishYear").value,
+            "picture":`${url_img.slice(url_img.search(",")+1)}`,
+            "description": document.getElementById("description").value,
+            "list_ID_Tags_Remove": tag_remove,
+            "list_ID_Tags_Add": tag_add,
           }
-        }).then(function(json){
-          console.log("data sau edit", json);
-          //sessionStorage.setItem("picture",json.picture);
-          window.location.replace("book_list.html");
-        })
+          console.log(data)
+          
+          var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`
+          fetch(url,{
+            method:"PUT",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //alert(`${response.status}`);
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              return reponse.json();
+            }
+          }).then(function(json){
+            console.log("data sau edit", json);
+            //sessionStorage.setItem("picture",json.picture);
+            window.location.replace("book_list.html");
+          })
+        }
       }
 
     </script>

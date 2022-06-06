@@ -450,8 +450,7 @@
       //document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
 
       function show_aut_pub(){
-        /* author_list();
-        publisher_list(); */
+
         let names = ['Author', 'Publisher', 'Tag'];
 
         let requests = names.map(name => fetch(`https://reviewbook18.herokuapp.com/api/${name}`,

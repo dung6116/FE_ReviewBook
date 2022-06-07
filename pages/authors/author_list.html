@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="author_list()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -273,8 +273,8 @@
                             <th> Action </th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
+                        <tbody id="list-authors">
+                          <!-- <tr>
                             <td> 1 </td>
                             <td> Huy Cận </td>
                             <td> Cù Huy Cận </td>
@@ -324,7 +324,7 @@
                               <a class="btn btn-outline-primary btn-sm" href="#" role="button">Edit</a> 
                             </td>
                           </tr>
-                          
+                           -->
                         </tbody>
                       </table>
                     </div>
@@ -349,8 +349,68 @@
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+
+      function author_list(){
+        var url = `https://reviewbook18.herokuapp.com/api/Author`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          display_authors(json);
+        })
+        
+      }
+      function display_authors(json){
+        console.log(json)
+        var table = document.getElementById("list-authors");
+        
+        
+        
+        for (var i = 0; i < json.length; i++){
+          let bd='';
+          if (json[i].birthday!=null)
+          {
+            let birthday = new Date(json[i].birthday);
+            var month = birthday.getMonth()+1;
+            if (month.length != 2) {
+              month='0' + month;
+            }
+            var day = birthday.getDate();
+            if (day.length != 2) 
+            {
+              day='0' + day;
+            }
+            bd = day + '/'+ month + '/' + birthday.getFullYear();
+          }
+                    
+          var aut = `
+            <tr>
+              <td> ${json[i].id} </td>
+              <td> ${json[i].stage_Name} </td>
+              <td> ${json[i].name} </td>
+              <td> ${bd} </td>
+              <td> 
+                <a class="btn btn-outline-primary btn-sm" href="author_detail.html" role="button" onclick="get_id_aut(${json[i].id})" >View</a> 
+                <a class="btn btn-outline-primary btn-sm" href="author_edit.html" role="button" onclick="get_id_aut(${json[i].id})" >Edit</a> 
+              </td>
+            </tr>
+          `
+          table.innerHTML += aut;
+        }
+      }
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="author_form.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

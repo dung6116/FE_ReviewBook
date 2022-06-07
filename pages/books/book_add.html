@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body onload="show_aut_pub()">
+  <body onload="show_aut_pub_tag()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -449,7 +449,7 @@
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       //document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
 
-      function show_aut_pub(){
+      function show_aut_pub_tag(){
 
         let names = ['Author', 'Publisher', 'Tag'];
 

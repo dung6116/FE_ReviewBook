@@ -344,7 +344,7 @@
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-      document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
+      //document.getElementById("book-img").style.backgroundImage = `url(../../assets/images/books-logo.jpg)`;
 
       function show_book_info(){
         var url = `https://reviewbook18.herokuapp.com/api/Book/${sessionStorage.getItem("id_book")}`

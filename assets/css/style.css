@@ -17114,7 +17114,13 @@ select.tt-hint {
 
 div.tagsinput {
   background: transparent; }
-
+div.tagdes {
+  white-space: nowrap; 
+  width: 450px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  border: 1px solid #000000;
+}
 /* Icons */
 .icons-list {
   border-left: 1px solid #2c2e33;

@@ -50,7 +50,7 @@
             </li>
             <!-- Book Request -->
             <li class="nav-item menu-items">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="user_request-book.html">
                 <span class="menu-icon">
                   <i class="fa-solid fa-pen"></i>
                 </span>
@@ -117,7 +117,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
-                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: cover;"></div>
+                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: contain; background-repeat: no-repeat;"></div>
                   <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name"></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
@@ -179,15 +179,15 @@
                               <div class="flex-grow">
                                 <div style="position: relative;">
                                   <div style="position: absolute; left: 0;">
-                                    <label class="badge badge-danger" style="background: #085394;">My Book</label>
+                                    <h3 class="page-title" style="color: #085394; font-family:Rubik, sans-serif;"> My Book </h3>
                                   </div>
                                   
                                   <div style="position: absolute; right: 0;">
                                     <div class="input-group">
                                         <div class="form-outline">
-                                          <input type="search" id="form1" class="form-control" style="width: 250px; background: #ffffff; height: 30px;" placeholder="Search books"/>
+                                          <input type="search" id="search" class="form-control" style="width: 250px; background: #ffffff; height: 30px; color: #000000;" placeholder="Search books"/>
                                         </div>
-                                        <button type="button" class="btn btn-primary">
+                                        <button type="button" class="btn btn-primary" id="btn-search">
                                           <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -211,31 +211,13 @@
                                 </div>
 
                                 <div class="border-bottom">
-                                    <label style="font-weight: bold; color:#000000">Category</label>
-                                    <ul style="list-style: none;">
-                                        <li><a href="#">Novel(4)</a></li>
-                                        <li><a href="#">Literary(4)</a></li>
-                                        <li><a href="#">Metality(2)</a></li>
-                                        <li><a href="#">History(5)</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="border-bottom">
-                                    <label style="font-weight: bold; color:#000000">My Category</label><ul style="list-style: none;">
-                                    <div class="input-group">
-                                        <div class="form-outline">
-                                            <input type="search" id="form1" class="form-control" style="width: 145px; background: #ffffff; height: 30px;" placeholder="Search category"/>
-                                        </div>
-                                        <button type="button" class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                        </button>
+                                  <div class="content-wrapper" style="padding: 0.875rem 0.75rem;">
+                                    <label class="col-md-12" for="tag" style="font-weight: bold; color:#000000; font-size: 1rem; margin-top: 6px;">My Category</label>
+                                    <div class="row" id = "all-tags">
+                                      
+                                      
                                     </div>
-                                    <div class="">
-                                        <a href="#" style="margin-right: 10px;">Novel</a>
-                                        <a href="#" style="margin-right: 10px;">Literary</a>
-                                        <a href="#" style="margin-right: 10px;">Metality</a>
-                                        <a href="#" style="margin-right: 10px;">History</a>
-                                    </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -289,6 +271,10 @@
         font-family: Arial, Helvetica, sans-serif;
       }
 
+      label {
+        color:#000000 !important; 
+      }
+
       th {
         font-size: 20px !important;
         color: #085394 !important;
@@ -336,6 +322,7 @@
           console.log(json);
           hienthi_lb_stt(json);
           hienthi_list_my_book(json);
+          hienthi_list_mytag();
         })
       }
     
@@ -347,7 +334,7 @@
             <tr>
               <td>
                 <div class="preview-thumbnail">
-                  <div class="preview-icon bg-primary" style="width: 75px; height: 80px; background-position: center;background-size: cover;">
+                  <div class="preview-icon bg-primary" style="width: 75px; height: 80px; background-position: center;background-size: contain; background-repeat: no-repeat;">
                     <img src="${"data:image/jpeg;base64,"+ mybook.book.picture}" alt="My Book" style="width: 75px; height: 80px; border-radius: 0 !important;">
                   </div>
                 </div>
@@ -356,8 +343,10 @@
                 <p style="font-size: 20px; cursor: pointer; color: #085394 !important;width: 158px; margin: auto; text-overflow: ellipsis; white-space: normal" onclick = "xem_chi_tiet_sach(${mybook.book.id})">
                   ${mybook.book.name}</p>  
               </td>
-              <td>Sapkowski</td>
-              <td>Novel</td>
+              <td style="cursor: pointer;" onclick = "xem_chi_tiet_tacgia(${mybook.book.iD_Aut})">${mybook.book.author.name}</td>
+              <td style="overflow: hidden; text-overflow: ellipsis;" id = "tagbook-${mybook.iD_Book}">
+                
+              </td>
               <td>
                 <div id="book-rate-avg-${mybook.book.id}">
                     
@@ -377,9 +366,16 @@
               </td>
             </tr>`
           list_my_book.innerHTML = my_book;
+
+          
         });
         json.forEach(function(mybook, index, array){
           document.getElementById(`statusBook-${mybook.iD_Book}`).value = mybook.statusBook;
+
+          mybook.book.tags.forEach(function(tagbook){
+            var tag = `<a style= "cursor: pointer;" onclick = "xem_chi_tiet_theloai(${tagbook.iD_Tag})"><br>${tagbook.tag.name}<br></a>`
+            document.getElementById(`tagbook-${mybook.iD_Book}`).innerHTML += tag;
+          })
 
           var url = `https://reviewbook18.herokuapp.com/api/Book/RateAvg/${mybook.book.id}`
           fetch(url,{
@@ -395,7 +391,7 @@
               return reponse.json();
           }
           }).then(function(json){
-            var rate_avg=`<label>${json.rateAvg.toFixed(2)}</label>`;
+            var rate_avg=`<label>${json.rateAvg.toFixed(2)}&nbsp</label>`;
             if (json.rateAvg != json.rateAvg.toFixed()){
               for (var st=0; st<Math.floor(json.rateAvg);st++){
                 rate_avg += `<a class=" mdi mdi-star" style="font-size: 20px; color: #ff4500; "></a>`;
@@ -498,9 +494,103 @@
           })
           hienthi_list_my_book(list_read);
         })
+
+        var btn_search = document.getElementById("btn-search");
+        btn_search.addEventListener("click", function(){
+          var list_search = json.filter(function(mybook, index){
+            return mybook.book.name.toLowerCase().includes(document.getElementById("search").value);
+          })
+          hienthi_list_my_book(list_search);
+        })
       }
 
+      function hienthi_list_mytag(){
+        var url = `https://reviewbook18.herokuapp.com/api/Tag`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          json.forEach(function(tag, index){
+            var alltag = `
+              <div class="form-check" style="margin: 15px 10px">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" id="tag-${tag.id}" name="tag-${tag.id}"> ${tag.name} 
+                  <i class="input-helper"></i>
+                </label>
+              </div>`
+            document.getElementById("all-tags").innerHTML += alltag;
+          })
+
+          json.forEach(function(tag, index){
+            document.getElementById(`tag-${tag.id}`).addEventListener("click", function(){
+              if (document.getElementById(`tag-${tag.id}`).checked == true) {
+                var url = `https://reviewbook18.herokuapp.com/api/Account/MyTag/${tag.id}`
+                fetch(url,{
+                  method:"POST",
+                  headers:{
+                    'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+                  },
+                }).then(function(reponse){
+                  if(reponse.status !=200){
+                    alert('Không thể thêm thể loại này vào My Tag');
+                  }
+                  else {
+                    alert('Đã thêm vào danh sách thể loại yêu thích');
+                  }
+                })
+              } else {
+                var url = `https://reviewbook18.herokuapp.com/api/Account/MyTag/${tag.id}`
+                fetch(url,{
+                  method:"DELETE",
+                  headers:{
+                    'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+                  },
+                }).then(function(reponse){
+                  if(reponse.status !=200){
+                    alert('Không thể xóa thể loại này vào My Tag');
+                  }
+                  else {
+                    alert('Đã xóa thể loại này ra khỏi danh sách thể loại yêu thích');
+                  }
+                })
+              }
+            })
+          })
+        })
+      
+        var url1 = `https://reviewbook18.herokuapp.com/api/Account/MyInforHasMyTag`
+        fetch(url1,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json_mytag){
+          json_mytag.myTags.forEach(function(mytag, index){
+            document.getElementById(`tag-${mytag.iD_Tag}`).checked = true;
+          })
+        })
+      
+      }
     
+      
     </script>
 
     <!-- plugins:js -->

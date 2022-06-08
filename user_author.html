@@ -50,7 +50,7 @@
             </li>
             <!-- Book Request -->
             <li class="nav-item menu-items">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="user_request-book.html">
                 <span class="menu-icon">
                   <i class="fa-solid fa-pen"></i>
                 </span>
@@ -117,7 +117,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
-                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: cover;"></div>
+                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: contain; background-repeat: no-repeat;"></div>
                   <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name"></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
@@ -191,7 +191,8 @@
     
                               <div class="preview-item">
                                 <div >
-                                  <p style="color:#000000 !important;" id="info_author"></p>
+                                  <p style="color:#000000 !important;" id="authname_author"></p>
+                                  <p style="color:#000000 !important;" id="birthday_author"></p>
                                   <p style="color:#000000 !important;" id="description_author"></p>
                                 </div>
                               </div>
@@ -279,7 +280,8 @@
           const bd = day + '-' + month + '-' + birthday.getFullYear();
 
           document.getElementById("name_author").innerHTML = json.stage_Name;
-          document.getElementById("info_author").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp"+`${json.stage_Name} có tên thật là ${json.name}. Ông sinh ngày ${bd}`;
+          document.getElementById("authname_author").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp"+`${json.stage_Name} có tên thật là ${json.name}.`;
+          document.getElementById("birthday_author").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp"+`Ngày sinh: ${bd}.`;
           document.getElementById("description_author").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp"+json.description;
 
           var all_book_of_author = document.getElementById("all-book-of-author")
@@ -293,7 +295,7 @@
                       <div class="preview-list">
                         <div class="preview-item">
                           <div>
-                            <div class="preview-icon" style="width: 100px; height: 120px; background-position: center;background-size: cover;" >
+                            <div class="preview-icon" style="width: 100px; height: 120px; background-position: center;background-size: contain; background-repeat: no-repeat;" >
                               <img src="${"data:image/jpeg;base64,"+ authbook.picture}" alt="book" width= "100px" height= "120px">
                             </div>
                           </div>
@@ -314,6 +316,7 @@
                               </div>
                               <br><br>
                               <div id="book-tag-${authbook.id}">
+                                <i class="mdi mdi-book-plus" style="color:#000000 !important; font-size:20px;"></i>
 
                               </div>
 
@@ -334,8 +337,7 @@
 
             authbook.tags.forEach(function(authbooktag, index){
               var tag=`
-                <a class="text-muted mb-0" style = "color:#000000 !important; cursor: pointer;" onclick = "xem_chi_tiet_theloai(${authbooktag.iD_Tag})">
-                  <i class="mdi mdi-book-plus" style="color:#000000 !important; font-size:20px; margin-left:5px;"></i>${authbooktag.tag}</a>`;
+                <a class="text-muted mb-0" style = "color:#000000 !important; cursor: pointer;" onclick = "xem_chi_tiet_theloai(${authbooktag.iD_Tag})">${authbooktag.tag}, </a>`;
               document.getElementById(`book-tag-${authbook.id}`).innerHTML += tag;
             });
           });

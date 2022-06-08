@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body>
+  <body onload = "write_rv()">
     <div class="container-scroller">
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -117,7 +117,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
-                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: cover;"></div>
+                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: contain; background-repeat: no-repeat;"></div>
                   <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name"></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
@@ -182,14 +182,12 @@
                         <div class="row">
                           <div class="col-md-3">
                             <!--add image-->  
-                            <img class="img-thumbnail" id="bookImgId" src="../../assets/images/books-logo.jpg">
-                            <div class="form-group">
-                              <input type="file" name="img[]" class="file-upload-default">
-                              <div class="input-group col-xs-12">
-                                <span class="input-group-append">
-                                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                              </div>
+                            <div class="preview-icon " id="avatar" style="width: 200px; height: 220px;background-position: center;background-size: contain; background-repeat: no-repeat; margin:10px auto;">
+                                        
+                            </div>
+
+                            <div class="" style="text-align: left; ">
+                              <input type="file" style="width: 230px;" id="avatar-btn"></input>
                             </div>
                           </div>
 
@@ -337,6 +335,37 @@
       btn_log_out.onclick = function() {
         sessionStorage.clear();
         window.location.replace("Sign_In.html")
+      }
+
+      function write_rv() {
+        var url = `https://reviewbook18.herokuapp.com/api/Author`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+          }
+          else {
+            return reponse.json();
+          }
+        }).then(function(json){
+          console.log(json)
+        })
+
+      const image_input = document.getElementById("avatar-btn");
+      image_input.addEventListener("change", function() {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          const uploaded_image = reader.result;
+          console.log(uploaded_image)
+          document.getElementById("avatar").style.backgroundImage = `url(${uploaded_image})`;
+        });
+        reader.readAsDataURL(this.files[0]);
+      });
       }
     </script>
 

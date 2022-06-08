@@ -50,7 +50,7 @@
             </li>
             <!-- Book Request -->
             <li class="nav-item menu-items">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="user_request-book.html">
                 <span class="menu-icon">
                   <i class="fa-solid fa-pen"></i>
                 </span>
@@ -117,7 +117,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
-                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: cover;"></div>
+                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: contain; background-repeat: no-repeat;"></div>
                   <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name"></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
@@ -176,7 +176,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-primary" style="width: 125px; height: 150px; background-position: center;background-size: cover; margin:10px auto;" id="book-cover">
+                                    <div class="preview-icon bg-primary" style="width: 125px; height: 150px; background-position: center;background-size: contain; background-repeat: no-repeat; margin:10px auto;" id="book-cover">
                                         
                                     </div>
                                 </div>
@@ -404,6 +404,10 @@
       .show-replies {
         cursor: pointer;
       }
+
+      .bg-primary {
+        background-color: #EEEEEE !important;
+      }
     </style>
 
     <script src="./user-js/role-user.js"></script>
@@ -538,7 +542,7 @@
           var author = `<a class="preview-subject" style="color:#085394; font-size: 18px; cursor: pointer; font-weight: bold; margin-bottom: 5px;" onclick = "xem_chi_tiet_tacgia(${json.author.id})">${json.author.stage_Name}</a>`;
           book_author.innerHTML += author;
 
-          document.getElementById("author-description").innerHTML = json.author.description;
+          document.getElementById("author-description").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp"+json.author.description;
           sessionStorage.setItem("isReview",false);
           var book_review = document.getElementById("book-review");
           for (var i=json.reviews.length-1; i>=0; i--) {
@@ -560,7 +564,7 @@
               <div class="container">
                 <div class="comment__container opened" id="comment-${json.reviews[i].id}">
                   <div class="comment__card" style="position: relative;">
-                    <div style="position: absolute; left: 15px; background-position: center;background-size: cover;">
+                    <div style="position: absolute; left: 15px; background-position: center;background-size: contain; background-repeat: no-repeat;">
                       <img class="img-xs " src="${"data:image/jpeg;base64,"+ json.reviews[i].account.picture}" alt="" style="width: 50px; height: 50px; position: relative;">
                        <a class="comment__title" style="color: #085394; font-weight: bold; cursor: pointer" onclick = "xem_chi_tiet_friend(${json.reviews[i].account.id})">${json.reviews[i].account.userName}</a>
                      </div>
@@ -609,7 +613,7 @@
   	          if (time_children/60/24 >=1) time_children_review = (time_children/60/24).toFixed()+ " ngày trước";
               children_review +=`
                 <div class="comment__card">
-                  <div style="background-position: center;background-size: cover; margin-bottom: 10px">
+                  <div style="background-position: center;background-size: contain; background-repeat: no-repeat; margin-bottom: 10px">
                     <img class="img-xs " src="${"data:image/jpeg;base64,"+ json.reviews[i].reviewChildrens[j].account.picture}" alt="" style="width: 50px; height: 50px; position: relative;">
                     <a class="comment__title" style="color: #085394; font-weight: bold; cursor: pointer" onclick = "xem_chi_tiet_friend(${json.reviews[i].reviewChildrens[j].account.id})">${json.reviews[i].reviewChildrens[j].account.userName}</a>
                   </div>

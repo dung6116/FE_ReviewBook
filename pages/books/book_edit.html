@@ -369,10 +369,10 @@
           // map array of responses into an array of response.json() to read their content
           .then(responses => Promise.all(responses.map(r => r.json())))
           // all JSON answers are parsed: "users" is the array of them
-          .then(users => {
-            var aut= users[0];
-            var pub= users[1];
-            var tag= users[2];
+          .then(datas => {
+            var aut= datas[0];
+            var pub= datas[1];
+            var tag= datas[2];
             display_author(aut);
             display_tag(tag);
             display_publisher(pub);

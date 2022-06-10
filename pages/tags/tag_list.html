@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="tag_list()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -37,11 +37,11 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="../../assets/images/avatar.jpg" alt="">
+                  <div id="icon_avatar" class="img-avatar rounded-circle " ></div>
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Minh Nguyệt</h5>
+                  <h5 class="mb-0 font-weight-normal" id="bar_name"></h5>
                   <span>Admin</span>
                 </div>
               </div>
@@ -212,8 +212,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="../../assets/images/avatar.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Minh Nguyệt</p>
+                    <div id="icon_avatar_1" class="img-avatar rounded-circle" ></div>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name_1"></p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -267,57 +267,13 @@
                         <thead>
                           <tr>
                             <th> ID </th>
-                            <th> Thể loại </th>
-                            <th> Mô tả </th>
+                            <th> Tag </th>
+                            <th> Description </th>
                             <th> Action </th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Sách truyền cảm hứng </td>
-                            <td> Là các tựa sách sáng tác dựa trên...</td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">Edit</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Tiểu sử </td>
-                            <td> Các tựa sách hư cấu dùng để kể về cuộc đời một người </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">Edit</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> Hư cấu </td>
-                            <td> xxxxxxxxxxxxxxxxxxxxxxxxx </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="tag_detail.html" role="button">View</a> 
-                              <a class="btn btn-outline-primary btn-sm" href="tag_edit.html" role="button">Edit</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Kinh tế </td>
-                            <td> xxxxxxxxxxxxxxxxxxxxxxxxx </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">Edit</a> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Kinh dị </td>
-                            <td> xxxxxxxxxxxxxxxx </td>
-                            <td> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">View</a> 
-                              <a class="btn btn-outline-primary btn-sm" href="#" role="button">Edit</a> 
-                            </td>
-                          </tr>
+                        <tbody id="list-tags" style="overflow: hidden  ;">
+
                           
                         </tbody>
                       </table>
@@ -338,6 +294,53 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script>
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+
+
+      function tag_list(){
+        var url = `https://reviewbook18.herokuapp.com/api/Tag`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          display_tags(json);
+        })
+        
+      }
+      function display_tags(json){
+        console.log(json)
+        var table = document.getElementById("list-tags")
+        for (var i = 0; i < json.length; i++){
+          var tag = `
+            <tr>
+              <td> ${json[i].id} </td>
+              <td> ${json[i].name} </td>
+              <td><div class="tagdes"> ${json[i].description} </div></td>
+              <td> 
+                <a class="btn btn-outline-primary btn-sm" href="tag_detail.html" role="button" onclick="get_id_tag(${json[i].id})" >View</a> 
+                <a class="btn btn-outline-primary btn-sm" href="tag_edit.html" role="button" onclick="get_id_tag(${json[i].id})" >Edit</a> 
+              </td>
+            </tr>
+          `
+          table.innerHTML += tag;
+        }
+      }
+      
+    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

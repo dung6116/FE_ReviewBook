@@ -183,21 +183,21 @@
                             <div class="card-body">
                                 <form class="forms-sample" id="form-change-pw">
                                     <div class="form-group row">
-                                      <label for="name" class="col-sm-3 col-form-label">Old Password</label>
+                                      <label for="old-password" class="col-sm-3 col-form-label">Old Password</label>
                                       <div class="col-sm-9" >
                                         <input type="password" class="form-control" style="background-color: #EEEEEE; color: #000000;" id="old-password" name="old-password">
                                         <span class="form-message"></span>
                                       </div>
                                     </div>
                                     <div class="form-group row">
-                                      <label for="email" class="col-sm-3 col-form-label">New Password</label>
+                                      <label for="new-password" class="col-sm-3 col-form-label">New Password</label>
                                       <div class="col-sm-9">
                                         <input type="password" class="form-control" style="background-color: #EEEEEE; color: #000000;" id="new-password" name="new-password">
                                         <span class="form-message"></span>
                                       </div>
                                     </div>
                                     <div class="form-group row">
-                                      <label for="birthday" class="col-sm-3 col-form-label">Confirm New Password</label>
+                                      <label for="cf-password" class="col-sm-3 col-form-label">Confirm New Password</label>
                                       <div class="col-sm-9">
                                         <input type="password" class="form-control" style="background-color: #EEEEEE; color: #000000;" id="cf-password" name="cf-password">
                                         <span class="form-message"></span>
@@ -256,7 +256,7 @@
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
-        window.location.replace("Sign_In.html")
+        window.location.replace("index.html")
       }
 
       Validator({

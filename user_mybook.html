@@ -300,7 +300,7 @@
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
-        window.location.replace("Sign_In.html")
+        window.location.replace("index.html")
       }
 
       function user_mybook(){
@@ -329,6 +329,7 @@
       function hienthi_list_my_book(json){
         var list_my_book = document.getElementById("list-my-book");
         var my_book="";
+        list_my_book.innerHTML = my_book;
         json.forEach(function(mybook, index, array){
           my_book += `
             <tr>

@@ -169,118 +169,169 @@
         </div>
       </nav>
 
-        <div class="main-panel">
-            <div class="content-wrapper">
-              <div class="page-header">
-                <h3 class="page-title" style="color: #085394;"> Add new book </h3>
-              </div>
-              <div class="row">
-                <div class="col-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                      <form method="post">
-                        <div class="row">
-                          <div class="col-md-3">
-                            <!--add image-->  
-                            <div class="preview-icon " id="avatar" style="width: 200px; height: 220px;background-position: center;background-size: contain; background-repeat: no-repeat; margin:10px auto;">
-                                        
-                            </div>
-
-                            <div class="" style="text-align: left; ">
-                              <input type="file" style="width: 230px;" id="avatar-btn"></input>
-                            </div>
-                          </div>
-
-                          <div class="col-md-9">
-                            <div class="form-group">
-                              <label for="bookTitle">Book title</label>
-                              <input type="text" class="form-control" id="bookTitle" placeholder="Book title">
-                            </div>
-                            <div class="form-group">
-                              <label for="author">Author</label>
-                              <select class="form-control" id="author">
-                                <option>Nguyễn Nhật Ánh</option>
-                                <option>Nguyên Hồng</option>
-                                <option>Nam Cao</option>
-                                <option>Tố Hữu</option>
-                                <option>Nguyễn Ngọc Tư</option>
-                              </select>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-md-12" for="tag">Tag</label>
-                              <!-- <input type="text" class="form-control" id="tag" placeholder="Tag"> -->
-                              <div class="col-md-6">
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag1" name="tag1"> Trinh thám </label>
-                                </div>
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag2" name="tag2"> Tiểu thuyết </label>
-                                </div>
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag3" name="tag3"> Tiểu sử </label>
-                                </div>
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="tag4" name="tag4"> Khoa học viễn tưởng </label>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <div class="form-check">
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" id="tag5" name="tag5"> Tản văn </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" id="tag6" name="tag6"> Lịch sử </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" id="tag7" name="tag7"> Kinh tế </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" id="tag8" name="tag8"> Self help </label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="Publisher">Publisher</label>
-                              <select class="form-control" id="Publisher">
-                                <option>NXB Trẻ</option>
-                                <option>NXB Văn học</option>
-                                <option>NXB Kim Đồng</option>
-                                <option>NXB Hội Nhà Văn</option>
-                                <option>NXB Giáo dục</option>
-                              </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="publishYear">Publish year</label>
-                              <input type="number" max="2022" class="form-control" id="publishYear" placeholder="Publish year" max="2022">
-                            </div>
-                            <div class="form-group">
-                              <label for="description">Description</label>
-                              <textarea class="form-control text-line-spacing text-justify" id="description" rows="10"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Add</button>
-                            <button class="btn btn-dark">Cancel</button>
-                          </div> 
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"> Add new book </h3>
+          </div>
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <form method="addbook">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <!--add image-->  
+                        <div class="preview-icon " id="avatar" style="width: 200px; height: 220px;background-position: center;background-size: contain; background-repeat: no-repeat; margin:10px auto;">
+                                    
                         </div>
-                      </form>
+
+                        <div class="" style="text-align: left; ">
+                          <input type="file" style="width: 230px;" id="avatar-btn"></input>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <label for="bookTitle">Book title</label>
+                          <input type="text" class="form-control" id="bookTitle" placeholder="Book title">
+                          <span class="form-message"></span>
+                        </div>
+                        <div class="form-group">
+                          <label for="author">Author</label>
+                          <div class="input-group col-xs-12">
+                            <select class="form-control" id="author">
+                              
+                            </select>
+                            <button type="button" class="btn btn-outline-primary btn-sm ml-2" data-toggle="modal" data-target="#addAut"> Add new Author </button>
+                          </div>
+                        </div>
+                        <div class="form-group row" id="all-tags">
+                          <label class="col-md-12" for="tag">Tag</label>
+                          
+                        </div>
+                        <div class="form-group">
+                          <label for="Publisher">Publisher</label>
+                          <div class="input-group col-xs-12">
+                            <select class="form-control" id="Publisher">
+                              
+                            </select>
+                            <button type="button" class="btn btn-outline-primary btn-sm ml-2" data-toggle="modal" data-target="#addPub"> Add new Publisher </button>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="publishYear">Publish year</label>
+                          <input type="number" max="2022" class="form-control" id="publishYear" placeholder="Publish year" max="2022">
+                          <span class="form-message"></span>
+                        </div>
+                        <div class="form-group">
+                          <label for="description">Description</label>
+                          <textarea class="form-control text-line-spacing text-justify" id="description" rows="10"></textarea>
+                        </div>
+                      </div> 
                     </div>
-                  </div>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-primary mr-2" onclick = "addBook()">Add</button>
+                      <button class="btn btn-primary">Cancel</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:../../partials/_footer.html -->
-            
-            <!-- partial -->
+          </div>
         </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        
+        <!-- partial -->
+      </div>
+
+      <!-- modal add new author-->
+      <div class="modal fade" id="addAut" tabindex="-1" role="dialog" aria-labelledby="addAutLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="background: #085394;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addAutLabel">Add New Author</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group row">
+                  <label for="authorname" style="color: #ffffff !important" class="col-sm-3 col-form-label">Author's Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="author-name" placeholder="Author's name">
+                  </div>
+                </div>        
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick = "add_new_author();">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal add new author ends-->
+
+      <!-- modal add new tag-->
+      <!-- <div class="modal fade" id="addTag" tabindex="-1" role="dialog" aria-labelledby="addAutLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="background: #085394;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addAutLabel">Add New Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group row">
+                  <label for="authorname" style="color: #ffffff !important" class="col-sm-3 col-form-label">Category's Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="author-name" placeholder="Author's name">
+                  </div>
+                </div>        
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick = "add_new_author();">Add</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- modal add new tag ends-->
+
+      <!-- -->
+      <!-- modal add new publisher-->
+      <div class="modal fade" id="addPub" tabindex="-1" role="dialog" aria-labelledby="addPubLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="background: #085394;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addPubLabel">Add New Publisher</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="forms-sample">
+                <div class="form-group row">
+                  <label for="pub-name" style="color: #ffffff !important" class="col-sm-3 col-form-label"> Publisher's name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="pub-name" placeholder="Name of publisher" >
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="add_new_publisher()">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal add new publisher ends-->
         <!-- main-panel ends -->
     </div>
      
@@ -327,6 +378,7 @@
       }
     </style>
 
+    <script src="./assets/js/vaidator.js"></script>
     <script>
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
@@ -334,12 +386,54 @@
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
-        window.location.replace("Sign_In.html")
+        window.location.replace("index.html")
       }
 
       function write_rv() {
-        var url = `https://reviewbook18.herokuapp.com/api/Author`
-        fetch(url,{
+        var url_auth = `https://reviewbook18.herokuapp.com/api/Author`
+        fetch(url_auth,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+          }
+          else {
+            return reponse.json();
+          }
+        }).then(function(json){
+          json.forEach(function(author, index){
+            var auth = `<option value=${author.id}>${author.stage_Name}</option>`;
+            document.getElementById("author").innerHTML += auth;
+          })
+        });
+
+        var url_pub = `https://reviewbook18.herokuapp.com/api/Publisher`
+        fetch(url_pub,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xảy ra lỗi');
+          }
+          else {
+            return reponse.json();
+          }
+        }).then(function(json){
+          json.forEach(function(publisher, index){
+            var pub = `<option value=${publisher.id}>${publisher.name}</option>`;
+            document.getElementById("Publisher").innerHTML += pub;
+          })
+        });
+
+        var url_tag = `https://reviewbook18.herokuapp.com/api/Tag`
+        fetch(url_tag,{
           method:"GET",
           headers:{
             'accept' : 'text/plain',
@@ -354,19 +448,143 @@
           }
         }).then(function(json){
           console.log(json)
+          json.forEach(function(tag, index){
+            var alltag = `
+              <div class="form-check col-md-2" style="margin: 15px 10px">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" id="tag-${tag.id}" name="tag-${tag.id}"> ${tag.name} 
+                  <i class="input-helper"></i>
+                </label>
+              </div>`
+            document.getElementById("all-tags").innerHTML += alltag;
+          })
         })
+
+      }
+
+      function addBook() {
+        Validator({
+            form: '#addbook',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#bookTitle'),
+                Validator.isRequired('#publishYear'),
+                Validator.isRequired('#description'),
+            ],
+            onSubmit: function (data) {
+              console.log(data);
+            }
+        
+          });
+
+
+        // const author = document.getElementById("author").value;
+        // const publisher = document.getElementById("Publisher").value;
+        // console.log(typeof author)
+        // var data;
+
+        // if (author == "new-author") {
+        //   if (publisher == "new-pub") {
+        //     data = {
+        //       "bookName": document.getElementById("bookTitle").value,
+        //       "iD_Aut": null,
+        //       "iD_Pub": null,
+        //       "publishedYear": document.getElementById("publishYear").value,
+        //       "picture": "string",
+        //       "description": document.getElementById("description").value,
+        //       "newAut": author,
+        //       "newPub": publisher,
+        //       "list_ID_Tags": [
+        //         0
+        //       ],
+        //       "list_new_tags": [
+        //         "string"
+        //       ]
+        //     }
+        //   } else {
+        //     data = {
+        //       "bookName": document.getElementById("bookTitle").value,
+        //       "iD_Aut": null,
+        //       "iD_Pub": 0,
+        //       "publishedYear": document.getElementById("publishYear").value,
+        //       "picture": "string",
+        //       "description": document.getElementById("description").value,
+        //       "newAut": author,
+        //       "newPub": null,
+        //       "list_ID_Tags": [
+        //         0
+        //       ],
+        //       "list_new_tags": [
+        //         "string"
+        //       ]
+        //     }
+        //   }
+        // } else {
+        //   if (publisher == "new-pub") {
+        //     data = {
+        //       "bookName": document.getElementById("bookTitle").value,
+        //       "iD_Aut": 0,
+        //       "iD_Pub": null,
+        //       "publishedYear": document.getElementById("publishYear").value,
+        //       "picture": "string",
+        //       "description": document.getElementById("description").value,
+        //       "newAut": null,
+        //       "newPub": publisher,
+        //       "list_ID_Tags": [
+        //         0
+        //       ],
+        //       "list_new_tags": [
+        //         "string"
+        //       ]
+        //     }
+        //   } else {
+        //     data = {
+        //       "bookName": document.getElementById("bookTitle").value,
+        //       "iD_Aut": 0,
+        //       "iD_Pub": 0,
+        //       "publishedYear": document.getElementById("publishYear").value,
+        //       "picture": "string",
+        //       "description": document.getElementById("description").value,
+        //       "newAut": null,
+        //       "newPub": null,
+        //       "list_ID_Tags": [
+        //         0
+        //       ],
+        //       "list_new_tags": [
+        //         "string"
+        //       ]
+        //     }
+        //   }
+        // }
+
+        // console.log(data)
+
+
+      }
+
+      function add_new_author() {
+        const new_auth = document.getElementById("author-name").value;
+        var auth = `<option value="${new_auth}">${new_auth}</option>`;
+        document.getElementById("author").innerHTML += auth;
+        document.getElementById("author").value = new_auth;
+      }
+
+      function add_new_publisher() {
+        const new_pub = document.getElementById("pub-name").value;
+        var pub = `<option value="${new_pub}">${new_pub}</option>`;
+        document.getElementById("Publisher").innerHTML += pub;
+        document.getElementById("Publisher").value = new_pub;
+      }
 
       const image_input = document.getElementById("avatar-btn");
       image_input.addEventListener("change", function() {
         const reader = new FileReader();
         reader.addEventListener("load", () => {
           const uploaded_image = reader.result;
-          console.log(uploaded_image)
           document.getElementById("avatar").style.backgroundImage = `url(${uploaded_image})`;
         });
         reader.readAsDataURL(this.files[0]);
       });
-      }
     </script>
 
     <!-- plugins:js -->

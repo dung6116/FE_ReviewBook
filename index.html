@@ -4,9 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>WhiteDragons Admin</title>
+    <title>WhiteDragons</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <!-- <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css"> -->
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
@@ -21,557 +21,140 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
   </head>
-  <body onload="user_info()">
-    <div class="container-scroller">
-      <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a  href="index.html">
-            <span >
-              <i class="fa-solid fa-dragon" style="font-size:40px; margin-top: 10px; color:white"></i>
-            </span>
-            <span style="color:white; font-size:25px;">WhiteDragons</span>
-          </a>
-        </div>
-        <ul class="nav">
-          <li class="nav-item profile">
-            <div class="profile-desc">
-              <div class="profile-pic">
-                <div class="count-indicator">
-                  <div id="icon_avatar" class="img-avatar rounded-circle " ></div>
-                  <span class="count bg-success"></span>
-                </div>
-                <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal" id="bar_name"></h5>
-                  <span>Admin</span>
-                </div>
+  <body>
+    <div class="main-panel">
+      <div class="content-wrapper">
+          <div class="row" style="justify-content: center;">
+              <div class="col-md-3 grid-margin stretch-card">
+                  <div class="card" style="background-color: #085394; text-align: center; justify-content: center;">
+                    <span >
+                      <i class="fa-solid fa-dragon" style="font-size:115px; margin-top: 10px; color:white"></i>
+                    </span>
+                    <span style="color:white; font-size:45px;">WhiteDragons</span>
+                  </div>
               </div>
-              <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
-              <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-                <a href="#" class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-settings text-primary"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-onepassword  text-info"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-calendar-today text-success"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
-          </li>
-          
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
-              </span>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/users/user_list.html">
-              <span class="menu-icon">
-                <i class="mdi mdi mdi-account"></i>
-              </span>
-              <span class="menu-title">Users</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-book-open-page-variant"></i>
-              </span>
-              <span class="menu-title">Books</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/books/book_list.html">List Books</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/books/book_request.html">Requests</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/tags/tag_list.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-tag-multiple"></i>
-              </span>
-              <span class="menu-title">Tags</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/authors/author_list.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-comment-account-outline"></i>
-              </span>
-              <span class="menu-title">Authors</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/publishers/publisher_list.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-printer"></i>
-              </span>
-              <span class="menu-title">Publisher</span>
-            </a>
-          </li>
-          
-          
-        </ul>
-      </nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
-          
-          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-            
-            <ul class="navbar-nav w-100">
-              <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search">
-                </form>
-              </li>
-            </ul>
-            <ul class="navbar-nav navbar-nav-right">
-              
-              <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                  <i class="mdi mdi-bell"></i>
-                  <span class="count bg-danger"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                  <h6 class="p-3 mb-0">Notifications</h6>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-calendar text-success"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Event today</p>
-                      <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-settings text-danger"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Settings</p>
-                      <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-link-variant text-warning"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Launch Admin</p>
-                      <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <p class="p-3 mb-0 text-center">See all notifications</p>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-                  <div class="navbar-profile">
-                    <div id="icon_avatar_1" class="img-avatar rounded-circle" ></div>
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name_1"></p>
-                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-                  </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                  <h6 class="p-3 mb-0">Profile</h6>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-settings text-success"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Settings</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-logout text-danger"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
-                    </div>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <p class="p-3 mb-0 text-center">Advanced settings</p>
-                </div>
-              </li>
-            </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-              <span class="mdi mdi-format-line-spacing"></span>
-            </button>
-          </div>
-        </nav>
-        <!-- partial -->
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">340</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+1.5%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Reviews</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">1734</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal"> Active users</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">123</h3>
-                          <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-danger">
-                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">xxxxxxxx</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">315</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal"> YYYYYY</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between">
-                      <h4 class="card-title"> Top reviewed books</h4>
-                      <p class="text-muted mb-1 small">Reviews</p>
-                    </div>
-                    <div class="preview-list">
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 123 reviews</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/khi-loi-thuoc-ve-nhung-vi-sao.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Khi lỗi thuộc về những vì sao</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">John Green</p>
-                              <p class="text-muted text-small"> 113 reviews</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 123 reviews</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between">
-                      <h4 class="card-title">Top rate books</h4>
-                      <p class="text-muted mb-1 small">Rate</p>
-                    </div>
-                    <div class="preview-list">
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 4.9</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/khi-loi-thuoc-ve-nhung-vi-sao.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Khi lỗi thuộc về những vì sao</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">John Green</p>
-                              <p class="text-muted text-small"> 4.5</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 4.3</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between">
-                      <h4 class="card-title">Top read books</h4>
-                      <p class="text-muted mb-1 small">Read</p>
-                    </div>
-                    <div class="preview-list">
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 1113 </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/khi-loi-thuoc-ve-nhung-vi-sao.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Khi lỗi thuộc về những vì sao</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">John Green</p>
-                              <p class="text-muted text-small"> 1013 </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 1003 </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          <!-- content-wrapper ends -->          
-          <!-- partial -->
-        </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script>
-      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
-      document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
 
-      var btn_log_out = document.getElementById("btn-log-out");
-      btn_log_out.onclick = function() {
-        sessionStorage.clear();
-        window.location.replace("Sign_In.html")
+              <div class="col-md-4 grid-margin stretch-card">
+                  <div class="card">
+                      <div class="card-body">
+                        <form class="margin: 20px">
+                          <h2>Sign In</h2>
+                          <!-- Username input -->
+                          <div class="form-outline mb-4" >
+                              <label class="form-label" for="form2Example1">User Name</label>
+                              <input type="text" id="username" style="background: #ffffff; color: #000000;" id="form2Example1" class="form-control" placeholder="User Name"/>
+                          </div>
+                        
+                          <!-- Password input -->
+                          <div class="form-outline mb-4">
+                              <label class="form-label" for="form2Example2">Password</label>
+                              <input type="password" id="password" style="background: #ffffff; color: #000000;" id="form2Example2" class="form-control" placeholder="Password"/>
+                          </div>
+                        
+                          <!-- Submit button -->
+                          <button type="button" class="btn btn-primary btn-block mb-4" id="login-btn">Sign in</button>
+                        
+                          <!-- Register buttons -->
+                          <div class="text-center">
+                            <p>Not a member? <a href="#!">Register</a></p>
+                            <p>or sign up with:</p>
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                              <i class="fab fa-facebook-f"></i>
+                            </button>
+                        
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                              <i class="fab fa-google"></i>
+                            </button>
+                        
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                              <i class="fab fa-twitter"></i>
+                            </button>
+                        
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                              <i class="fab fa-github"></i>
+                            </button>
+                          </div>
+                      </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <style>
+        body{
+          color:#000000; 
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        .card{
+        background-color: #EEEEEE;
+        border: none;
+        color: #000000;
       }
 
-      function user_info(){
-        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+      .content-wrapper {
+        background:none;
+      }
+
+      .main-panel {
+        background: #ffffff;
+      }
+    </style>
+
+    <script>
+      var login_btn = document.getElementById('login-btn');
+      login_btn.onclick = function() {
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById('password').value;
+        if (user == "") alert("Vui lòng nhập Username");
+        else {
+          if (pass == "") alert("Vui lòng nhập Password");
+          else xu_Ly_login(user, pass);
+        }
+      }
+
+      function xu_Ly_login(user, pass) {
+        const data = {
+        "userName": `${user}`,
+        "password": `${pass}`,
+        }
+        var url = `https://reviewbook18.herokuapp.com/api/User/Login`
         fetch(url,{
-          method:"GET",
+          method:"POST",
           headers:{
-            'accept' : 'text/plain',
-            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+            'Content-Type': 'application/json',
+            'accept' : '*/*',
           },
+          body: JSON.stringify(data),
         }).then(function(reponse){
           if(reponse.status !=200){
-            alert('Xay ra loi');
+            alert('Nhập sai Username hoặc Password');
         }
           else {
             return reponse.json();
         }
         }).then(function(json){
-          hienthi_thongtin(json);
+          if (json.id_Role == 2) {
+            sessionStorage.setItem("token",json.token);
+            sessionStorage.setItem("id",json.id);
+            sessionStorage.setItem("username",json.username);
+            window.location.replace("user_index.html")
+          }
+          if (json.id_Role == 1) {
+            sessionStorage.setItem("token",json.token);
+            sessionStorage.setItem("id",json.id);
+            sessionStorage.setItem("username",json.username);
+            window.location.replace("index.html")
+          }
+          
         })
       }
 
-      function hienthi_thongtin(json){
-        sessionStorage.setItem("picture",json.picture);
-        document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-        document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-      }
-
-      function redirect(){
-        window.location="user_edit_profile.html";
-      }
     </script>
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/progressbar.js/progressbar.min.js"></script>
-    <script src="assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
-    <script src="assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
+    
   </body>
 </html>

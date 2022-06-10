@@ -279,7 +279,7 @@
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
-        window.location.replace("Sign_In.html")
+        window.location.replace("index.html")
       }
 
       function hienthi_nxb(){
@@ -302,7 +302,12 @@
           document.getElementById("name_nxb").innerHTML = json.name;
           document.getElementById("telephone").innerHTML = json.telephone;
           document.getElementById("email").innerHTML = json.email;
-          document.getElementById("website").innerHTML += `<a href="${json.website}">${json.website}</a>`;
+          
+          if (json.website === null) {
+            document.getElementById("website").innerHTML += `<a></a>`;
+          } else {
+            document.getElementById("website").innerHTML += `<a href="${json.website}">${json.website}</a>`;
+          }
           document.getElementById("address").innerHTML = json.address;
 
           var all_book_of_publisher = document.getElementById("all-book-of-publisher")
@@ -357,7 +362,7 @@
 
             pubbook.tags.forEach(function(pubhbooktag, index){
               var tag=`
-                <a class="text-muted mb-0" style = "color:#000000 !important; cursor: pointer;" onclick = "xem_chi_tiet_theloai(${pubhbooktag.iD_Tag})">${pubhbooktag.tag}, </a>`;
+                <a class="text-muted mb-0" style = "color:#000000 !important; cursor: pointer;" onclick = "xem_chi_tiet_theloai(${pubhbooktag.iD_Tag})">${pubhbooktag.tag.name}, </a>`;
               document.getElementById(`book-tag-${pubbook.id}`).innerHTML += tag;
             });
           });

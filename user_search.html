@@ -50,7 +50,7 @@
             </li>
             <!-- Book Request -->
             <li class="nav-item menu-items">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="user_request-book.html">
                 <span class="menu-icon">
                   <i class="fa-solid fa-pen"></i>
                 </span>
@@ -117,7 +117,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
-                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: cover;"></div>
+                  <div class="img-xs rounded-circle" id="icon-avatar" style="background-position: center;background-size: contain; background-repeat: no-repeat;"></div>
                   <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name"></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
@@ -270,28 +270,33 @@
         var book_search = document.getElementById("book-search");
         var book=``;
         book_search.innerHTML = book;
-        for (var i = 0; i < json.length; i++){
-          book = `
+        json.forEach(function(book, index){
+          searchbook = `
             <div class="preview-item" style="border-bottom: 1px solid #085394 !important;">
               <div class="preview-thumbnail">
-                <div class="preview-icon bg-primary" style="width: 70px; height: 70px;">
-                  <img src="${"data:image/jpeg;base64,"+ json[i].picture}" alt="book search" style="width: 70px; height: 70px;">
+                <div class="preview-icon bg-primary" style="width: 70px; height: 80px;">
+                  <img src="${"data:image/jpeg;base64,"+ book.picture}" alt="book search" style="width: 70px; height: 80px;">
                 </div>
               </div>
               <div class="preview-item-content d-sm-flex flex-grow">
                 <div class="flex-grow">
-                  <a style = "cursor: pointer;"><h6 class="preview-subject" style="color:#000000; font-size: 20px ;font-weight: bold;" onclick = "xem_chi_tiet_sach(${json[i].id})">${json[i].name}</h6></a>
-                  <a  style = "color:#000000 !important; cursor: pointer;">
-                    <i class="mdi mdi-account" style="color:#000000 !important; font-size:20px"></i>Tác giả</a>
+                  <a style = "cursor: pointer;"><h6 class="preview-subject" style="color:#085394; font-size: 20px ;font-weight: bold;" onclick = "xem_chi_tiet_sach(${book.id})">${book.name}</h6></a>
+                  <a  style = "color:#000000 !important; cursor: pointer;" onclick = "xem_chi_tiet_tacgia(${book.author.id})">
+                    <i class="mdi mdi-account" style="color:#000000 !important; font-size:20px"></i>${book.author.stage_Name}</a>
                   <br>
-                  <a style = "color:#000000 !important; cursor: pointer;">
-                    <i class="mdi mdi-book-plus" style="color:#000000 !important; font-size:20px"></i>Văn học, Lịch sử</a>
+                  <div id="tag-book-${book.id}">
+                    <i class="mdi mdi-book-plus" style="color:#000000 !important; font-size:20px"></i>  
+                  </div>
+                  
                 </div>
               </div>
             </div>`
-          
-          book_search.innerHTML += book;
-        }
+          book_search.innerHTML += searchbook;
+          book.tags.forEach(function(tagbook, index){
+            var tag = `<a style = "color:#000000 !important; cursor: pointer;" onclick = "xem_chi_tiet_theloai(${tagbook.iD_Tag})">${tagbook.tag.name}, </a>`;
+            document.getElementById(`tag-book-${book.id}`).innerHTML += tag;
+          });
+        });
       }
     </script>
 

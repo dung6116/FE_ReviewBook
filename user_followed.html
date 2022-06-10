@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body>
+  <body onload = "info_followers()">
     <div class="container-scroller">
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -50,7 +50,7 @@
             </li>
             <!-- Book Request -->
             <li class="nav-item menu-items">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="user_request-book.html">
                 <span class="menu-icon">
                   <i class="fa-solid fa-pen"></i>
                 </span>
@@ -73,42 +73,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                 <h6 class="p-3 mb-0">Notifications</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-calendar text-success"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Event today</p>
-                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-settings text-danger"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Settings</p>
-                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-link-variant text-warning"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Launch Admin</p>
-                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                  </div>
-                </a>
+                
                 <div class="dropdown-divider"></div>
                 <a class="p-3 mb-0 text-center dropdown-item preview-item" href="user_view-all-ntf.html">See all notifications</a>
               </div>
@@ -172,46 +137,19 @@
       <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-                    <a href="#">Followers</a>
+                    <a href="user_info.html">Profile</a>
+                    <a href="#">/Followers</a>
                 </div>
                 <br>
                 <div class="row" style="justify-content: center;">
-                  <div class="col-md-4 p-3 bg-white text-center" style="background-color: #EEEEEE !important;">
+                  <div class="col-md-4 p-3 bg-white text-center" style="background-color: #EEEEEE !important;" id="info-followers">
                     <div>
-                        <h1 style="font-weight: bold; color: #085394;">Thông Nguyễn</h1>
+                        <h1 style="font-weight: bold; color: #085394;" id = "name"></h1>
                     </div>
-                    <p>5 followers</p>
+                    <p id = "count-followers"></p>
 
-                    <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
-                        <div class="d-flex flex-row align-items-center"><img src="assets/images/faces/face15.jpg" alt="" style="width: 55px; height: 60px;">
-                            <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394;" class="font-weight-bold">Bella Thorne</span><span class="followers">1450 Followers</span></div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-outline-primary btn-sm" type="button">Follow</button></div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
-                      <div class="d-flex flex-row align-items-center"><img src="assets/images/faces/face15.jpg" alt="" style="width: 55px; height: 60px;">
-                          <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394;" class="font-weight-bold">Bella Thorne</span><span class="followers">1450 Followers</span></div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-outline-primary btn-sm" type="button">Follow</button></div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
-                      <div class="d-flex flex-row align-items-center"><img src="assets/images/faces/face15.jpg" alt="" style="width: 55px; height: 60px;">
-                          <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394;" class="font-weight-bold">Bella Thorne</span><span class="followers">1450 Followers</span></div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-outline-primary btn-sm" type="button">Follow</button></div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
-                      <div class="d-flex flex-row align-items-center"><img src="assets/images/faces/face15.jpg" alt="" style="width: 55px; height: 60px;">
-                          <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394;" class="font-weight-bold">Bella Thorne</span><span class="followers">1450 Followers</span></div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-outline-primary btn-sm" type="button">Follow</button></div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
-                      <div class="d-flex flex-row align-items-center"><img src="assets/images/faces/face15.jpg" alt="" style="width: 55px; height: 60px;">
-                          <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394;" class="font-weight-bold">Bella Thorne</span><span class="followers">1450 Followers</span></div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-outline-primary btn-sm" type="button">Follow</button></div>
-                    </div>
+                    
+                    
                   
 
                   </div>
@@ -224,7 +162,7 @@
 
     <style>
       body, html {
-        font-weight: bold;font-family: Arial, Helvetica, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
         background-color: #ffffff !important;
         color:#000000;
       }
@@ -247,8 +185,14 @@
         left: 0;
         background: #085394;
       }
+
+      .follow{
+        background: #007bff;
+        color: #ffffff;
+      }
     </style>
 
+    <script src="./user-js/role-user.js"></script>
     <script>
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
@@ -257,6 +201,93 @@
       btn_log_out.onclick = function() {
         sessionStorage.clear();
         window.location.replace("Sign_In.html")
+      }
+
+      function info_followers(){
+        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          hienthi_thongtin(json);
+        })
+      }
+
+      function hienthi_thongtin(json){
+        document.getElementById("name").innerHTML = json.userName;
+        document.getElementById("count-followers").innerHTML = json.myFollowers.length+' followers';
+        json.myFollowers.forEach(function(follower, index){
+          var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${follower.iD_Follower}`
+          fetch(url,{
+            method:"GET",
+            headers:{
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Xay ra loi');
+            }
+            else {
+              return reponse.json();
+            }
+          }).then(function(json){
+            console.log(json);
+            var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+            fetch(url,{
+              method:"GET",
+              headers:{
+                'accept' : 'text/plain',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+              },
+            }).then(function(reponse){
+              if(reponse.status !=200){
+                alert('Xay ra loi');
+              }
+              else {
+                return reponse.json();
+              }
+            }).then(function(json_info){
+              sessionStorage.setItem("isFollowing", false);
+              for (var i=0; i<json_info.myFollowings.length; i++){
+                if (json_info.myFollowings[i].iD_Following === json.id) {
+                  sessionStorage.setItem("isFollowing", true);
+                  console.log(1)
+                  break;
+                }
+                
+              }
+            });
+
+            if (sessionStorage.getItem("isFollowing") == true){
+              btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #ffffff" value="Following" readonly></input>`;
+            } else {
+              btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #ffffff" class="follow" value="Follow" readonly></input>`;
+            }
+
+            console.log(btn_follow)
+
+            var info_follower = `
+              <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
+                  <div class="d-flex flex-row align-items-center"><img src="${"data:image/jpeg;base64,"+ json.picture}" alt="avatar" style="width: 55px; height: 60px;">
+                      <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394; cursor: pointer;" class="font-weight-bold" onclick = "xem_chi_tiet_friend(${json.id})">${json.userName}</span><span class="followers">${json.myFollowers.length} followers</span></div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center mt-2" id = "div-btn-follow-${json.id}"></div>
+              </div>`
+            document.getElementById("info-followers").innerHTML += info_follower;
+            document.getElementById(`div-btn-follow-${json.id}`).innerHTML += btn_follow;
+          })
+        });
       }
     </script>
 

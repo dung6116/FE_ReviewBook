@@ -194,7 +194,7 @@
                         <div class="form-group">
                           <label for="bookTitle">Book title</label>
                           <input type="text" class="form-control" id="bookTitle" placeholder="Book title">
-                          <span class="form-message"></span>
+                          
                         </div>
                         <div class="form-group">
                           <label for="author">Author</label>
@@ -274,35 +274,6 @@
       </div>
       <!-- modal add new author ends-->
 
-      <!-- modal add new tag-->
-      <!-- <div class="modal fade" id="addTag" tabindex="-1" role="dialog" aria-labelledby="addAutLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style="background: #085394;">
-            <div class="modal-header">
-              <h5 class="modal-title" id="addAutLabel">Add New Category</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group row">
-                  <label for="authorname" style="color: #ffffff !important" class="col-sm-3 col-form-label">Category's Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="author-name" placeholder="Author's name">
-                  </div>
-                </div>        
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick = "add_new_author();">Add</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- modal add new tag ends-->
-
       <!-- -->
       <!-- modal add new publisher-->
       <div class="modal fade" id="addPub" tabindex="-1" role="dialog" aria-labelledby="addPubLabel" aria-hidden="true">
@@ -380,6 +351,9 @@
 
     <script src="./assets/js/vaidator.js"></script>
     <script>
+      var list_tag = [];
+      var author = {};
+      var publisher = {}
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
      
@@ -458,108 +432,143 @@
               </div>`
             document.getElementById("all-tags").innerHTML += alltag;
           })
+
+          json.forEach(function(tag, index){
+            document.getElementById(`tag-${tag.id}`).addEventListener("click", function(){
+              if (document.getElementById(`tag-${tag.id}`).checked == true){
+                list_tag.push(tag.id)
+              } else {
+                var index = list_tag.indexOf(tag.id);
+                if (index !== -1) {
+                  list_tag.splice(index, 1);
+                }
+              }
+            })
+          })
         })
 
       }
 
-      function addBook() {
-        Validator({
-            form: '#addbook',
-            errorSelector: '.form-message',
-            rules: [
-                Validator.isRequired('#bookTitle'),
-                Validator.isRequired('#publishYear'),
-                Validator.isRequired('#description'),
-            ],
-            onSubmit: function (data) {
-              console.log(data);
-            }
+      function addBook() { 
+        const bookTitle = document.getElementById("bookTitle").value;
+        const publishYear = document.getElementById("publishYear").value;
+        const description = document.getElementById("description").value;
+        const url_img = document.getElementById("avatar").style.backgroundImage.slice(5, -2);
         
-          });
+        var promise = new Promise(function(resolve, reject) {
+          if (bookTitle == "" || publishYear == "" || description == "" || list_tag.length == 0 || url_img == "")
+            reject();
+          else {
+            resolve();
+          }
+        })
 
+        promise
+          .then(function(){
+            var url_auth = `https://reviewbook18.herokuapp.com/api/Author`
+             fetch(url_auth,{
+               method:"GET",
+                headers:{
+                 'accept' : 'text/plain',
+                 'Authorization': 'Bearer '+sessionStorage.getItem("token")
+                },
+              }).then(function(reponse){
+                if(reponse.status !=200){
+                  alert('Xảy ra lỗi');
+               }
+                else {
+                  return reponse.json();
+                }
+              }).then(function(json){
+                var result = json.some(function(author, index){
+                  return author.id == document.getElementById("author").value;
+               })
+                if (result === true) {
+                  author = {
+                    "iD_Aut": document.getElementById("author").value,
+                    "newAut": "",
+                 }
+               } else {
+                  author = {
+                    "iD_Aut": null,
+                    "newAut": document.getElementById("author").value,
+                  }
+               }
+              });
 
-        // const author = document.getElementById("author").value;
-        // const publisher = document.getElementById("Publisher").value;
-        // console.log(typeof author)
-        // var data;
+            var url_auth = `https://reviewbook18.herokuapp.com/api/Publisher`
+            fetch(url_auth,{
+              method:"GET",
+              headers:{
+                'accept' : 'text/plain',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+           }).then(function(reponse){
+             if(reponse.status !=200){
+               alert('Xảy ra lỗi');
+             }
+             else {
+                return reponse.json();
+              }
+           }).then(function(json){
+             var result = json.some(function(publisher, index){
+               return publisher.id == document.getElementById("Publisher").value;
+              })
+             if (result === true) {
+               publisher = {
+                 "iD_Pub": document.getElementById("Publisher").value,
+                 "newPub": "",
+                }
+             } else {
+               publisher = {
+                 "iD_Pub": null,
+                  "newPub": document.getElementById("Publisher").value,
+                }
+             }
+            });
+            
+            return new Promise(function(resolve){
+              setTimeout(resolve, 2000)
+            });
+          })
+          .then(function(data){
+            const data1 = Object.assign(author,publisher);
+            const data2 = {
+              "bookName": bookTitle,
+              "publishedYear": publishYear,
+              "picture": url_img.slice(url_img.search(",")+1),
+              "description": description,
+              "list_ID_Tags": list_tag
+            }
+            const data_rq = Object.assign(data1,data2);
 
-        // if (author == "new-author") {
-        //   if (publisher == "new-pub") {
-        //     data = {
-        //       "bookName": document.getElementById("bookTitle").value,
-        //       "iD_Aut": null,
-        //       "iD_Pub": null,
-        //       "publishedYear": document.getElementById("publishYear").value,
-        //       "picture": "string",
-        //       "description": document.getElementById("description").value,
-        //       "newAut": author,
-        //       "newPub": publisher,
-        //       "list_ID_Tags": [
-        //         0
-        //       ],
-        //       "list_new_tags": [
-        //         "string"
-        //       ]
-        //     }
-        //   } else {
-        //     data = {
-        //       "bookName": document.getElementById("bookTitle").value,
-        //       "iD_Aut": null,
-        //       "iD_Pub": 0,
-        //       "publishedYear": document.getElementById("publishYear").value,
-        //       "picture": "string",
-        //       "description": document.getElementById("description").value,
-        //       "newAut": author,
-        //       "newPub": null,
-        //       "list_ID_Tags": [
-        //         0
-        //       ],
-        //       "list_new_tags": [
-        //         "string"
-        //       ]
-        //     }
-        //   }
-        // } else {
-        //   if (publisher == "new-pub") {
-        //     data = {
-        //       "bookName": document.getElementById("bookTitle").value,
-        //       "iD_Aut": 0,
-        //       "iD_Pub": null,
-        //       "publishedYear": document.getElementById("publishYear").value,
-        //       "picture": "string",
-        //       "description": document.getElementById("description").value,
-        //       "newAut": null,
-        //       "newPub": publisher,
-        //       "list_ID_Tags": [
-        //         0
-        //       ],
-        //       "list_new_tags": [
-        //         "string"
-        //       ]
-        //     }
-        //   } else {
-        //     data = {
-        //       "bookName": document.getElementById("bookTitle").value,
-        //       "iD_Aut": 0,
-        //       "iD_Pub": 0,
-        //       "publishedYear": document.getElementById("publishYear").value,
-        //       "picture": "string",
-        //       "description": document.getElementById("description").value,
-        //       "newAut": null,
-        //       "newPub": null,
-        //       "list_ID_Tags": [
-        //         0
-        //       ],
-        //       "list_new_tags": [
-        //         "string"
-        //       ]
-        //     }
-        //   }
-        // }
-
-        // console.log(data)
-
-
+            return data_rq;
+          })
+          .then(function(data){
+            console.log(data);
+            var url = `https://reviewbook18.herokuapp.com/api/Book/Propose`
+            fetch(url,{
+              method:"POST",
+              headers:{
+                'Content-Type': 'application/json',
+                'accept' : 'text/plain',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+             },
+             body: JSON.stringify(data),
+            }).then(function(reponse){
+              if(reponse.status !=200){
+                alert('Xảy ra lỗi');
+              } else {
+                alert('Đã gửi đề cử sách này tới admin')
+                window.location.replace("user_request-book.html")
+              }
+            }).then(function(json){
+              console.log(json)
+            })
+          })
+          .catch(function(){
+            alert("Vui lòng nhập đầu đủ thông tin cho sách")
+          })
       }
 
       function add_new_author() {

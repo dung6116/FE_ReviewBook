@@ -189,20 +189,20 @@
                                   </div>
 
                                   <div class="" style="text-align: center;">
-                                    <input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #ffffff" class="follow" id="btn-follow" value="Follow" onclick = "following_user()" readonly></input>
+                                    <input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #085394" value="Following" id="btn-follow" onclick = "following_user()" readonly></input>
                                   </div>
                                     
                                 </div>
                                 <br><br>
                                 <div class="preview-thumbnail" style="position: relative;">
-                                    <div class="" style="position: absolute; left: 0;">
-                                        <a href="#" id="followers"></a>
-                                    </div>
+                                  <div class="" style="position: absolute; left: 0;">
+                                      <a style="cursor: pointer; color: #085394" id="followers" onclick = "followers()"></a>
+                                  </div>
 
-                                    <div class="" style="position: absolute; right: 0;">
-                                        <a href="#" id="following"></a>
-                                    </div>
-                                </div>
+                                  <div class="" style="position: absolute; right: 0;">
+                                      <a style="cursor: pointer; color: #085394" id="following" onclick = "following()"></a>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -267,14 +267,10 @@
         background: #085394;
       }
 
-      .following {
-        background: #cccccc !important;
-        color: #000000 !important;
-      }
-
       .follow{
         background: #007bff;
         color: #ffffff;
+        border: 1px solid #ffffff;
       }
     </style>
 
@@ -311,12 +307,12 @@
       function hienthi_thongtin(json){
         const birthday = new Date(json.birthday);
         var month = birthday.getMonth()+1;
-        if (month.length != 2) {
+        if (month < 10) {
           month='0' + month;
         }
         
         var day = birthday.getDate();
-        if (day.length != 2) 
+        if (day < 10) 
         {
           day='0' + day;
         }
@@ -352,7 +348,7 @@
           })
           if (isFollowing === true) {
             document.getElementById("btn-follow").value = "Following";
-            document.getElementById("btn-follow").classList.add("following")
+            document.getElementById("btn-follow").classList.remove("follow")
           }
         })
       }
@@ -376,9 +372,8 @@
             }
             else {
               document.getElementById("btn-follow").value = "Follow";
-              document.getElementById("btn-follow").classList.remove("following");
+              document.getElementById("btn-follow").classList.add("follow");
               alert('Đã bỏ theo dõi người này');
-              location.reload();
             }
           })
         } else {
@@ -400,67 +395,24 @@
             }
             else {
               document.getElementById("btn-follow").value = "Following";
-              document.getElementById("btn-follow").classList.add("following");
+              document.getElementById("btn-follow").classList.remove("follow");
               alert('Đã theo dõi người này');
-              location.reload();
             }
           })
         }
       }
 
+      function followers(){
+        sessionStorage.setItem("id_follower",sessionStorage.getItem("id_friend"));
+        window.location.replace("user_followed.html");
+      }
+
+      function following(){
+        sessionStorage.setItem("id_following",sessionStorage.getItem("id_friend"));
+        window.location.replace("user_following.html");
+      }
     </script>
 
-    <!-- <script>
-      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
-      function user_info(){
-        var url = `https://localhost:7295/api/Account/noPassword/${sessionStorage.getItem("id")}`
-        fetch(url,{
-          method:"GET",
-          headers:{
-            'accept' : 'text/plain',
-            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
-          },
-        }).then(function(reponse){
-          if(reponse.status !=200){
-            alert('Xay ra loi');
-        }
-          else {
-            return reponse.json();
-        }
-        }).then(function(json){
-          hienthi_thongtin(json);
-        })
-      }
-
-      function hienthi_thongtin(json){
-        const birthday = new Date(json.birthday);
-        var month = birthday.getMonth()+1;
-        if (month.length != 2) {
-          month='0' + month;
-        }
-        
-        var day = birthday.getDate();
-        if (day.length != 2) 
-        {
-          day='0' + day;
-        }
-        
-        const bd = day + '-' + month + '-' + birthday.getFullYear();
-        const avatar ="data:image/jpeg;base64,"+ json.picture;
-        document.getElementById("avatar").style.backgroundImage = `url(${avatar})`;
-        document.getElementById("FullName").innerHTML = json.fullName;
-        document.getElementById("name").value = json.fullName;
-        document.getElementById("username").value = json.userName;
-        document.getElementById("birthday").value = bd;
-        document.getElementById("address").value = json.address;
-        document.getElementById("followed").innerHTML = json.myFollowers.length+' followed';
-        document.getElementById("following").innerHTML = json.myFollowings.length+' following';
-      }
-
-      function redirect(){
-        window.location="user_edit_profile.html";
-      }
-    </script> -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

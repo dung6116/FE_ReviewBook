@@ -136,22 +136,12 @@
 
       <div class="main-panel">
             <div class="content-wrapper">
-                <div class="row">
-                    <a href="user_info.html">Profile</a>
-                    <a href="#">/Followers</a>
-                </div>
-                <br>
                 <div class="row" style="justify-content: center;">
                   <div class="col-md-4 p-3 bg-white text-center" style="background-color: #EEEEEE !important;" id="info-followers">
-                    <div>
-                        <h1 style="font-weight: bold; color: #085394;" id = "name"></h1>
+                    <div id="name">
+                        <!-- <h1 style="font-weight: bold; color: #085394;"></h1> -->
                     </div>
                     <p id = "count-followers"></p>
-
-                    
-                    
-                  
-
                   </div>
                 </div>
             </div>
@@ -189,11 +179,13 @@
       .follow{
         background: #007bff;
         color: #ffffff;
+        border: 1px solid #ffffff;
       }
     </style>
 
     <script src="./user-js/role-user.js"></script>
     <script>
+      var my_followig = []
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
      
@@ -204,7 +196,7 @@
       }
 
       function info_followers(){
-        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id_follower")}`
         fetch(url,{
           method:"GET",
           headers:{
@@ -219,12 +211,14 @@
             return reponse.json();
         }
         }).then(function(json){
+          my_followig = json.myFollowings;
           hienthi_thongtin(json);
         })
       }
 
       function hienthi_thongtin(json){
-        document.getElementById("name").innerHTML = json.userName;
+        document.getElementById("name").innerHTML += `<h1 style="font-weight: bold; color: #085394; cursor: pointer;" onclick="xem_chi_tiet_friend(${json.id})">${json.userName}</h1>`
+        
         document.getElementById("count-followers").innerHTML = json.myFollowers.length+' followers';
         json.myFollowers.forEach(function(follower, index){
           var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${follower.iD_Follower}`
@@ -242,52 +236,102 @@
               return reponse.json();
             }
           }).then(function(json){
-            console.log(json);
-            var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
-            fetch(url,{
-              method:"GET",
-              headers:{
-                'accept' : 'text/plain',
-                'Authorization': 'Bearer '+sessionStorage.getItem("token")  
-              },
-            }).then(function(reponse){
-              if(reponse.status !=200){
-                alert('Xay ra loi');
-              }
-              else {
-                return reponse.json();
-              }
-            }).then(function(json_info){
-              sessionStorage.setItem("isFollowing", false);
-              for (var i=0; i<json_info.myFollowings.length; i++){
-                if (json_info.myFollowings[i].iD_Following === json.id) {
-                  sessionStorage.setItem("isFollowing", true);
-                  console.log(1)
-                  break;
-                }
-                
-              }
-            });
+            var btn_follow;
 
-            if (sessionStorage.getItem("isFollowing") == true){
-              btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #ffffff" value="Following" readonly></input>`;
-            } else {
-              btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #ffffff" class="follow" value="Follow" readonly></input>`;
-            }
+            var promise = new Promise(function(resolve, reject) {
+              resolve()
+            })
 
-            console.log(btn_follow)
+            promise
+              .then(function(){
+                var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+                fetch(url,{
+                  method:"GET",
+                  headers:{
+                    'accept' : 'text/plain',
+                    'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+                  },
+                }).then(function(reponse){
+                  if(reponse.status !=200){
+                    alert('Xay ra loi');
+                  }
+                  else {
+                    return reponse.json();
+                  }
+                }).then(function(json1){
+                  var result = json1.myFollowings.some(function(following, index){
+                    return following.iD_Following == json.id;
+                  })
+                  if (result == false) {
+                    btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #085394" class="follow" value="Follow" id="btn-follow-${json.id}" readonly onclick = "follow(${json.id})"></input>`;
+                  } else {
+                    btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #085394" value="Following" id="btn-follow-${json.id}" readonly onclick = "follow(${json.id})"></input>`;
+                  }
+                })
 
-            var info_follower = `
-              <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
-                  <div class="d-flex flex-row align-items-center"><img src="${"data:image/jpeg;base64,"+ json.picture}" alt="avatar" style="width: 55px; height: 60px;">
-                      <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394; cursor: pointer;" class="font-weight-bold" onclick = "xem_chi_tiet_friend(${json.id})">${json.userName}</span><span class="followers">${json.myFollowers.length} followers</span></div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mt-2" id = "div-btn-follow-${json.id}"></div>
-              </div>`
-            document.getElementById("info-followers").innerHTML += info_follower;
-            document.getElementById(`div-btn-follow-${json.id}`).innerHTML += btn_follow;
+                return new Promise(function(resolve){
+                  setTimeout(resolve, 2000)
+                });
+              })
+              .then(function(data){
+                var info_follower = `
+                  <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
+                      <div class="d-flex flex-row align-items-center"><img src="${"data:image/jpeg;base64,"+ json.picture}" alt="avatar" style="width: 55px; height: 60px;">
+                          <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394; cursor: pointer;" class="font-weight-bold" onclick = "xem_chi_tiet_friend(${json.id})">${json.userName}</span><span class="followers">${json.myFollowers.length} followers</span></div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mt-2" id = "div-btn-follow-${json.id}"></div>
+                  </div>`
+                document.getElementById("info-followers").innerHTML += info_follower;
+                document.getElementById(`div-btn-follow-${json.id}`).innerHTML += btn_follow;
+              })
           })
         });
+      }
+    
+      function follow(id) {
+        const data = {
+          "iD_Following": id
+        }
+        if (document.getElementById(`btn-follow-${id}`).value == "Follow") {
+          if (id == sessionStorage.getItem("id")){
+            alert("Bạn không thể follow chính mình")
+          } else {
+            var url = `https://reviewbook18.herokuapp.com/api/Account/Follow`
+            fetch(url,{
+              method:"POST",
+              headers:{
+                'Content-Type': 'application/json',
+                'accept' : 'text/plain',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify(data),
+            }).then(function(reponse){
+              if(reponse.status !=200){
+                alert('Xảy ra lỗi');
+              } else {
+                document.getElementById(`btn-follow-${id}`).value = "Following";
+                document.getElementById(`btn-follow-${id}`).classList.remove("follow");
+              }
+            })
+          }
+        } else {
+          var url = `https://reviewbook18.herokuapp.com/api/Account/Follow`
+          fetch(url,{
+            method:"DELETE",
+            headers:{
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              document.getElementById(`btn-follow-${id}`).value = "Follow";
+              document.getElementById(`btn-follow-${id}`).classList.add("follow");
+            }
+          })
+        }
       }
     </script>
 

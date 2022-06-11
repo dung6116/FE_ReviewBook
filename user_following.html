@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
-  <body>
+  <body onload = "info_followers()">
     <div class="container-scroller">
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -73,42 +73,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                 <h6 class="p-3 mb-0">Notifications</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-calendar text-success"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Event today</p>
-                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-settings text-danger"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Settings</p>
-                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-link-variant text-warning"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Launch Admin</p>
-                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                  </div>
-                </a>
+                
                 <div class="dropdown-divider"></div>
                 <a class="p-3 mb-0 text-center dropdown-item preview-item" href="user_view-all-ntf.html">See all notifications</a>
               </div>
@@ -171,57 +136,13 @@
 
       <div class="main-panel">
             <div class="content-wrapper">
-                <div class="row">
-                  <a href="user_info.html">Profile</a>
-                  <a href="#">/Following</a>
-                <br>
                 <div class="row" style="justify-content: center;">
-                    <div class="col-md-7 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="container mt-5">
-                                <div class="d-flex justify-content-center row">
-                                    <div class="col-md-6">
-                                        <div class="p-3 bg-white text-center" style="background-color: #EEEEEE !important;">
-                                            <div>
-                                                <h1 style="font-weight: bold;font-family: Arial, Helvetica, sans-serif;">Thông Nguyễn</h1>
-                                            </div>
-                                            <p>5 following</p>
-                                            <div class="d-flex flex-row justify-content-between align-items-center">
-                                                <div class="d-flex flex-row align-items-center"><img class="img-xs" src="assets/images/faces/face15.jpg" alt="" style="width: 55; height: 55;">
-                                                    <div class="d-flex flex-column align-items-start ml-2"><span class="font-weight-bold">Bella Thorne</span><span class="followers">1450 Followers</span></div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-primary btn-sm" type="button">Following</button></div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center mt-2">
-                                                <div class="d-flex flex-row align-items-center"><img class="img-xs" src="assets/images/faces/face15.jpg" alt="" style="width: 55; height: 55;">
-                                                    <div class="d-flex flex-column align-items-start ml-2"><span class="font-weight-bold">Scarlet</span><span class="followers">18570 Followers</span></div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-primary btn-sm" type="button">Following</button></div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center mt-2">
-                                                <div class="d-flex flex-row align-items-center"><img class="img-xs" src="assets/images/faces/face15.jpg" alt="" style="width: 55; height: 55;">
-                                                    <div class="d-flex flex-column align-items-start ml-2"><span class="font-weight-bold">Soffie Morne</span><span class="followers">12550 Followers</span></div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-primary btn-sm" type="button">Following</button></div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center mt-2">
-                                                <div class="d-flex flex-row align-items-center"><img class="img-xs" src="assets/images/faces/face15.jpg" alt="" style="width: 55; height: 55;">
-                                                    <div class="d-flex flex-column align-items-start ml-2"><span class="font-weight-bold">Soffie Morne</span><span class="followers">12550 Followers</span></div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-primary btn-sm" type="button">Following</button></div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center mt-2">
-                                                <div class="d-flex flex-row align-items-center"><img class="img-xs" src="assets/images/faces/face15.jpg" alt="" style="width: 55; height: 55;">
-                                                    <div class="d-flex flex-column align-items-start ml-2"><span class="font-weight-bold">Soffie Morne</span><span class="followers">12550 Followers</span></div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center mt-2"><button class="btn btn-primary btn-sm" type="button">Following</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  <div class="col-md-4 p-3 bg-white text-center" style="background-color: #EEEEEE !important;" id="info-followers">
+                    <div id = "name">
+                        <!-- <h1 style="font-weight: bold; color: #085394;" id = "name"></h1> -->
                     </div>
+                    <p id = "count-following"></p>
+                  </div>
                 </div>
             </div>
       </div>
@@ -230,6 +151,12 @@
       <!-- page-body-wrapper ends -->
 
     <style>
+      body, html {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #ffffff !important;
+        color:#000000;
+      }
+
       .card{
         background-color: #ffffff;
         border: none;
@@ -240,17 +167,25 @@
         background:none;
       }
 
-      body, html {
-        background-color: #ffffff !important;
+      .main-panel {
+        background: #ffffff;
       }
 
       .navbar{
         left: 0;
         background: #085394;
       }
+
+      .follow{
+        background: #007bff;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+      }
     </style>
 
+    <script src="./user-js/role-user.js"></script>
     <script>
+      var my_followig = []
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
      
@@ -259,6 +194,145 @@
         sessionStorage.clear();
         window.location.replace("index.html")
       }
+
+      function info_followers(){
+        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id_following")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          hienthi_thongtin(json);
+        })
+      }
+
+      function hienthi_thongtin(json){
+        document.getElementById("name").innerHTML += `<h1 style="font-weight: bold; color: #085394; cursor: pointer;" onclick="xem_chi_tiet_friend(${json.id})">${json.userName}</h1>`;
+        document.getElementById("count-following").innerHTML = json.myFollowings.length+' following';
+        json.myFollowings.forEach(function(following, index){
+          var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${following.iD_Following}`
+          fetch(url,{
+            method:"GET",
+            headers:{
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+            },
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Xay ra loi');
+            }
+            else {
+              return reponse.json();
+            }
+          }).then(function(json){
+
+            var btn_follow;
+
+            var promise = new Promise(function(resolve, reject) {
+              resolve()
+            })
+
+            promise
+              .then(function(){
+                var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
+                fetch(url,{
+                  method:"GET",
+                  headers:{
+                    'accept' : 'text/plain',
+                    'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+                  },
+                }).then(function(reponse){
+                  if(reponse.status !=200){
+                    alert('Xay ra loi');
+                  }
+                  else {
+                    return reponse.json();
+                  }
+                }).then(function(json1){
+                  var result = json1.myFollowings.some(function(following, index){
+                    return following.iD_Following == json.id;
+                  })
+                  if (result == false) {
+                    btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #085394" class="follow" value="Follow" id="btn-follow-${json.id}" readonly onclick = "follow(${json.id})"></input>`;
+                  } else {
+                    btn_follow = `<input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #085394" value="Following" id="btn-follow-${json.id}" readonly onclick = "follow(${json.id})"></input>`;
+                  }
+                })
+
+                return new Promise(function(resolve){
+                  setTimeout(resolve, 2000)
+                });
+              })
+              .then(function(data){
+                var info_follower = `
+                  <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 15px;">
+                      <div class="d-flex flex-row align-items-center"><img src="${"data:image/jpeg;base64,"+ json.picture}" alt="avatar" style="width: 55px; height: 60px;">
+                          <div class="d-flex flex-column align-items-start ml-2"><span style="color: #085394; cursor: pointer;" class="font-weight-bold" onclick = "xem_chi_tiet_friend(${json.id})">${json.userName}</span><span class="followers">${json.myFollowers.length} followers</span></div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mt-2" id = "div-btn-follow-${json.id}"></div>
+                  </div>`
+                document.getElementById("info-followers").innerHTML += info_follower;
+                document.getElementById(`div-btn-follow-${json.id}`).innerHTML += btn_follow;
+              })
+          })
+        });
+      }
+    
+      function follow(id) {
+        const data = {
+          "iD_Following": id
+        }
+        if (document.getElementById(`btn-follow-${id}`).value == "Follow") {
+          if (id == sessionStorage.getItem("id")){
+            alert("Bạn không thể follow chính mình")
+          } else {
+            var url = `https://reviewbook18.herokuapp.com/api/Account/Follow`
+            fetch(url,{
+              method:"POST",
+              headers:{
+                'Content-Type': 'application/json',
+                'accept' : 'text/plain',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify(data),
+            }).then(function(reponse){
+              if(reponse.status !=200){
+                alert('Xảy ra lỗi');
+              } else {
+                document.getElementById(`btn-follow-${id}`).value = "Following";
+                document.getElementById(`btn-follow-${id}`).classList.remove("follow");
+              }
+            })
+          }
+        } else {
+          var url = `https://reviewbook18.herokuapp.com/api/Account/Follow`
+          fetch(url,{
+            method:"DELETE",
+            headers:{
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              document.getElementById(`btn-follow-${id}`).value = "Follow";
+              document.getElementById(`btn-follow-${id}`).classList.add("follow");
+            }
+          })
+        }
+      }
+    
     </script>
 
     <!-- plugins:js -->

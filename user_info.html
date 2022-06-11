@@ -192,11 +192,11 @@
                                 <br><br>
                                 <div class="preview-thumbnail" style="position: relative;">
                                     <div class="" style="position: absolute; left: 0;">
-                                        <a href="user_followed.html" id="followers"></a>
+                                        <a style="cursor: pointer; color: #085394" id="followers" onclick = "followers()"></a>
                                     </div>
 
                                     <div class="" style="position: absolute; right: 0;">
-                                        <a href="user_following.html" id="following"></a>
+                                        <a style="cursor: pointer; color: #085394" id="following" onclick = "following()"></a>
                                     </div>
                                 </div>
                             </div>
@@ -325,6 +325,16 @@
 
       function redirect(){
         window.location.replace("user_edit_profile.html");
+      }
+
+      function followers(){
+        sessionStorage.setItem("id_follower",sessionStorage.getItem("id"));
+        window.location.replace("user_followed.html");
+      }
+
+      function following(){
+        sessionStorage.setItem("id_following",sessionStorage.getItem("id"));
+        window.location.replace("user_following.html");
       }
     </script>
     <!-- plugins:js -->

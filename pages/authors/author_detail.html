@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="show_aut_info()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -263,32 +263,30 @@
                   <div class="card-body">
                     <form class="forms-sample">
                       <div class="form-group row">
-                        <label for="pseudonyms" class="col-sm-3 col-form-label">Pseudonyms</label>
+                        <label for="stageName" class="col-sm-3 col-form-label">Stage Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="pseudonyms" disabled value="Nam Cao">
+                          <input type="text" class="form-control" id="stageName" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="real-name" class="col-sm-3 col-form-label">Real name</label>
+                        <label for="realName" class="col-sm-3 col-form-label">Real name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="real-name" disabled value="Trần Hữu Tri">
+                          <input type="text" class="form-control" id="realName" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="birthday" disabled value="29/10/1917">
+                          <input type="text" class="form-control" id="birthday" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="intro" class="col-sm-3 col-form-label">Introduction</label>
                         <div class="col-sm-9">
-                          <textarea class="form-control text-line-spacing text-justify" id="intro" rows="10" disabled>Nam Cao (1915-1951) là trí thức tiểu tư sản nghèo, sống gắn bó với con người nghèo khổ và hiểu họ một cách sâu sắc.
-Nam Cao là một nhà văn lớn của trào lưu văn học hiện thực phê phán 1930-1945 ở nước ta. Sau cách mạng, ông là người tham gia kháng chiến một cách tích cực, nhanh chóng hòa mình vào cuộc kháng chiến chống Pháp thần thánh của dân tộc. Ông hy sinh trong một trận bị phục kích trên đường công tác giữa lúc tài năng đang chín rộ và đầy hứa hẹn.
-Cho đến bây giờ cuộc đời và tác phẩm của Nam Cao vẫn còn mang tính thời sự. Những tác phẩm của ông được đánh giá cao và được nhận định là “chúng ta vẫn chưa hiểu hết giá trị sâu xa của chúng”. </textarea>
+                          <textarea class="form-control text-line-spacing text-justify" id="intro" rows="7" readonly></textarea>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <!-- <div class="form-group row">
                         <label for="books" class="col-sm-3 col-form-label">Books</label>
                         <div class="col-sm-9">
                           <textarea class="form-control text-line-spacing text-justify" id="books" rows="5" disabled>  - Truyện người hàng xóm (1944) 
@@ -296,7 +294,7 @@ Cho đến bây giờ cuộc đời và tác phẩm của Nam Cao vẫn còn man
   - Sống mòn (1944) - Tiểu thuyết
   - Chí Phèo (1941) - Truyện ngắn</textarea>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="text-center">
                         <a class="btn btn-primary btn-md mr-2" href="author_edit.html" role="button">Edit</a>
                         <button type="button" class="btn btn-primary btn-md mr-2" data-toggle="modal" data-target="#delAut"> Delete </button>
@@ -347,9 +345,51 @@ Cho đến bây giờ cuộc đời và tác phẩm của Nam Cao vẫn còn man
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
 
+      function show_aut_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Author/${sessionStorage.getItem("id_aut")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          //alert(`${response.status}`)
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          console.log(json)        
+          let bd='';
+          if (json.birthday!=null)
+          {
+            let birthday = new Date(json.birthday);
+            var month = birthday.getMonth()+1;
+            if (month<10)
+            {
+              month='0' + month;
+            }
+            var day = birthday.getDate();
+            if (day<10) 
+            {
+              day='0' + day;
+            }
+            bd = day + '/'+ month + '/' + birthday.getFullYear();
+          }
+          document.getElementById("stageName").value = json.stage_Name;
+          document.getElementById("realName").value = json.name;
+          document.getElementById("birthday").value = bd;
+          document.getElementById("intro").value = json.description;          
+          
+        })
+      }
       
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="author_form.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

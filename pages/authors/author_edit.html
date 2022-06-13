@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="show_aut_info()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a  href="../../index.html">
+          <a  href="../../admin_index.html">
             <span >
               <i class="fa-solid fa-dragon" style="font-size:40px; margin-top: 10px; color:white"></i>
             </span>
@@ -86,7 +86,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="../../admin_index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -147,7 +147,7 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="../../admin_index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             
@@ -263,32 +263,30 @@
                   <div class="card-body">
                     <form class="forms-sample">
                       <div class="form-group row">
-                        <label for="pseudonyms" class="col-sm-3 col-form-label">Pseudonyms</label>
+                        <label for="stageName" class="col-sm-3 col-form-label">Stage Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="pseudonyms" value="Nam Cao">
+                          <input type="text" class="form-control" id="stageName">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="real-name" class="col-sm-3 col-form-label">Real name</label>
+                        <label for="realName" class="col-sm-3 col-form-label">Real name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="real-name" value="Trần Hữu Tri">
+                          <input type="text" class="form-control" id="realName">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
                         <div class="col-sm-9">
-                          <input type="date" class="form-control" id="birthday" value="1917-10-29" max="2021-01-01">
+                          <input type="date" class="form-control" id="birthday" max="2021-01-01">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="intro" class="col-sm-3 col-form-label">Introduction</label>
                         <div class="col-sm-9">
-                          <textarea class="form-control text-line-spacing text-justify" id="intro" rows="10" >Nam Cao (1915-1951) là trí thức tiểu tư sản nghèo, sống gắn bó với con người nghèo khổ và hiểu họ một cách sâu sắc.
-Nam Cao là một nhà văn lớn của trào lưu văn học hiện thực phê phán 1930-1945 ở nước ta. Sau cách mạng, ông là người tham gia kháng chiến một cách tích cực, nhanh chóng hòa mình vào cuộc kháng chiến chống Pháp thần thánh của dân tộc. Ông hy sinh trong một trận bị phục kích trên đường công tác giữa lúc tài năng đang chín rộ và đầy hứa hẹn.
-Cho đến bây giờ cuộc đời và tác phẩm của Nam Cao vẫn còn mang tính thời sự. Những tác phẩm của ông được đánh giá cao và được nhận định là “chúng ta vẫn chưa hiểu hết giá trị sâu xa của chúng”. </textarea>
+                          <textarea class="form-control text-line-spacing text-justify" id="intro" rows="10" ></textarea>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <!-- <div class="form-group row">
                         <label for="books" class="col-sm-3 col-form-label">Books</label>
                         <div class="col-sm-9">
                           <textarea class="form-control text-line-spacing text-justify" id="books" rows="5" >  - Truyện người hàng xóm (1944) 
@@ -296,9 +294,9 @@ Cho đến bây giờ cuộc đời và tác phẩm của Nam Cao vẫn còn man
   - Sống mòn (1944) - Tiểu thuyết
   - Chí Phèo (1941) - Truyện ngắn</textarea>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-md mr-2">Save</button>
+                        <button type="button" class="btn btn-primary btn-md mr-2" id="btn-save">Save</button>
                         <a class="btn btn-primary btn-md" href="author_list.html" role="button">Cancel</a>
                       </div>
                       
@@ -325,9 +323,86 @@ Cho đến bây giờ cuộc đời và tác phẩm của Nam Cao vẫn còn man
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
 
-      
+      function show_aut_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Author/${sessionStorage.getItem("id_aut")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          //alert(`${response.status}`)
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          console.log(json)        
+          let bd='';
+          if (json.birthday!=null)
+          {
+            let birthday = new Date(json.birthday);
+            var month = birthday.getMonth()+1;
+            if (month<10)
+            {
+              month='0' + month;
+            }
+            var day = birthday.getDate();
+            if (day<10) 
+            {
+              day='0' + day;
+            }
+            bd = birthday.getFullYear() +'-'+ month + '-' + day;
+          }
+          document.getElementById("stageName").value = json.stage_Name;
+          document.getElementById("realName").value = json.name;
+          document.getElementById("birthday").value = bd;
+          document.getElementById("intro").value = json.description;          
+          
+        })
+      }
+      var save_btn = document.getElementById('btn-save');
+      save_btn.onclick = function() {
+        if (validate()){
+          var bd = new Date(document.getElementById("birthday").value);
+          data = {
+            "Name": document.getElementById("realName").value,
+            "stage_Name": document.getElementById("stageName").value,
+            "birthday": `${bd.toJSON()}`,
+            "description": document.getElementById("intro").value,
+          }
+          console.log(data)
+          
+          var url = `https://reviewbook18.herokuapp.com/api/Author/${sessionStorage.getItem("id_aut")}`
+          fetch(url,{
+            method:"PUT",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //console.log(response.status);
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              return reponse.json();
+            }
+          }).then(function(json){
+            //console.log("data sau edit", json);
+            //sessionStorage.setItem("picture",json.picture);
+            alert("Edit author successfully!")
+            window.location.replace("author_list.html");
+          })
+        }
+      }
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="author_form.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

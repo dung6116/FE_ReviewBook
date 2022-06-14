@@ -19,3 +19,11 @@ function validate() {
     }
     return( true );
  }
+ function validate_add() {
+    if( document.getElementById("stageName").value == "" ) {
+        alert( "Please provide author's stage name!" );
+        document.getElementById("stageName").focus() ;
+        return false;
+    }
+    return( true );
+ }

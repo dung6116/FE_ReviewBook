@@ -147,7 +147,7 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="../../admin_index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             
@@ -258,43 +258,19 @@
               <h3 class="page-title"> Add new Author </h3>
             </div>
             <div class="row">
-              <div class="col-10 offset-1 grid-margin stretch-card">
+              <div class="col-8 offset-2 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <form class="forms-sample">
                       <div class="form-group row">
-                        <label for="pseudonyms" class="col-sm-3 col-form-label">Pseudonyms</label>
+                        <label for="stageName" class="col-sm-3 col-form-label">Stage name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="pseudonyms" placeholder="Pseudonyms" re>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="real-name" class="col-sm-3 col-form-label">Real name</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="real-name" placeholder="Real name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
-                        <div class="col-sm-9">
-                          <input type="date" class="form-control" id="birthday"  max="2021-01-01" >
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="intro" class="col-sm-3 col-form-label">Introduction</label>
-                        <div class="col-sm-9">
-                          <textarea class="form-control text-line-spacing text-justify" id="intro" rows="10" placeholder="Something about the author"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="books" class="col-sm-3 col-form-label">Books</label>
-                        <div class="col-sm-9">
-                          <textarea class="form-control text-line-spacing text-justify" id="books" rows="5" placeholder="Books of this author"></textarea>
+                          <input type="text" class="form-control" id="stageName" placeholder="Stage Name">
                         </div>
                       </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-md mr-2">Add</button>
-                        <a class="btn btn-primary btn-md" href="author_list.html" role="button">Cancel</a>
+                        <button type="button" class="btn btn-primary mr-2" id="btn-add">Add</button>
+                        <a class="btn btn-primary" href="author_list.html" role="button">Cancel</a>
                       </div>
                       
                     </form>
@@ -320,9 +296,42 @@
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
 
+      var add_btn = document.getElementById('btn-add');
+      add_btn.onclick = function() {
+        if (validate_add()){
+          data = {
+            "stage_Name": document.getElementById("stageName").value,
+          }
+          console.log(data);
+
+          var url = `https://reviewbook18.herokuapp.com/api/Author`
+          fetch(url,{
+            method:"POST",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //alert(`${response.status}`);
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              return reponse.json();
+            } 
+          }).then(function(json){
+            //sessionStorage.setItem("picture",json.picture);
+            alert("Author added successfully");
+            window.location.replace("author_list.html");
+          })
+        }
+        
+      }  
       
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="author_form.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

@@ -295,8 +295,13 @@
     <script src="./user-js/role-user.js"></script>
     <script>
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
-      document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-     
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      var icon_avatar = "data:image/jpeg;base64,"+ sessionStorage.getItem("picture");
+      if (sessionStorage.getItem("picture") == "" || sessionStorage.getItem("picture") == null) {
+        icon_avatar = "./assets/images/avatar-empty.jpg";
+      }
+      document.getElementById("icon-avatar").style.backgroundImage = `url(${icon_avatar})`;
+      
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
@@ -331,12 +336,16 @@
         var my_book="";
         list_my_book.innerHTML = my_book;
         json.forEach(function(mybook, index, array){
+          var picture = "data:image/jpeg;base64,"+ mybook.book.picture;
+          if(mybook.book.picture == null || mybook.book.picture =="") {
+            picture = "./assets/images/books-logo.jpg";
+          }
           my_book += `
             <tr>
               <td>
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-primary" style="width: 75px; height: 80px; background-position: center;background-size: contain; background-repeat: no-repeat;">
-                    <img src="${"data:image/jpeg;base64,"+ mybook.book.picture}" alt="My Book" style="width: 75px; height: 80px; border-radius: 0 !important;">
+                    <img src="${picture}" alt="My Book" style="width: 75px; height: 80px; border-radius: 0 !important;">
                   </div>
                 </div>
               </td>

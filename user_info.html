@@ -269,8 +269,13 @@
 
     <script>
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
-      document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-     
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      var icon_avatar = "data:image/jpeg;base64,"+ sessionStorage.getItem("picture");
+      if (sessionStorage.getItem("picture") == "" || sessionStorage.getItem("picture") == null) {
+        icon_avatar = "./assets/images/avatar-empty.jpg";
+      }
+      document.getElementById("icon-avatar").style.backgroundImage = `url(${icon_avatar})`;
+      
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
@@ -312,7 +317,10 @@
         }
         
         const bd = day + '-' + month + '-' + birthday.getFullYear();
-        const avatar ="data:image/jpeg;base64,"+ json.picture;
+        var avatar ="data:image/jpeg;base64,"+ json.picture;
+        if(json.picture == null || json.picture=="") {
+          avatar = "./assets/images/avatar-empty.jpg";
+        }
         document.getElementById("avatar").style.backgroundImage = `url(${avatar})`;
         document.getElementById("FullName").innerHTML = json.fullName;
         document.getElementById("name").value = json.fullName;

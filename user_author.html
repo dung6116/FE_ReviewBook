@@ -247,7 +247,11 @@
     <script src="./user-js/role-user.js"></script>
     <script>
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
-      document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      var icon_avatar = "data:image/jpeg;base64,"+ sessionStorage.getItem("picture");
+      if (sessionStorage.getItem("picture") == "" || sessionStorage.getItem("picture") == null) {
+        icon_avatar = "./assets/images/avatar-empty.jpg";
+      }
+      document.getElementById("icon-avatar").style.backgroundImage = `url(${icon_avatar})`;
      
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
@@ -274,9 +278,15 @@
           console.log(json)
           const birthday = new Date(json.birthday);
           var month = birthday.getMonth()+1;
-          if (month.length != 2) month='0' + month;
+          if (month < 10) {
+            month='0' + month;
+          }
+        
           var day = birthday.getDate();
-          if (day.length != 2) day='0' + day;
+          if (day < 10) 
+          {
+            day='0' + day;
+          }
           const bd = day + '-' + month + '-' + birthday.getFullYear();
 
           document.getElementById("name_author").innerHTML = json.stage_Name;
@@ -286,6 +296,10 @@
 
           var all_book_of_author = document.getElementById("all-book-of-author")
           json.books.forEach(function(authbook, index, array){
+            var picture = "data:image/jpeg;base64,"+ authbook.picture;
+            if(authbook.picture == "" || authbook.picture == null) {
+              picture = "./assets/images/books-logo.jpg";
+            }
             var book = `
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -296,7 +310,7 @@
                         <div class="preview-item">
                           <div>
                             <div class="preview-icon" style="width: 100px; height: 120px; background-position: center;background-size: contain; background-repeat: no-repeat;" >
-                              <img src="${"data:image/jpeg;base64,"+ authbook.picture}" alt="book" width= "100px" height= "120px">
+                              <img src="${picture}" alt="book" width= "100px" height= "120px">
                             </div>
                           </div>
                           <div class="preview-item-content d-sm-flex flex-grow" >

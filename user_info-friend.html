@@ -189,7 +189,7 @@
                                   </div>
 
                                   <div class="" style="text-align: center;">
-                                    <input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #085394" value="Following" id="btn-follow" onclick = "following_user()" readonly></input>
+                                    <input style="width: 110px; text-align: center; cursor: pointer; border: 1px solid #085394" class="follow" value="Follow" id="btn-follow" onclick = "following_user()" readonly></input>
                                   </div>
                                     
                                 </div>
@@ -276,8 +276,13 @@
 
     <script>
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
-      document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-     
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      var icon_avatar = "data:image/jpeg;base64,"+ sessionStorage.getItem("picture");
+      if (sessionStorage.getItem("picture") == "" || sessionStorage.getItem("picture") == null) {
+        icon_avatar = "./assets/images/avatar-empty.jpg";
+      }
+      document.getElementById("icon-avatar").style.backgroundImage = `url(${icon_avatar})`;
+      
       var btn_log_out = document.getElementById("btn-log-out");
       btn_log_out.onclick = function() {
         sessionStorage.clear();
@@ -305,6 +310,7 @@
       }
       
       function hienthi_thongtin(json){
+        console.log(json)
         const birthday = new Date(json.birthday);
         var month = birthday.getMonth()+1;
         if (month < 10) {
@@ -318,7 +324,10 @@
         }
         
         const bd = day + '-' + month + '-' + birthday.getFullYear();
-        const avatar ="data:image/jpeg;base64,"+ json.picture;
+        var avatar ="data:image/jpeg;base64,"+ json.picture;
+        if(json.picture == null || json.picture=="") {
+          avatar = "./assets/images/avatar-empty.jpg";
+        }
         document.getElementById("avatar").style.backgroundImage = `url(${avatar})`;
         document.getElementById("FullName").innerHTML = json.fullName;
         document.getElementById("name").value = json.fullName;
@@ -343,7 +352,8 @@
             return reponse.json();
         }
         }).then(function(json){
-          var isFollowing = json.myFollowings.some(function(following, index){
+          var isFollowing = false;
+          isFollowing = json.myFollowings.some(function(following, index){
             return following.iD_Following == sessionStorage.getItem("id_friend") 
           })
           if (isFollowing === true) {

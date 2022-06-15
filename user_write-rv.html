@@ -415,7 +415,12 @@
       var my_rate=0;
       // hien thi icon avatar va username
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
-      document.getElementById("icon-avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      var icon_avatar = "data:image/jpeg;base64,"+ sessionStorage.getItem("picture");
+      if (sessionStorage.getItem("picture") == "" || sessionStorage.getItem("picture") == null) {
+        icon_avatar = "./assets/images/avatar-empty.jpg";
+      }
+      document.getElementById("icon-avatar").style.backgroundImage = `url(${icon_avatar})`;
       //rate 
       function rate1star(){
         remove_star();
@@ -515,7 +520,11 @@
 
           document.getElementById("statusBook").value = sessionStorage.getItem("sttBook");
 
-          document.getElementById("book-cover").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ json.picture})`;
+          var picture = "data:image/jpeg;base64,"+ json.picture;
+          if(json.picture == null || json.picture == "") {
+            picture = "./assets/images/books-logo.jpg";
+          }
+          document.getElementById("book-cover").style.backgroundImage = `url(${picture})`;
           document.getElementById("book-name").innerHTML = json.name;
           
           var book_name_author = document.getElementById("book-name-author");
@@ -560,12 +569,16 @@
   	        if ((time>=60) && (time/60/24 <1)) time_review = (time/60).toFixed()+ " giờ trước" ;
   	        if (time/60/24 >=1) time_review = (time/60/24).toFixed()+ " ngày trước";
             
+            var review_picture = "data:image/jpeg;base64,"+ json.reviews[i].account.picture;
+            if(json.reviews[i].account.picture == null || json.reviews[i].account.picture == "") {
+              review_picture = "./assets/images/avatar-empty.jpg";
+            }
             var review = `
               <div class="container">
                 <div class="comment__container opened" id="comment-${json.reviews[i].id}">
                   <div class="comment__card" style="position: relative;">
                     <div style="position: absolute; left: 15px; background-position: center;background-size: contain; background-repeat: no-repeat;">
-                      <img class="img-xs " src="${"data:image/jpeg;base64,"+ json.reviews[i].account.picture}" alt="" style="width: 50px; height: 50px; position: relative;">
+                      <img class="img-xs " src="${review_picture}" alt="" style="width: 50px; height: 50px; position: relative;">
                        <a class="comment__title" style="color: #085394; font-weight: bold; cursor: pointer" onclick = "xem_chi_tiet_friend(${json.reviews[i].account.id})">${json.reviews[i].account.userName}</a>
                      </div>
                      <div style="position: absolute; right: 5px;" id="star-review-${json.reviews[i].id}">
@@ -611,10 +624,15 @@
   	          if ((time_children>=1) && (time_children<60)) time_children_review = time_children+ " phút trước";
   	          if ((time_children>=60) && (time_children/60/24 <1)) time_children_review = (time_children/60).toFixed()+ " giờ trước" ;
   	          if (time_children/60/24 >=1) time_children_review = (time_children/60/24).toFixed()+ " ngày trước";
+              
+              var children_picture = "data:image/jpeg;base64,"+ json.reviews[i].reviewChildrens[j].account.picture;
+              if(json.reviews[i].reviewChildrens[j].account.picture == null || json.reviews[i].reviewChildrens[j].account.picture == "") {
+                children_picture = "./assets/images/avatar-empty.jpg";
+              }
               children_review +=`
                 <div class="comment__card">
                   <div style="background-position: center;background-size: contain; background-repeat: no-repeat; margin-bottom: 10px">
-                    <img class="img-xs " src="${"data:image/jpeg;base64,"+ json.reviews[i].reviewChildrens[j].account.picture}" alt="" style="width: 50px; height: 50px; position: relative;">
+                    <img class="img-xs " src="${children_picture}" alt="" style="width: 50px; height: 50px; position: relative;">
                     <a class="comment__title" style="color: #085394; font-weight: bold; cursor: pointer" onclick = "xem_chi_tiet_friend(${json.reviews[i].reviewChildrens[j].account.id})">${json.reviews[i].reviewChildrens[j].account.userName}</a>
                   </div>
                   <div>

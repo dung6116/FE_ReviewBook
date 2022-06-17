@@ -333,7 +333,7 @@
           if (json[i].telephone!=null) tel=json[i].telephone;  
           if (json[i].email!=null) email=json[i].email;  
           if (json[i].website!=null) web=json[i].website;    
-          var aut = `
+          var pub = `
             <tr>
               <td> ${json[i].id} </td>
               <td> ${json[i].name} </td>
@@ -343,11 +343,11 @@
               <td> <div class="pub"> ${web}</div></td>
               <td> 
                 <a class="btn btn-outline-primary btn-sm" href="publisher_detail.html" role="button" onclick="get_id_pub(${json[i].id})" >View</a> 
-                <a class="btn btn-outline-primary btn-sm" href="publisher_edit.html" role="button" onclick="get_id_pub(${json[i].id}" >Edit</a> 
+                <a class="btn btn-outline-primary btn-sm" href="publisher_edit.html" role="button" onclick="get_id_pub(${json[i].id})" >Edit</a> 
               </td>
             </tr>
           `
-          table.innerHTML += aut;
+          table.innerHTML += pub;
         }
       }
     </script>

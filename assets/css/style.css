@@ -17121,6 +17121,13 @@ div.tagdes {
   text-overflow: ellipsis; 
   border: 1px solid #000000;
 }
+div.pub {
+  white-space: nowrap; 
+  width: 100px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  border: 1px solid #000000;
+}
 /* Icons */
 .icons-list {
   border-left: 1px solid #2c2e33;

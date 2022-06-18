@@ -25,7 +25,7 @@
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a  href="../../index.html">
+          <a  href="../../admin_index.html">
             <span >
               <i class="fa-solid fa-dragon" style="font-size:40px; margin-top: 10px; color:white"></i>
             </span>
@@ -37,11 +37,11 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="../../assets/images/avatar.jpg" alt="">
+                  <div id="icon_avatar" class="img-avatar rounded-circle " ></div>
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Minh Nguyệt</h5>
+                  <h5 class="mb-0 font-weight-normal" id="bar_name"></h5>
                   <span>Admin</span>
                 </div>
               </div>
@@ -86,7 +86,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="../../admin_index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -147,7 +147,7 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="../../admin_index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             
@@ -212,8 +212,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="../../assets/images/avatar.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Minh Nguyệt</p>
+                    <div id="icon_avatar_1" class="img-avatar rounded-circle" ></div>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name_1"></p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -258,67 +258,35 @@
               <h3 class="page-title"> Add new Users </h3>
             </div>
             <div class="row">
-              <div class="col-12 grid-margin stretch-card">
+              <div class="col-10 offset-1 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <form>
                       <div class="row">
-                        <div class="col-md-3">
-                          <!--add image-->
-                          <img class="img-b-u" src="../../assets/images/user-logo.png">
+                        <div class="col-md-10 offset-1">
                           <div class="form-group">
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                              <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary mt-3" type="button"> Upload </button>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-9">
-                          <div class="form-group">
-                            <label for="name"> Name </label>
-                            <input type="text" class="form-control" id="name"  placeholder="Name">
-                          </div>
-                          <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <select class="form-control" id="gender">
-                              <option> Male </option>      
-                              <option> Female </option>                            
-                              <option> Orther </option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="birthday">Birthday</label>
-                            <input type="date" class="form-control" id="birthday"  max="2021-01-01">
-                          </div>
-                          <div class="form-group">
-                            <label for="address"> Address </label>
-                            <input type="text" class="form-control" id="address"  placeholder="Address">
-                          </div>
-                          <div class="form-group">
-                            <label for="username"> Username </label>
-                            <input type="text" class="form-control" id="username" placeholder="Username">
+                            <label for="userName"> Username </label>
+                            <input type="text" class="form-control" id="userName" placeholder="Username">
                           </div>
                           <div class="form-group">
                             <label for="password"> Password </label>
                             <input type="password" class="form-control" id="password" placeholder="Password" >
                           </div>
                           <div class="form-group">
-                            <label for="cf_pass"> Confirm password </label>
-                            <input type="password" class="form-control" id="cf_pass" placeholder="Confirm password">
+                            <label for="confirmPass"> Confirm password </label>
+                            <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password">
                           </div>
                           <div class="form-group">
                             <label for="role"> Role </label>
-                            <select class="form-control" id="author">
-                              <option> Reader </option>      
-                              <option selected> Admin </option>
+                            <select class="form-control" id="role">
+                              <option value="2"> User </option>      
+                              <option value="1"> Admin </option>
                             </select>
                           </div>
                         </div> 
                       </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-md mr-2">Add</button>
+                        <button type="button" class="btn btn-primary mr-2" id="btn-add">Add</button>
                         <button class="btn btn-primary btn-md">Cancel</button>
                       </div>
                     </form>
@@ -338,7 +306,50 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script>
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+
+      var add_btn = document.getElementById('btn-add');
+      add_btn.onclick = function() {
+        if (validate()){
+          data = {
+            "userName": document.getElementById("userName").value,
+            "password": document.getElementById("password").value,
+            "iD_Role": document.getElementById("role").value,
+          }
+          console.log(data);
+
+          var url = `https://reviewbook18.herokuapp.com/api/AccountAdmin`
+          fetch(url,{
+            method:"POST",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //alert(`${response.status}`);
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              return reponse.json();
+            } 
+          }).then(function(json){
+            //sessionStorage.setItem("picture",json.picture);
+            alert("Account added successfully");
+            window.location.replace("user_list.html");
+          })
+        }
+        
+      }  
+      
+    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="user_form.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

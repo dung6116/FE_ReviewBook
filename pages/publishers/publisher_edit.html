@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body>
+  <body onload="show_pub_info()">
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a  href="../../index.html">
+          <a  href="../../admin_index.html">
             <span >
               <i class="fa-solid fa-dragon" style="font-size:40px; margin-top: 10px; color:white"></i>
             </span>
@@ -37,11 +37,11 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="../../assets/images/avatar.jpg" alt="">
+                  <div id="icon_avatar" class="img-avatar rounded-circle " ></div>
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Minh Nguyệt</h5>
+                  <h5 class="mb-0 font-weight-normal" id="bar_name"></h5>
                   <span>Admin</span>
                 </div>
               </div>
@@ -86,7 +86,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="../../admin_index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -147,7 +147,7 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="../../admin_index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             
@@ -212,8 +212,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="../../assets/images/avatar.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Minh Nguyệt</p>
+                    <div id="icon_avatar_1" class="img-avatar rounded-circle" ></div>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name" id="bar_name_1"></p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -263,37 +263,37 @@
                   <div class="card-body">
                     <form class="forms-sample">
                       <div class="form-group row">
-                        <label for="pub-name" class="col-sm-3 col-form-label"> Publisher's name</label>
+                        <label for="pubName" class="col-sm-3 col-form-label"> Publisher's name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="pub-name" placeholder="Name of publisher" value="Nhà xuất bản Trẻ">
+                          <input type="text" class="form-control" id="pubName" placeholder="Name of publisher">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="address" class="col-sm-3 col-form-label"> Address </label>
                         <div class="col-sm-9">
-                          <textarea class="form-control text-line-spacing text-justify" id="address" rows="1" placeholder="Address of publisher" > 161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 3 , TP. Hồ Chí Minh </textarea>
+                          <input type="text" class="form-control" id="address" placeholder="Address of publisher" >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="telephone" class="col-sm-3 col-form-label">Telephone</label>
                         <div class="col-sm-9">
-                          <input type="tel" class="form-control" id="telephone" placeholder="Telephone of publisher" value="(84.028) 39316289">
+                          <input type="tel" class="form-control" id="telephone" placeholder="Telephone of publisher">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="birthday" class="col-sm-3 col-form-label">Email</label>
+                        <label for="email" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                          <input type="email" class="form-control" id="birthday" placeholder="Email of publisher" value="hopthubandoc@nxbtre.com.vn">
+                          <input type="email" class="form-control" id="email" placeholder="Email of publisher">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="birthday" class="col-sm-3 col-form-label">Website</label>
+                        <label for="website" class="col-sm-3 col-form-label">Website</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="birthday" placeholder="Website of publisher" value="https://www.nxbtre.com.vn/">
+                          <input type="text" class="form-control" id="website" placeholder="Website of publisher">
                         </div>
                       </div>
                       <div class="text-center">
-                        <button class="btn btn-primary btn-md mr-2">Save</button>
+                        <button type="button" class="btn btn-primary btn-md mr-2" id="btn-save">Save</button>
                         <a class="btn btn-primary btn-md" href="publisher_list.html" role="button">Cancel</a>
                       </div>
                       
@@ -314,7 +314,75 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script>
+      document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
+      document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+      document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
+
+      function show_pub_info(){
+        var url = `https://reviewbook18.herokuapp.com/api/Publisher/${sessionStorage.getItem("id_pub")}`
+        fetch(url,{
+          method:"GET",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          //alert(`${response.status}`)
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            return reponse.json();
+        }
+        }).then(function(json){
+          console.log(json)        
+          document.getElementById("pubName").value = json.name;
+          document.getElementById("address").value = json.address;
+          document.getElementById("telephone").value = json.telephone;
+          document.getElementById("email").value = json.email;      
+          document.getElementById("website").value = json.website;          
+        })
+      }
+      var save_btn = document.getElementById('btn-save');
+      save_btn.onclick = function() {
+        if (validate()){
+          data = {
+            "name": document.getElementById("pubName").value,
+            "address": document.getElementById("address").value,
+            "telephone":  document.getElementById("telephone").value,
+            "email":  document.getElementById("email").value,
+            "website":  document.getElementById("website").value,
+          }
+          console.log(data)
+          
+          var url = `https://reviewbook18.herokuapp.com/api/Publisher/${sessionStorage.getItem("id_pub")}`
+          fetch(url,{
+            method:"PUT",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //console.log(response.status);
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              return reponse.json();
+            }
+          }).then(function(json){
+
+            alert("Edit publisher successfully!")
+            window.location.replace("publisher_list.html");
+          })
+        } 
+      }
+    </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="publisher_form.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

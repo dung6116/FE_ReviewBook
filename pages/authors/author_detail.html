@@ -329,7 +329,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary">Delete</button>
+              <button type="button" class="btn btn-primary" onclick="delete_aut()">Delete</button>
             </div>
           </div>
         </div>
@@ -384,6 +384,26 @@
           document.getElementById("birthday").value = bd;
           document.getElementById("intro").value = json.description;          
           
+        })
+      }
+      function delete_aut(){
+        var url = `https://reviewbook18.herokuapp.com/api/Author/${sessionStorage.getItem("id_aut")}`
+        fetch(url,{
+          method:"DELETE",
+          headers:{
+            'accept' : 'text/plain',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
+          },
+        }).then(function(reponse){
+          //alert(`${response.status}`)
+          if(reponse.status !=200){
+            alert('Xay ra loi');
+        }
+          else {
+            //return reponse.json();
+            alert("Delete author succesfully!");  
+            window.location.replace("author_list.html");
+        }
         })
       }
       

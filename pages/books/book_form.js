@@ -94,18 +94,6 @@ function get_pub_book(){
 }
 
 
-/* const image_input = document.getElementById("img-btn");
-image_input.addEventListener("change", function() {
-const reader = new FileReader();
-reader.addEventListener("load", () => {
-    const uploaded_image = reader.result;
-    console.log(uploaded_image);
-    document.getElementById("book-img").style.backgroundImage = `url(${uploaded_image})`;
-    //document.getElementById("book-img").src=uploaded_image;
-});
-reader.readAsDataURL(this.files[0]);
-}); */
-
 const image_input = document.getElementById("img-btn");
 image_input.addEventListener("change", function() {
 const reader = new FileReader();
@@ -120,9 +108,7 @@ reader.readAsDataURL(this.files[0]);
 //get book'id to view detail or edit
 function get_id_book(id){
     sessionStorage.setItem("id_book",id);
-    //alert(sessionStorage.getItem("id_book"));
-    //window.location ="../book_edit.html"
-  }
+}
 
 function validate() {
     if( document.getElementById("bookTitle").value == "" ) {

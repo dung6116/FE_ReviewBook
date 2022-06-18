@@ -112,7 +112,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="../../pages/books/book_list.html">List Books</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/books/book_request.html">Requests</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/books/book_request.html" >Requests</a></li>
               </ul>
             </div>
           </li>
@@ -265,39 +265,32 @@
                       <div class="row">
                         <div class="col-md-3">
                           <!--add image-->
-                          <img class="img-b-u" src="../../assets/images/chuyen-con-meo-day-hai-au-bay.jpg">
+                          <div class="img-b-u" id="book-img"> </div>
                         </div>
                         <div class="col-md-9">
                           <div class="form-group">
                             <label for="bookTitle">Book title</label>
-                            <input type="text" class="form-control" id="bookTitle" disabled value="Chuyện con mèo dạy hải âu bay">
+                            <input type="text" class="form-control" id="bookTitle" readonly>
                           </div>
                           <div class="form-group">
                             <label for="author">Author</label>
-                            <input type="text" class="form-control" id="author" disabled value="Luis Sepúlveda">
+                            <input type="text" class="form-control" id="author" readonly>
                           </div>
                           <div class="form-group">
                             <label for="tag">Tag</label>
-                            <input type="text" class="form-control" id="tag" disabled value="Hư cấu">
+                            <input type="text" class="form-control" id="tag" readonly>
                           </div>
                           <div class="form-group">
                             <label for="Publisher">Publisher</label>
-                            <input type="text" class="form-control" id="Publisher" disabled value="NXB Hội Nhà Văn">
+                            <input type="text" class="form-control" id="Publisher" readonly>
                           </div>
                           <div class="form-group">
                             <label for="publishYear">Publish year</label>
-                            <input type="text" class="form-control" id="publishYear" disabled value="2001">
+                            <input type="text" class="form-control" id="publishYear" readonly>
                           </div>
                           <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control text-line-spacing text-justify" id="description" rows="10" disabled> Cô hải âu Kengah bị nhấn chìm trong váng dầu - thứ chất thải nguy hiểm mà những con người xấu xa bí mật đổ ra đại dương. Với nỗ lực đầy tuyệt vọng, cô bay vào bến cảng Hamburg và rơi xuống ban công của con mèo mun, to đùng, mập ú Zorba. Trong phút cuối cuộc đời, cô sinh ra một quả trứng và con mèo mun hứa với cô sẽ thực hiện ba lời hứa chừng như không tưởng với loài mèo: 
-Không ăn quả trứng.
-Chăm sóc cho tới khi nó nở.
-Dạy cho con hải âu bay.
-Lời hứa của một con mèo cũng là trách nhiệm của toàn bộ mèo trên bến cảng, bởi vậy bè bạn của Zorba bao gồm ngài mèo Đại Tá đầy uy tín, mèo Secretario nhanh nhảu, mèo Einstein uyên bác, mèo Bốn Biển đầy kinh nghiệm đã chung sức giúp nó hoàn thành trách nhiệm. Tuy nhiên, việc chăm sóc, dạy dỗ một con hải âu đâu phải chuyện đùa, sẽ có hàng trăm rắc rối nảy sinh và cần có những kế hoạch đầy linh hoạt được bàn bạc kỹ càng…
-Chuyện con mèo dạy hải âu bay là kiệt tác dành cho thiếu nhi của nhà văn Chi Lê nổi tiếng Luis Sepúlveda - tác giả của cuốn Lão già mê đọc truyện tình đã bán được 18 triệu bản khắp thế giới. Tác phẩm không chỉ là một câu chuyện ấm áp, trong sáng, dễ thương về loài vật mà còn chuyển tải thông điệp về trách nhiệm với môi trường, về sự sẻ chia và yêu thương cũng như ý nghĩa của những nỗ lực – “Chỉ những kẻ dám mới có thể bay”.
-Cuốn sách mở đầu cho mùa hè với minh họa dễ thương, hài hước là món quà dành cho mọi trẻ em và người lớn.
-                            </textarea>
+                            <textarea class="form-control text-line-spacing text-justify" id="description" rows="10" readonly></textarea>
                           </div>
                         </div> 
                       </div>

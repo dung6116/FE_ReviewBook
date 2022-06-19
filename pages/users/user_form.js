@@ -19,6 +19,11 @@ function validate() {
         document.getElementById("userName").focus() ;
         return false;
     }
+    if (!validate_pass()) return false
+    return( true );
+}
+function validate_pass()
+{
     if( document.getElementById("password").value == "" ) {
         alert( "Please provide password!");
         document.getElementById("password").focus() ;
@@ -34,5 +39,23 @@ function validate() {
         document.getElementById("confirmPass").focus() ;
         return false;
     }
+    return (true);
+}
+function validate_edit() {
+    if( document.getElementById("name").value == "" ) {
+        alert( "Please provide full name!" );
+        document.getElementById("name").focus() ;
+        return false;
+    }
+    if( document.getElementById("birthday").value == "" ) {
+        alert( "Please provide birthday!" );
+        document.getElementById("birthday").focus() ;
+        return false;
+    }
+    if( document.getElementById("address").value == "" ) {
+        alert( "Please provide address!" );
+        document.getElementById("address").focus() ;
+        return false;
+    }
     return( true );
- }
+}

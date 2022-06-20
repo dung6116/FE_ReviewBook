@@ -267,8 +267,8 @@
                           <tr>
                             <th style="width: 100px ;"> ID </th>
                             <th> Tên sách </th>
-                            <!-- <th> Tác giả </th>
-                            <th> Nhà xuất bản </th> -->
+                            <th> Tác giả </th>
+                            <th> Nhà xuất bản </th>
                             <th style="width: 100px ;"> Action </th>
                           </tr>
                         </thead>
@@ -365,7 +365,9 @@
           var book = `
             <tr>
               <td> ${json[i].id} </td>
-              <td> ${json[i].bookName} </td>
+              <td><div class="bookwrap"> ${json[i].bookName}</div> </td>
+              <td> ${json[i].newAut} </td>
+              <td> ${json[i].newPub} </td>
               <td> 
                 <a class="btn btn-outline-primary btn-sm" href="book_request_detail.html" role="button" onclick="get_book_id(${json[i].id})" >View</a> 
               </td>

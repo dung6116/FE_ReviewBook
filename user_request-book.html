@@ -65,54 +65,6 @@
                 </span>
               </a>
             </li>
-            <!-- button notifications -->
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-bell"></i>
-                <span class="count bg-danger"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <h6 class="p-3 mb-0">Notifications</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-calendar text-success"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Event today</p>
-                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-settings text-danger"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Settings</p>
-                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-link-variant text-warning"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Launch Admin</p>
-                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="p-3 mb-0 text-center dropdown-item preview-item" href="user_view-all-ntf.html">See all notifications</a>
-              </div>
-            </li>
             <!-- button profile -->
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
@@ -355,6 +307,8 @@
     <script src="./assets/js/vaidator.js"></script>
     <script>
       var list_tag = [];
+      var list_author = [];
+      var list_pub = [];
       var author = {};
       var publisher = {}
       document.getElementById("bar_name").innerHTML = sessionStorage.getItem("username");
@@ -388,6 +342,7 @@
           }
         }).then(function(json){
           json.forEach(function(author, index){
+            list_author.push(author.stage_Name);
             var auth = `<option value=${author.id}>${author.stage_Name}</option>`;
             document.getElementById("author").innerHTML += auth;
           })
@@ -409,6 +364,7 @@
           }
         }).then(function(json){
           json.forEach(function(publisher, index){
+            list_pub.push(publisher.name);
             var pub = `<option value=${publisher.id}>${publisher.name}</option>`;
             document.getElementById("Publisher").innerHTML += pub;
           })
@@ -464,7 +420,7 @@
         const url_img = document.getElementById("avatar").style.backgroundImage.slice(5, -2);
         
         var promise = new Promise(function(resolve, reject) {
-          if (bookTitle == "" || publishYear == "" || description == "" || list_tag.length == 0 || url_img == "")
+          if (bookTitle == "" || publishYear == "" || description == "" || list_tag.length == 0 || url_img == "./assets/images/books-logo.jpg")
             reject();
           else {
             resolve();
@@ -580,17 +536,36 @@
       }
 
       function add_new_author() {
-        const new_auth = document.getElementById("author-name").value;
-        var auth = `<option value="${new_auth}">${new_auth}</option>`;
-        document.getElementById("author").innerHTML += auth;
-        document.getElementById("author").value = new_auth;
+        const isAuthor = list_author.some(function(lstauth){
+          return lstauth.toLowerCase() == document.getElementById("author-name").value.toLowerCase().trim();
+        })
+        if (isAuthor === true){
+          alert("Tác giả này đã tồn tại.")
+        } else {
+          const new_auth = document.getElementById("author-name").value;
+          var auth = `<option value="${new_auth}">${new_auth}</option>`;
+          document.getElementById("author").innerHTML += auth;
+          document.getElementById("author").value = new_auth;
+          list_author.push(new_auth);
+          alert("Đã thêm tác giả này vào danh sách")
+        }
       }
 
       function add_new_publisher() {
-        const new_pub = document.getElementById("pub-name").value;
-        var pub = `<option value="${new_pub}">${new_pub}</option>`;
-        document.getElementById("Publisher").innerHTML += pub;
-        document.getElementById("Publisher").value = new_pub;
+        const isPub = list_pub.some(function(lstpub){
+          return lstpub.toLowerCase() == document.getElementById("pub-name").value.toLowerCase().trim();
+        })
+        if (isPub === true){
+          alert("Nhà xuất bản này đã tồn tại này đã tồn tại.")
+        } else {
+          const new_pub = document.getElementById("pub-name").value;
+          var pub = `<option value="${new_pub}">${new_pub}</option>`;
+          document.getElementById("Publisher").innerHTML += pub;
+          document.getElementById("Publisher").value = new_pub;
+          list_pub.push(new_pub);
+          alert("Đã thêm nhà xuất bản này vào danh sách")
+        }
+        
       }
 
       const image_input = document.getElementById("avatar-btn");

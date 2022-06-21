@@ -29,7 +29,7 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a  href="index.html">
+          <a  href="admin_index.html">
             <span >
               <i class="fa-solid fa-dragon" style="font-size:40px; margin-top: 10px; color:white"></i>
             </span>
@@ -91,7 +91,7 @@
           </li>
           
           <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="admin_index.html">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -221,20 +221,29 @@
                   </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                  <h6 class="p-3 mb-0">Profile</h6>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a class="dropdown-item preview-item" href="#">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-settings text-success"></i>
+                        <i class="mdi mdi-account text-success"></i>
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Settings</p>
+                      <p class="preview-subject mb-1">Profile</p>
+                    </div>
+                  </a>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-account-key text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Change password</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a class="dropdown-item preview-item" id="btn-log-out">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
@@ -244,8 +253,6 @@
                       <p class="preview-subject mb-1">Log out</p>
                     </div>
                   </a>
-                  <div class="dropdown-divider"></div>
-                  <p class="p-3 mb-0 text-center">Advanced settings</p>
                 </div>
               </li>
             </ul>
@@ -257,87 +264,8 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">340</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+1.5%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Reviews</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">1734</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal"> Active users</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">123</h3>
-                          <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-danger">
-                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">xxxxxxxx</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">315</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal"> YYYYYY</h6>
-                  </div>
-                </div>
-              </div>
+            <div class="page-header">
+              <h3 class="page-title"> Dash board </h3>
             </div>
             <div class="row">
               <div class="col-md-6 col-xl-4 grid-margin stretch-card">
@@ -347,49 +275,8 @@
                       <h4 class="card-title"> Top reviewed books</h4>
                       <p class="text-muted mb-1 small">Reviews</p>
                     </div>
-                    <div class="preview-list">
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 123 reviews</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/khi-loi-thuoc-ve-nhung-vi-sao.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Khi lỗi thuộc về những vì sao</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">John Green</p>
-                              <p class="text-muted text-small"> 113 reviews</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 123 reviews</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="preview-list" id="top-review">
+                      
                     </div>
                   </div>
                 </div>
@@ -401,49 +288,8 @@
                       <h4 class="card-title">Top rate books</h4>
                       <p class="text-muted mb-1 small">Rate</p>
                     </div>
-                    <div class="preview-list">
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 4.9</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/khi-loi-thuoc-ve-nhung-vi-sao.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Khi lỗi thuộc về những vì sao</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">John Green</p>
-                              <p class="text-muted text-small"> 4.5</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 4.3</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="preview-list" id="top-rate">
+                      
                     </div>
                   </div>
                 </div>
@@ -455,49 +301,8 @@
                       <h4 class="card-title">Top read books</h4>
                       <p class="text-muted mb-1 small">Read</p>
                     </div>
-                    <div class="preview-list">
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 1113 </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/khi-loi-thuoc-ve-nhung-vi-sao.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Khi lỗi thuộc về những vì sao</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">John Green</p>
-                              <p class="text-muted text-small"> 1013 </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="preview-item border-bottom">
-                        <div class="preview-thumbnail">
-                          <img src="assets/images/chuyen-con-meo-day-hai-au-bay.jpg" alt="image" class="img-fluid" />
-                        </div>
-                        <div class="preview-item-content d-flex flex-grow">
-                          <div class="flex-grow">
-                            <h6 class="preview-subject">Chuyện con mèo dạy hải âu bay</h6>
-                            <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                              <p class="text-muted">Luis Sepúlveda</p>
-                              <p class="text-muted text-small"> 1003 </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="preview-list" id="top-read">
+                
                     </div>
                   </div>
                 </div>
@@ -541,6 +346,7 @@
         }
         }).then(function(json){
           hienthi_thongtin(json);
+          show_dashboard();
         })
       }
 
@@ -550,11 +356,132 @@
         document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       }
 
-      function redirect(){
-        window.location="user_edit_profile.html";
+      function show_dashboard(){
+        let names = ['Review', 'Rate', 'Readed'];
+
+        let requests = names.map(name => fetch(`https://reviewbook18.herokuapp.com/api/Statistical/${name}/5`,
+                  {
+                  method:"GET",
+                  headers:{
+                    'accept' : 'text/plain',
+                    'Authorization': 'Bearer '+sessionStorage.getItem("token")
+                  },
+                }));
+
+        Promise.all(requests)
+          .then(responses => {
+            // all responses are resolved successfully
+            for(let response of responses) {
+              //alert(`${response.url}: ${response.status}`); // shows 200 for every url
+              if(response.status !=200){
+                alert('Xảy ra lỗi'); break;
+            }
+              
+            }
+
+            return responses;
+          })
+          // map array of responses into an array of response.json() to read their content
+          .then(responses => Promise.all(responses.map(r => r.json())))
+          // all JSON answers are parsed: "users" is the array of them
+          .then(books => {
+            const review= books[0];
+            const rate= books[1];
+            const read= books[2];
+            display_review(review);
+            display_rate(rate);
+            display_read(read);
+            
+
+          });
+      }
+      function display_review(json){
+        console.log(json)
+        var list_review = document.getElementById("top-review")
+        
+        for (var i = 0; i < json.length; i++){
+          var img_book = "assets/images/books-logo.jpg";
+          if (json[i].picture!=null && json[i].picture!=""){
+            img_book="data:image/jpeg;base64,"+ json[i].picture;
+          }
+          var book = `
+            <div class="preview-item border-bottom">
+              <div class="preview-thumbnail">
+                <img src="${img_book}" alt="image" class="img-fluid" />
+              </div>
+              <div class="preview-item-content d-flex flex-grow">
+                <div class="flex-grow">
+                  <a href="pages/books/book_detail.html" onclick = "get_id_book(${json[i].iD_Book})"><h6 class="preview-subject">${json[i].name}</h6></a>
+                  <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                    <p class="text-muted">${json[i].stageNameAuthor}</p>
+                    <p class="text-muted text-small">${json[i].reviewCount} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+          list_review.innerHTML += book;
+        }
+      }
+      function display_rate(json){
+        console.log(json)
+        var list_review = document.getElementById("top-rate")
+        
+        for (var i = 0; i < json.length; i++){
+          var img_book = "assets/images/books-logo.jpg";
+          if (json[i].picture!=null && json[i].picture!=""){
+            img_book="data:image/jpeg;base64,"+ json[i].picture;
+          }
+          var book = `
+            <div class="preview-item border-bottom">
+              <div class="preview-thumbnail">
+                <img src="${img_book}" alt="image" class="img-fluid" />
+              </div>
+              <div class="preview-item-content d-flex flex-grow">
+                <div class="flex-grow">
+                  <a href="pages/books/book_detail.html" onclick = "get_id_book(${json[i].iD_Book})"><h6 class="preview-subject">${json[i].name}</h6></a>
+                  <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                    <p class="text-muted">${json[i].stageNameAuthor}</p>
+                    <p class="text-muted text-small">${json[i].rateAvg} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+          list_review.innerHTML += book;
+        }
+      }
+      function display_read(json){
+        console.log(json)
+        var list_review = document.getElementById("top-read")
+        
+        for (var i = 0; i < json.length; i++){
+          var img_book = "assets/images/books-logo.jpg";
+          if (json[i].picture!=null && json[i].picture!=""){
+            img_book="data:image/jpeg;base64,"+ json[i].picture;
+          }
+          var book = `
+            <div class="preview-item border-bottom">
+              <div class="preview-thumbnail">
+                <img src="${img_book}" alt="image" class="img-fluid" />
+              </div>
+              <div class="preview-item-content d-flex flex-grow">
+                <div class="flex-grow">
+                  <a href="pages/books/book_detail.html" onclick = "get_id_book(${json[i].iD_Book})"><h6 class="preview-subject">${json[i].name}</h6></a>
+                  <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                    <p class="text-muted">${json[i].stageNameAuthor}</p>
+                    <p class="text-muted text-small">${json[i].readed} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+          list_review.innerHTML += book;
+        }
       }
     </script>
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="pages/books/book_form.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="assets/vendors/chart.js/Chart.min.js"></script>

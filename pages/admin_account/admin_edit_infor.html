@@ -147,8 +147,7 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../admin_index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
-          </div>
+            <a class="navbar-brand brand-logo-mini" href="../../admin_
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             
             <ul class="navbar-nav w-100">
@@ -255,7 +254,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> List of Users </h3>
+              <h3 class="page-title"> Edit User </h3>
             </div>
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
@@ -266,6 +265,9 @@
                         <div class="col-md-3">
                           <!--add image-->
                           <div class="img-b-u" id="user-img"></div>
+                          <div class="" style="text-align: left;">
+                            <input type="file" id="img-btn"></input>
+                          </div>
                         </div>
                         <div class="col-md-9">
                           <div class="form-group">
@@ -273,16 +275,16 @@
                             <input type="text" class="form-control" id="userName" readonly>
                           </div>
                           <div class="form-group">
-                            <label for="name"> Full name </label>
-                            <input type="text" class="form-control" id="name" readonly>
+                            <label for="name">  Full name </label>
+                            <input type="text" class="form-control" id="name" placeholder="Full name">
                           </div>
                           <div class="form-group">
                             <label for="birthday">Birthday</label>
-                            <input type="text" class="form-control" id="birthday" readonly>
+                            <input type="date" class="form-control" id="birthday">
                           </div>
                           <div class="form-group">
                             <label for="address"> Address </label>
-                            <input type="text" class="form-control" id="address" readonly>
+                            <input type="text" class="form-control" id="address"placeholder="Address">
                           </div>
                           <div class="form-group">
                             <label for="role"> Role </label>
@@ -291,8 +293,8 @@
                         </div> 
                       </div>
                       <div class="text-center">
-                        <a class="btn btn-primary btn-md mr-2" href="admin_edit_infor.html" role="button">Edit</a>
-                        <a class="btn btn-primary btn-md" href="../../admin_index.html" role="button">Back</a>                      
+                        <button type="button" class="btn btn-primary btn-md mr-2"  id="btn-save">Save</button>
+                        <a class="btn btn-primary btn-md" href="user_list.html" role="button">Back</a>
                       </div>
                     </form>
                   </div>
@@ -305,6 +307,36 @@
           
           <!-- partial -->
         </div>
+        <!-- modal reset password-->
+        <div class="modal fade" id="resetPass" tabindex="-1" role="dialog" aria-labelledby="resetPassLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="resetPassLabel">Reset Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="password"> New password </label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" >
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPass"> Confirm new password </label>
+                    <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="reset_pass()">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- modal reset password ends-->
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
@@ -316,7 +348,6 @@
       document.getElementById("bar_name_1").innerHTML = sessionStorage.getItem("username");
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
-
       function show_info(){
         var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
         fetch(url,{
@@ -349,7 +380,7 @@
             {
               day='0' + day;
             }
-            bd = day + '/'+ month + '/' + birthday.getFullYear();
+            bd =  birthday.getFullYear() +'-'+ month + '-'+ day;
           }
           if (json.picture)
           {
@@ -367,10 +398,74 @@
           
         })
       }
-      
-      
+      var save_btn = document.getElementById('btn-save');
+      save_btn.onclick = function() {
+        if (validate_edit()){
+          var bd = new Date(document.getElementById("birthday").value);
+          var url_img = document.getElementById("user-img").style.backgroundImage.slice(5, -2);
+          data = {
+            "isActive": true,
+            "fullName": document.getElementById("name").value,
+            "birthday":`${bd.toJSON()}`,
+            "address": document.getElementById("address").value,
+            "picture":`${url_img.slice(url_img.search(",")+1)}`,
+          }
+          console.log(data)
+          
+          var url = `https://reviewbook18.herokuapp.com/api/Account/information/${sessionStorage.getItem("id")}`
+          fetch(url,{
+            method:"PUT",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //alert(`${response.status}`);
+            if(reponse.status !=200){
+              alert('Xảy ra lỗi');
+            } else {
+              return reponse.json();
+            }
+          }).then(function(json){
+            //console.log("data sau edit", json);
+            alert("Edit succesfully")
+            window.location.replace("admin_infor.html");
+          })
+        }
+      }
+      function reset_pass(){
+        if (validate_pass()){
+          data = {
+            "newPassword": document.getElementById("password").value,
+          }
+          console.log(data)
+          var url = `https://reviewbook18.herokuapp.com/api/Account/passwordAdmin/${sessionStorage.getItem("id_user")}`
+          fetch(url,{
+            method:"PUT",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //alert(`${response.status}`)
+            if(reponse.status !=200){
+              alert('Xay ra loi');
+          }
+            else {
+              //return reponse.json();
+              alert("Reset password succesfully!");  
+              window.location.replace("user_edit.html");
+          }
+          })
+        }
+      }
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="account.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
@@ -382,6 +477,7 @@
     <script src="../../assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
+    <script src="../../assets/js/file-upload.js"></script>
     <!-- End custom js for this page -->
   </body>
 </html>

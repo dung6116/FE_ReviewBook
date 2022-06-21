@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   </head>
-  <body onload="show_info()">
+  <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -147,8 +147,7 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../admin_index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
-          </div>
+            <a class="navbar-brand brand-logo-mini" href="../../admin_
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             
             <ul class="navbar-nav w-100">
@@ -255,44 +254,28 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> List of Users </h3>
+              <h3 class="page-title"> Edit User </h3>
             </div>
             <div class="row">
-              <div class="col-12 grid-margin stretch-card">
+              <div class="col-10 offset-1 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <form>
-                      <div class="row">
-                        <div class="col-md-3">
-                          <!--add image-->
-                          <div class="img-b-u" id="user-img"></div>
-                        </div>
-                        <div class="col-md-9">
-                          <div class="form-group">
-                            <label for="userName"> Username </label>
-                            <input type="text" class="form-control" id="userName" readonly>
-                          </div>
-                          <div class="form-group">
-                            <label for="name"> Full name </label>
-                            <input type="text" class="form-control" id="name" readonly>
-                          </div>
-                          <div class="form-group">
-                            <label for="birthday">Birthday</label>
-                            <input type="text" class="form-control" id="birthday" readonly>
-                          </div>
-                          <div class="form-group">
-                            <label for="address"> Address </label>
-                            <input type="text" class="form-control" id="address" readonly>
-                          </div>
-                          <div class="form-group">
-                            <label for="role"> Role </label>
-                            <input type="text" class="form-control" id="role" readonly>
-                          </div>
-                        </div> 
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="oldPass"> Old password </label>
+                        <input type="password" class="form-control col-sm-8" id="oldPass" placeholder="Old Password" >
+                      </div>
+                      <div class="form-group  row">
+                            <label class="col-sm-3 col-form-label" for="newPass"> New password </label>
+                            <input type="password" class="form-control col-sm-8" id="newPass" placeholder="New Password" >
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 col-form-label" for="confirmPass"> Confirm new password </label>
+                          <input type="password" class="form-control col-sm-8" id="confirmPass" placeholder="Confirm password">
                       </div>
                       <div class="text-center">
-                        <a class="btn btn-primary btn-md mr-2" href="admin_edit_infor.html" role="button">Edit</a>
-                        <a class="btn btn-primary btn-md" href="../../admin_index.html" role="button">Back</a>                      
+                        <button type="button" class="btn btn-primary btn-md mr-2"  id="btn-save">Save</button>
+                        <a class="btn btn-primary btn-md" href="../../admin_index.html" role="button">Back</a>
                       </div>
                     </form>
                   </div>
@@ -317,60 +300,40 @@
       document.getElementById("icon_avatar").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
       document.getElementById("icon_avatar_1").style.backgroundImage = `url(${"data:image/jpeg;base64,"+ sessionStorage.getItem("picture")})`;
 
-      function show_info(){
-        var url = `https://reviewbook18.herokuapp.com/api/Account/noPassword/${sessionStorage.getItem("id")}`
-        fetch(url,{
-          method:"GET",
-          headers:{
-            'accept' : 'text/plain',
-            'Authorization': 'Bearer '+sessionStorage.getItem("token")  
-          },
-        }).then(function(reponse){
-          //alert(`${response.status}`)
-          if(reponse.status !=200){
-            alert('Xay ra loi');
+      var save_btn = document.getElementById('btn-save');
+      save_btn.onclick = function() {
+        if (validate_pass()){
+          data = {
+            "currentPassword": document.getElementById('oldPass').value,
+            "newPassword": document.getElementById('newPass').value,
+          }
+          console.log(data)
+          var url=`https://reviewbook18.herokuapp.com/api/Account/password/${sessionStorage.getItem("id")}`;
+          fetch(url,{
+            method:"PUT",
+            headers:{
+              'Content-Type': 'application/json',
+              'accept' : 'text/plain',
+              'Authorization': 'Bearer '+sessionStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          }).then(function(reponse){
+            //alert(`${response.status}`)
+            if(reponse.status !=200){
+              alert('Old password is incorrect!');
+              document.getElementById("oldPass").focus()
+          }
+            else {
+              //return reponse.json();
+              alert("Change password succesfully!");  
+              window.location.replace("admin_infor.html");
+          }
+          })
         }
-          else {
-            return reponse.json();
-        }
-        }).then(function(json){
-          console.log(json)        
-          let bd='';
-          if (json.birthday!=null)
-          {
-            let birthday = new Date(json.birthday);
-            var month = birthday.getMonth()+1;
-            if (month<10)
-            {
-              month='0' + month;
-            }
-            var day = birthday.getDate();
-            if (day<10) 
-            {
-              day='0' + day;
-            }
-            bd = day + '/'+ month + '/' + birthday.getFullYear();
-          }
-          if (json.picture)
-          {
-            const url_img ="data:image/jpeg;base64,"+ json.picture;
-            document.getElementById("user-img").style.backgroundImage = `url(${url_img})`;
-          }
-          else {
-            document.getElementById("user-img").style.backgroundImage = `url(../../assets/images/user-logo.png)`;
-          }
-          document.getElementById("userName").value = json.userName;
-          document.getElementById("name").value = json.fullName;
-          document.getElementById("birthday").value = bd;
-          document.getElementById("address").value = json.address;         
-          document.getElementById("role").value = json.role.nameRole;         
-          
-        })
       }
-      
-      
     </script>
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="account.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
@@ -382,6 +345,7 @@
     <script src="../../assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
+    <script src="../../assets/js/file-upload.js"></script>
     <!-- End custom js for this page -->
   </body>
 </html>

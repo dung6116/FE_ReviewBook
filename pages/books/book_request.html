@@ -265,11 +265,11 @@
                       <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th style="width: 100px ;"> ID </th>
+                            <th> ID </th>
                             <th> Tên sách </th>
                             <th> Tác giả </th>
                             <th> Nhà xuất bản </th>
-                            <th style="width: 100px ;"> Action </th>
+                            <th> Action </th>
                           </tr>
                         </thead>
                         <tbody id="list-propose-books">
@@ -369,7 +369,7 @@
               <td> ${json[i].newAut} </td>
               <td> ${json[i].newPub} </td>
               <td> 
-                <a class="btn btn-outline-primary btn-sm" href="book_request_detail.html" role="button" onclick="get_book_id(${json[i].id})" >View</a> 
+                <a class="btn btn-outline-primary btn-sm" href="book_request_detail.html" role="button" onclick="get_id_book(${json[i].id})" >View</a> 
               </td>
             </tr>
           `

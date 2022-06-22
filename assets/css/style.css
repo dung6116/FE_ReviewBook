@@ -7577,6 +7577,13 @@ a {
   a:hover {
     color: #0056b3;
     text-decoration: none; }
+a.list-top {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: transparent; }
+  a:hover {
+    color: #b9dbff;
+    text-decoration: none; }
 
 a:not([href]):not([class]) {
   color: inherit;

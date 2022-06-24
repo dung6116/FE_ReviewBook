@@ -310,18 +310,18 @@
                         <div class="flex-grow">
                           <a class="preview-subject" style = "color:#085396; font-size: 20px ;font-weight: bold; cursor: pointer; margin-bottom: 5px;" onclick = "xem_chi_tiet_sach(${json[i].id})" >${json[i].name}</a>
                           <br>
-                          <div style="position: relative;">
-                            <div style="position: absolute; left: 0;">
+                          <div >
+                            <div >
                               <a class="text-muted mb-0" style = "color:#000000 !important;cursor: pointer;" onclick = "xem_chi_tiet_tacgia(${json[i].author.id})">
                                 <i class="mdi mdi-account" style="color:#000000 !important; font-size:20px"></i>${json[i].author.stage_Name}</a>
                             </div>
                             
-                            <div style="position: absolute; right: 0;">
+                            <div >
                               <a class="text-muted mb-0" style = "color:#000000 !important; font-family: Arial, Helvetica, sans-serif;" href="#">
                                 <i class="mdi mdi-timer" style="color:#000000 !important; font-size:20px"></i>${json[i].publishedYear}</a>
                             </div>
                           </div>
-                          <br><br>
+                          
                           <div id="book-tag-${i}">
                             <i class="mdi mdi-book-plus" style="color:#000000 !important; font-size:20px;"></i>
                             
@@ -329,7 +329,7 @@
                           
                           <br>
                           <div style="white-space: normal !important;">
-                            <p style = "font-size:15px; line-height: 18px; color:#000000 !important; width: 270px; height: 90px; margin-bottom: 0; overflow: hidden; text-overflow: ellipsis;">
+                            <p style = "font-size:15px; line-height: 18px; color:#000000 !important; height: 90px; margin-bottom: 0; overflow: hidden; text-overflow: ellipsis;">
                               ${json[i].description}</p>  
                           </div>
                         </div>

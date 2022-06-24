@@ -2,16 +2,7 @@ function get_id_user(id){
     sessionStorage.setItem("id_user",id);
 }
 
-const image_input = document.getElementById("img-btn");
-image_input.addEventListener("change", function() {
-const reader = new FileReader();
-reader.addEventListener("load", () => {
-    const uploaded_image = reader.result;
-    //console.log(uploaded_image);
-    document.getElementById("user-img").style.backgroundImage = `url(${uploaded_image})`;
-});
-reader.readAsDataURL(this.files[0]);
-});
+
 
 function validate() {
     if( document.getElementById("userName").value == "" ) {

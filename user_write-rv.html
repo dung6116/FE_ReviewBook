@@ -30,15 +30,15 @@
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
           <!-- Logo web WhiteDragons -->
           <ul style=" padding-inline-start: 10px;">
-            <a  href="user_index.html">
+            <a  href="user_index.html" style="display: flex;">
               <span >
                 <i class="fa-solid fa-dragon" style="font-size:48px; margin-top: 10px; color:white"></i>
               </span>
-              <span style="color:white; font-size:30px;">WhiteDragons</span>
+              <span class="title-web" style="color:white; font-size:30px;margin: auto;">WhiteDragons</span>
             </a>
           </ul>
           <!-- List menu -->
-          <ul class="navbar-nav navbar-nav-right">
+          <ul class="navbar-nav navbar-nav-right" style="margin-left: auto;">
             <!-- My books -->
             <li class="nav-item menu-items">
               <a class="nav-link" href="user_mybook.html">
@@ -115,9 +115,6 @@
                 </div>
               </li>
           </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="mdi mdi-format-line-spacing"></span>
-          </button>
         </div>
       </nav>
 
@@ -164,19 +161,17 @@
                                         
                                         <div class="preview-item-content d-sm-flex flex-grow">
                                           <div class="flex-grow">
-                                            
-                                            <div style="position: relative;">
-                                              <div style="position: absolute; left: 0;">
+                                              <div style="width : 50%; float: left;">
                                                 <div id="book-rate-avg">
                                                     
                                                 </div>
                                               </div>
                                               
-                                              <div style="position: absolute; right: 0; color:#000000;" id="book-publisher">
+                                              <div style="width : 50% ; float:right; text-align: end; color:#000000;" id="book-publisher">
                                                 <label style="font-weight: bold">Publisher:</label>
                                                 
                                               </div>
-                                            </div>
+                                            
                                           </div>
                                         </div>
                                       </div>
@@ -189,18 +184,16 @@
                                         
                                         <div class="preview-item-content d-sm-flex flex-grow">
                                           <div class="flex-grow">
-                                            
-                                            <div style="position: relative;">
-                                              <div style="position: absolute; left: 0; color: #000000;" id="book-category">
+                                              <div style="width : 50%; float: left; color: #000000;" id="book-category">
                                                 <label style="font-weight: bold">Category:</label>
                                                 
                                               </div>
                                               
-                                              <div style="position: absolute; right: 0; color: #000000;">
+                                              <div style="width : 50% ; float:right; text-align: end; color: #000000;">
                                                 <label style="font-weight: bold">Publishing Year:</label>
                                                 <label id="book-publishing-year"></label>
                                               </div>
-                                            </div>
+                                            
                                           </div>
                                         </div>
                                       </div>
@@ -359,6 +352,14 @@
 
       .bg-primary {
         background-color: #EEEEEE !important;
+      }
+      
+      @media (min-width: 750px){
+        .title-web{display: block !important;}
+      }
+
+      @media (max-width: 750px){
+        .title-web{display: none !important;}
       }
     </style>
 

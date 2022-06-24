@@ -30,15 +30,15 @@
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
           <!-- Logo web WhiteDragons -->
           <ul style=" padding-inline-start: 10px;">
-            <a  href="user_index.html">
+            <a  href="user_index.html" style="display: flex;">
               <span >
                 <i class="fa-solid fa-dragon" style="font-size:48px; margin-top: 10px; color:white"></i>
               </span>
-              <span style="color:white; font-size:30px;">WhiteDragons</span>
+              <span class="title-web" style="color:white; font-size:30px;margin: auto;">WhiteDragons</span>
             </a>
           </ul>
           <!-- List menu -->
-          <ul class="navbar-nav navbar-nav-right">
+          <ul class="navbar-nav navbar-nav-right" style="margin-left: auto;">
             <!-- My books -->
             <li class="nav-item menu-items">
               <a class="nav-link" href="user_mybook.html">
@@ -115,9 +115,6 @@
                 </div>
               </li>
           </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="mdi mdi-format-line-spacing"></span>
-          </button>
         </div>
       </nav>
 
@@ -173,7 +170,7 @@
                                         <input type="text" class="form-control" id="address" style="background-color: #EEEEEE; color: #000000;"  >
                                       </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary mr-2" id="btn-save">Save</button>
+                                    <button type="button" style="background-color: #085394; border-color: #085394;" class="btn btn-primary mr-2" id="btn-save">Save</button>
                                   </form>
                             </div>
                         </div>
@@ -209,6 +206,14 @@
       .navbar{
         left: 0;
         background: #085394;
+      }
+      
+      @media (min-width: 750px){
+        .title-web{display: block !important;}
+      }
+
+      @media (max-width: 750px){
+        .title-web{display: none !important;}
       }
     </style>
 
